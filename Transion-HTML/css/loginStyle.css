@@ -1,6 +1,4 @@
-body {
-	background: url("/images/main.jpg") repeat center center fixed;
-}
+
 /* Typography */
 h1#title {
 	font-family: 'Roboto Slab', serif;
@@ -29,6 +27,30 @@ h2.loginHeader{
 	line-height: 2.8em;
 }
 
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 90px;
+  height: 90px;
+  -webkit-animation: spin 1.2s linear infinite;
+  animation: spin 1.2s linear infinite;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .login-box {
 	background-color: white;
 	max-width: 400px;
@@ -40,6 +62,7 @@ h2.loginHeader{
 	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
 	text-align: center;
 }
+
 
 .login-box .box-header {
 	background: url("/images/back1.jpg") no-repeat center center fixed;

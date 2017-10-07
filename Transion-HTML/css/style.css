@@ -66,6 +66,12 @@ body {
 	color:#888888;
 	margin:0;
 }
+body.b1{
+	background: url("/images/main.jpg") center center fixed;
+}
+body.b2{
+	background: url("/images/mainBack3.jpg") center center fixed;
+}
 h2{
 	font-size:34px;
 	color:#222222;
@@ -179,11 +185,11 @@ color: #fff;
 /* Navigation
 ---------------------------------*/
 .main-nav-outer{
-	padding:0px;
+	padding-bottom:20px;
 	border-bottom:1px solid #dddddd;
 	box-shadow:0 4px 5px -3px #ececec;
 	position:relative;
-	background:url(../img/back1.jpg);
+	background-color: rgba(0,0,0,0.7);
 }
 .main-nav{
 	text-align:center;
@@ -200,6 +206,7 @@ color: #fff;
 	text-decoration: none;
 	line-height:20px;
 	font-size: 16px;
+	padding-top: 10px;
 }
 .main-nav li a{
 	display:inline-block;
@@ -756,7 +763,7 @@ border: 2px solid #fff;
 ---------------------------------*/
 
 .footer{
-    background:url(/images/pw_maze_black.png);
+    background-color: rgba(0,0,0,0.6);
 	padding:19px 0 19px;
 	border-top: 1px solid #dddddd;
 }
