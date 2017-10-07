@@ -31,7 +31,7 @@ h2.loginHeader{
 
 .login-box {
 	background-color: white;
-	max-width: 340px;
+	max-width: 400px;
 	margin: 0 auto;
 	position: relative;
 	top: -30px;
@@ -60,7 +60,7 @@ h2.loginHeader{
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 2px;
-	font-size: .9em;
+	font-size: 1.1em;
 	color: #888;
 }
 
