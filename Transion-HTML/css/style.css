@@ -891,3 +891,8 @@ hr.style-two {
 table, th, td {
 	text-align: center;
 }
+
+.verticalLine {
+	height: 150px;
+  	border-left: 2px solid #699DB6;
+}

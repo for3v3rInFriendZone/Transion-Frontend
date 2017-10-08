@@ -16,13 +16,14 @@
 	<link href="css/responsive.css" rel="stylesheet" type="text/css">
 	<link href="css/animate.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/loginStyle.css">
+	<link href="css/button.css" rel="stylesheet" type="text/css">
 	
 	
 	</head>
 	
-	<body class="b2" onload="myFunction()">
+	<body class="b2">
 
-		<nav class="main-nav-outer animated fadeInUp" id="navbarPopup" style="display:none;">
+		<nav class="main-nav-outer" id="navbarPopup">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left main-nav">
 					<li style="font-size: 26px; padding-right: 780px;"><span style="color:#42cbf4;">Transion </span></li>
@@ -35,22 +36,57 @@
 				<div class="container">
 					<form class="state-form form-horizontal" name="loginForm">
 						<div class="form-group">
-							<div class="animated fadeInUp">
+							<!--<div class="animated fadeInUp">
                                 <br/>
                                 <div class="loader" id="loader"></div>
-							</div>
+							</div> -->
 						</div>
 					</form>
 				</div>
 				<br/>
 			</header>
 		</div>
+		
+		<h1 style="text-align: center">
+			Please select one of options...
+		</h1>
+
+		<div align="center" class="animated fadeInUp">
+			<p>
+				<a href="#" class="btn" onclick="showAgencies()" id="agenciesButton">Agencies</a>
+				<a href="#" class="btn btn-blue" onclick="showImports()" id="importsButton">Import</a>
+				<a href="#" class="btn btn-red">Export</a>
+				<a href="#" class="btn btn-green">Search</a>
+			</p>	
+		</div>
+
+		<hr id="hr1" class="animated fadeInDown" style="display:none;"/>
+
+		<div id="agencies" align="center" class="animated fadeInDown" style="display:none;">
+			<p>
+				<a href="#" class="btn">List all agencies</a>
+				<a href="#" class="btn btn-blue">Find agency</a>
+				<a href="#" class="btn btn-red">Something else</a>
+				<a href="#" class="btn btn-green">Search</a>
+				<a href="#" class="btn btn-green">Search</a>
+				<a href="#" class="btn btn-green">Search</a>
+			</p>	
+		</div>
+
+		<div id="imports" align="center" class="animated fadeInDown" style="display:none;">
+			<p>
+				<a href="#" class="btn">List all imports</a>
+				<a href="#" class="btn btn-blue">Import new file</a>
+				<a href="#" class="btn btn-red">Something else</a>
+				<a href="#" class="btn btn-green">Search</a>
+			</p>	
+		</div>
 
 		<nav class="navbar navbar-default navbar-fixed-bottom footer">
 			<span class="copyright"> <span style="color:#42cbf4;">Transion 1.0.0 </span> &copy 2017</span>
 		</nav>
 
-		<script>
+		<!--<script>
 			var myVar;
 			function myFunction(){
 				myVar = setTimeout(showPage, 3000);
@@ -59,6 +95,24 @@
 			function showPage() {
 			document.getElementById("loader").style.display = "none";
 			document.getElementById("navbarPopup").style.display = "block";
+			}
+		</script> -->
+
+		<script>
+			function showAgencies(){
+				document.getElementById("agenciesButton").setAttribute("style", " padding: 40px; background-color: #CCC; border-color: rgba(0,0,0,0.9);");
+				document.getElementById("importsButton").setAttribute("style", "padding: 30px 30px; background-color: #699DB6; border-color: rgba(0,0,0,0.3);")
+				document.getElementById("hr1").style.display = "block";
+				document.getElementById("agencies").style.display = "block";
+				document.getElementById("imports").style.display = "none";
+			}
+
+			function showImports(){
+				document.getElementById("importsButton").setAttribute("style", " padding: 40px; background-color: #3C677B; border-color: rgba(0,0,0,0.9);");
+				document.getElementById("agenciesButton").setAttribute("style", "padding: 30px 30px; background-color: #eee; border-color: rgba(0,0,0,0.3);")
+				document.getElementById("hr1").style.display = "block";
+				document.getElementById("agencies").style.display = "none";
+				document.getElementById("imports").style.display = "block";
 			}
 		</script>
 	</body>
