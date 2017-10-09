@@ -201,33 +201,34 @@ color: #fff;
 	display:inline;
 	margin:0 1px;
 	color:#fff !important;
-	text-transform:uppercase;
+	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 	text-decoration: none;
 	line-height:20px;
 	font-size: 16px;
 	padding-top: 10px;
+	padding-right: 10px;
+	cursor: pointer;
 }
 .main-nav li a{
 	display:inline-block;
 	color:#fff !important;
-	text-transform:uppercase;
+	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 	text-decoration: none;
-	line-height:20px;
-	margin:17px 32px;
 	cursor: pointer;
-	transition:all 0.3s ease-in-out;
-	-moz-transition:all 0.3s ease-in-out;
-	-webkit-transition:all 0.3s ease-in-out;
 }
 
-.main-nav li a:hover{
+.main-nav li:hover{
 	text-decoration: underline;
 }
-.main-nav li a.active {
+.main-nav li.active {
   text-decoration: underline;
   outline: none;
+}
+
+#logoText:hover{
+	text-decoration: inherit;
 }
 
 .small-logo{

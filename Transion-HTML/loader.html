@@ -22,30 +22,35 @@
 	</head>
 	
 	<body class="b2">
-
 		<nav class="main-nav-outer" id="navbarPopup">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left main-nav">
-					<li style="font-size: 26px; padding-right: 780px;"><span style="color:#42cbf4;">Transion </span></li>
+					<li style="font-size: 26px;"> <span id="logoText" style="color:#42cbf4;">Transion </span></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li style="font-size: 18px;">Log out<i class="fa fa-sign-out" aria-hidden="true"></i></li>
+					<li style="font-size: 18px;">Log out<i class="fa fa-sign-out" aria-hidden="true"></i></li>
+					<li style="font-size: 18px;">Log out<i class="fa fa-sign-out" aria-hidden="true"></i></li>
+					<li style="font-size: 18px;">Log out [Marko] <i class="fa fa-sign-out" aria-hidden="true"></i> </li>
 				</ul>
 			</div>
 		</nav> 
 			
-		<div style="overflow:hidden;">
-			<header class="header" id="header"><!--header-start-->
+		<!--<div style="overflow:hidden;">
+			<header class="header" id="header">
 				<div class="container">
 					<form class="state-form form-horizontal" name="loginForm">
 						<div class="form-group">
-							<!--<div class="animated fadeInUp">
+							<div class="animated fadeInUp">
                                 <br/>
-                                <div class="loader" id="loader"></div>
-							</div> -->
+                                <div class="loader" id="loader"></div> 
+							</div>
 						</div>
 					</form>
 				</div>
 				<br/>
 			</header>
-		</div>
+		</div> -->
 		
 		<h1 style="text-align: center">
 			Please select one of options...
@@ -94,11 +99,22 @@
 
 			function showPage() {
 			document.getElementById("loader").style.display = "none";
-			document.getElementById("navbarPopup").style.display = "block";
+			document.getElementById("mainButtons").style.display = "block";
 			}
 		</script> -->
 
 		<script>
+
+			/*var myVar;
+
+			function myFunction(){
+				myVar = setTimeout(showPage, 2500);
+			}
+
+			function showPage() {
+				document.getElementById("loader").style.display = "none";
+				document.getElementById("mainButtons").style.display = "block";
+			}*/
 			function showAgencies(){
 				document.getElementById("agenciesButton").setAttribute("style", " padding: 40px; background-color: #CCC; border-color: rgba(0,0,0,0.9);");
 				document.getElementById("importsButton").setAttribute("style", "padding: 30px 30px; background-color: #699DB6; border-color: rgba(0,0,0,0.3);")
