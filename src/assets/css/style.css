@@ -66,11 +66,20 @@ body {
 	color:#888888;
 	margin:0;
 }
-body.b1{
-	background: url("/images/main.jpg") center center fixed;
+.login-background {
+	background: url("../images/main.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
 }
-body.b2{
-	background: url("/images/mainBack3.jpg") center center fixed;
+.main-background {
+	background: url("../images/mainBack3.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+	background-size: cover;         /* Generic*/
+	padding-bottom: 350px;
 }
 h2{
 	font-size:34px;
