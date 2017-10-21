@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routing } from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
+import { HttpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    Routing
+    Routing,
+    HttpModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue : '/'}],
   bootstrap: [AppComponent]

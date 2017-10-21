@@ -10,7 +10,7 @@
 
   <div class="col-md-6 col-md-offset-3">
     <header class="header" id="header"><!--header-start-->
-      <form action="/loader" class="state-form form-horizontal" name="loginForm">
+      <form class="state-form form-horizontal" name="loginForm" novalidate>
         <div class="form-group">
           <div class="login-box animated fadeInUp delay-2.1s">
             <div class="box-header">
@@ -18,13 +18,13 @@
             </div>
             <label for="username">Username</label>
             <br/>
-            <input type="text" id="username" size="30" required>
+            <input type="text" id="username" size="30" #username>
             <br/>
             <label for="password">Password</label>
             <br/>
-            <input type="password" id="password" size="30" required>
+            <input type="password" id="password" size="30" #password>
             <br/>
-            <button type="submit">Sign In</button>
+            <button type="button" (click)="signIn(username.value, password.value)">Sign In</button>
             <br/>
           </div>
         </div>
