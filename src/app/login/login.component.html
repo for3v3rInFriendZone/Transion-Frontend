@@ -10,22 +10,27 @@
 
   <div class="col-md-6 col-md-offset-3">
     <header class="header" id="header"><!--header-start-->
-      <form class="state-form form-horizontal" name="loginForm" novalidate>
+      <form class="state-form form-horizontal" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
         <div class="form-group">
           <div class="login-box animated fadeInUp delay-2.1s">
             <div class="box-header">
               <h2 class="loginHeader">Sign In</h2>
             </div>
-            <label for="username">Username</label>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <label for="username">Username</label>
+              <br/>
+              <input type="text" name="username" size="30" [(ngModel)]="model.username" #username="ngModel" required>
+              <div *ngIf="f.submitted && !username.valid" class="help-block" style="color:red">Username is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+              <label for="password">Password</label>
+              <br/>
+              <input type="password" name="password" size="30" [(ngModel)]="model.password" #password="ngModel" required>
+              <div *ngIf="f.submitted && !password.valid" class="help-block" style="color:red">Password is required</div>
+            </div>
+            <button type="submit">Sign In</button>
             <br/>
-            <input type="text" id="username" size="30" #username>
-            <br/>
-            <label for="password">Password</label>
-            <br/>
-            <input type="password" id="password" size="30" #password>
-            <br/>
-            <button type="button" (click)="signIn(username.value, password.value)">Sign In</button>
-            <br/>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
           </div>
         </div>
       </form>

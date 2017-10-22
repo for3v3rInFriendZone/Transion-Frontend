@@ -1,24 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService} from './login.service';
-import { UserLogin } from './user';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService} from '../_services/authentication.service';
+import { UserLogin } from '../_models/user';
  
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  providers: [AuthenticationService],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginSer: LoginService) { }
+  model: any = {};
+  error = '';
+
+  constructor(
+    private loginSer: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit() {
-    this.loginSer.getData(); 
+    this.loginSer.logout();
   }
 
-  signIn(username: string, password: string) {
-    let user = new UserLogin(username, password);
-    this.loginSer.loginUser(user);
+  login() {
+    this.loginSer.login(this.model.username, this.model.password)
+    .subscribe( result => {
+      if( result == true) {
+        this.router.navigate(['home']);
+      } else {
+        this.error = 'Username or password is incorrect';
+      }
+    });
   }
 
 }
