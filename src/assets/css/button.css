@@ -23,6 +23,11 @@ a.btn {
 		background-color: #CCC;
 		border-color: rgba(0,0,0,0.9);
 	}
+	a.btn.clicked {
+		background-color: #CCC;
+		border-color: rgba(0,0,0,0.9);
+		padding: 30px;
+	}
 
 /* blue button */
 
@@ -41,6 +46,11 @@ a.btn.btn-blue {
 	a.btn.btn-blue:active {
 		background-color: #3C677B;
 		border-color: rgba(0,0,0,0.9);
+	}
+	a.btn.btn-blue.clicked {
+		background-color: #3C677B;
+		border-color: rgba(0,0,0,0.9);
+		padding: 30px;
 	}
 
 /* red button */

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  model: any = {};
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.ping();
@@ -21,6 +24,20 @@ export class HomeComponent implements OnInit {
         data => console.log(data),
         err => console.log(err)
       );
+  }
+
+  showAgencies() {
+    this.model.agencies = true;
+    this.model.imports = false;
+  }
+
+  showImports() {
+    this.model.imports = true;
+    this.model.agencies = false;
+  }
+
+  showListAllAgencies() {
+    this.router.navigate(['agencies']);
   }
 
 }

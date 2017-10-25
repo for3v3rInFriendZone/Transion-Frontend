@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { TokenService } from './_services/token.service';
 import { AuthenticationService } from './_services/authentication.service';
+import { AgenciesComponent } from './agencies/agencies.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AuthenticationService } from './_services/authentication.service';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AgenciesComponent
   ],
   imports: [
     BrowserModule,
