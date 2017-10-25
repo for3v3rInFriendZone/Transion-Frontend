@@ -14,7 +14,7 @@ export class TokenService implements HttpInterceptor{
   constructor(private auth: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(this.auth.token);
+    
     request = request.clone({
       setHeaders: {
         Authorization: this.auth.token
