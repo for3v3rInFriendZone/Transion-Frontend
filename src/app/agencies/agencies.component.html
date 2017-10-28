@@ -4,72 +4,52 @@
   <div align="left" class="animated fadeInUp">
     <p>
       <a style="padding: 20px;" class="btn btn-blue" (click)="backToHome()"> <i class="fa fa-arrow-left"></i> Back</a>
-      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"  onclick="showImports()">Import</a>
     </p>	
   </div>
 </div>
 
-<div class="col-md-6 col-md-offset-3 animated fadeInUp" style="padding: 10px;">
+<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
   <div class="panel panel-success">
     <div class="panel-heading text-center">
-            <h3 class="panel-title">Transactions</h3>
+            <h3 class="panel-title">Agencies</h3>
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2"> 	  			
         <table class="table table-hover">
           <thead>
-            <th> Num Unique </th>
-            <th> Created date </th>
-            <th> Date to pay </th>
-            <th> Paid date </th>
-            <th> Amount </th>
+            <th> Name </th>
+            <th> PIB </th>
+            <th> External Unique Key </th>
+            <th> Telephone </th>
+            <th> Email </th>
+            <th> Responsible user </th>
+            <th> Address </th>
+            <th> Created on </th>
+            <th> Updated on </th>
           </thead>
           <tbody>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
-            </tr>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
-            </tr>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
-            </tr>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
-            </tr>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
-            </tr>
-            <tr>
-              <td> 39283823ddsa </td>
-              <td> 11-09-2017 </td>
-              <td> 12-10-2017 </td>
-              <td> 19-09-2017 </td>
-              <td> <strong> 8880.90 </strong> </td>
+            <tr *ngFor="let agency of agencies" (click)="viewDetails()">
+              <td> {{agency.name}} </td>
+              <td> {{agency.pib}} </td>
+              <td> {{agency.externalUniqueKey}} </td>
+              <td> {{agency.telephone}} </td>
+              <td> {{agency.email}} </td>
+              <td> {{agency.responsibleUser.firstname}} &nbsp; {{agency.responsibleUser.lastname}} </td>
+              <td> {{agency.address.city.name}} &nbsp; [{{agency.address.street}} &nbsp; {{agency.address.number}}]</td>
+              <td> {{agency.createdOn}} </td>
+              <td> {{agency.updateOn}} </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="showDetails" align="center" class="animated fadeInDown">
+      <p>
+        <a href="#" class="btn">Details</a>
+        <a href="#" class="btn btn-blue">Transactions</a>
+        <a href="#" class="btn btn-red">Mails</a>
+      </p>	
   </div>
 </div>

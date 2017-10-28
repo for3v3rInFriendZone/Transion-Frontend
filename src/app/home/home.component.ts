@@ -29,15 +29,24 @@ export class HomeComponent implements OnInit {
   showAgencies() {
     this.model.agencies = true;
     this.model.imports = false;
+    this.model.exports = false;
   }
 
   showImports() {
     this.model.imports = true;
+    this.model.agencies = false;
+    this.model.exports = false;
+  }
+
+  showExports() {
+    this.model.exports = true;
+    this.model.imports = false;
     this.model.agencies = false;
   }
 
   showListAllAgencies() {
     this.router.navigate(['agencies']);
   }
+
 
 }

@@ -70,5 +70,10 @@ a.btn.btn-red {
 	a.btn.btn-red:active {
 		background-color: #B32C24;
 		border-color: rgba(0,0,0,0.9);
-    }
+	}
+	a.btn.btn-red.clicked {
+		background-color: #B32C24;
+		border-color: rgba(0,0,0,0.9);
+		padding: 30px;
+	}
     

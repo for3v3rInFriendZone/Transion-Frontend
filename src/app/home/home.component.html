@@ -10,27 +10,26 @@
       <p>
         <a class="btn" [ngClass]="{ 'clicked': model.agencies }" (click)="showAgencies()">Agencies</a>
         <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"  onclick="showImports()">Import</a>
-        <a class="btn btn-red">Export</a>
+        <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
         <a class="btn btn-green">Tables</a>
         <a class="btn btn-green">Configurations</a>
       </p>	
     </div>
   </div>
 
-  <hr id="hr1" *ngIf="model.agencies || model.imports" class="animated fadeInDown"/>
+  <hr *ngIf="model.agencies || model.imports || model.exports" class="style13 animated fadeInDown"/>
 
   <div *ngIf="model.agencies" name="model.agencies" align="center" class="animated fadeInDown">
     <p>
       <a class="btn" (click)="showListAllAgencies()">List all agencies</a>
       <a class="btn btn-blue">Find agency</a>
-      <a class="btn btn-red">Transactions</a>
       <a class="btn btn-green">Search</a>
       <a class="btn btn-green">Search</a>
       <a class="btn btn-green">Search</a>
     </p>	
   </div>
 
-  <div id="imports" *ngIf="model.imports" align="center" class="animated fadeInDown">
+  <div *ngIf="model.imports" align="center" class="animated fadeInDown">
     <p>
       <a href="#" class="btn">List all imports</a>
       <a href="#" class="btn btn-blue">Import new file</a>
@@ -38,10 +37,10 @@
       <a href="#" class="btn btn-green">Search</a>
     </p>	
   </div>
-  <div id="imports" *ngIf="false" align="center" class="animated fadeInDown">
+  <div *ngIf="model.exports" align="center" class="animated fadeInDown">
       <p>
-        <a href="#" class="btn">List all imports</a>
-        <a href="#" class="btn btn-blue">Import new file</a>
+        <a href="#" class="btn">List all exports</a>
+        <a href="#" class="btn btn-blue">Export new file</a>
         <a href="#" class="btn btn-red">Something else</a>
         <a href="#" class="btn btn-green">Search</a>
       </p>	
