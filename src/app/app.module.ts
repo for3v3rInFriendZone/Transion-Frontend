@@ -15,6 +15,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { TokenService } from './_services/token.service';
 import { AuthenticationService } from './_services/authentication.service';
 import { AgenciesComponent } from './agencies/agencies.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AgenciesComponent } from './agencies/agencies.component';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    AgenciesComponent
+    AgenciesComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

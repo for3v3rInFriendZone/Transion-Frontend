@@ -231,10 +231,6 @@ color: #fff;
 	text-decoration: none;
 	cursor: pointer;
 }
-
-.main-nav li:hover{
-	text-decoration: underline;
-}
 .main-nav li.active {
   text-decoration: underline;
   outline: none;

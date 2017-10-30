@@ -15,12 +15,13 @@ export class TokenService implements HttpInterceptor{
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    request = request.clone({
-      setHeaders: {
-        Authorization: this.auth.token
-      }
+    const clonedRequest = request.clone({
+      headers:
+        request.headers.set('Authorization', this.auth.token)
+        .set('Access-Control-Allow-Origin', 'http://127.0.0.1:4200')
+      
     });
-    return next.handle(request);
+    return next.handle(clonedRequest);
   }
 
 }

@@ -1,3 +1,16 @@
 .logout:hover{
     color: lightcoral;
 }
+
+.username {
+    font-style: italic;
+    color: white;
+}
+
+.username:hover {
+    color: lightblue;
+}
+
+.noPointer {
+    cursor: default;
+}
