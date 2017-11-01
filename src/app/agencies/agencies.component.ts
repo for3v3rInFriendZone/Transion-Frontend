@@ -11,8 +11,19 @@ import { AgencyService } from './agency.service';
 })
 export class AgenciesComponent implements OnInit {
 
+  /**
+   *  Show details buttons
+   */ 
   showDetails: boolean = false;
-  rowClicked: boolean = false;
+  /**
+   * Show agencies table
+   */
+  showTable: boolean = true;
+  /**
+   * After clicking one row in table and after selecting Details button
+   */ 
+  agencyDetails: boolean = false;
+
   agencies: any = [];
 
   constructor(private router: Router, private clientSer: AgencyService) { }
@@ -21,6 +32,7 @@ export class AgenciesComponent implements OnInit {
     this.clientSer.getAgencies()
     .subscribe(
       data => {
+        debugger;
         this.agencies = data;
       },
       err => {
@@ -28,13 +40,11 @@ export class AgenciesComponent implements OnInit {
       });
   }
 
-  backToHome() {
+  back() {
     this.router.navigate(['home']);
   }
 
-  viewDetails() {
-    this.showDetails = true;
-    this.rowClicked = true;
+  viewDetails(agency: any) {
+    this.router.navigate(['agency', agency.id]);
   }
-
 }

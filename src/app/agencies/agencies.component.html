@@ -3,13 +3,13 @@
 <div class="row">
   <div align="left" class="animated fadeInUp">
     <p>
-      <a style="padding: 20px;" class="btn btn-blue" (click)="backToHome()"> <i class="fa fa-arrow-left"></i> Back</a>
+      <a style="padding: 20px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
     </p>	
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
-  <div class="panel panel-success">
+<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="showTable">
+  <div class="panel panel-info">
     <div class="panel-heading text-center">
             <h3 class="panel-title">Agencies</h3>
     </div>
@@ -28,7 +28,7 @@
             <th> Updated on </th>
           </thead>
           <tbody>
-            <tr *ngFor="let agency of agencies" (click)="viewDetails()">
+            <tr *ngFor="let agency of agencies" (click)="viewDetails(agency)">
               <td> {{agency.name}} </td>
               <td> {{agency.pib}} </td>
               <td> {{agency.externalUniqueKey}} </td>
@@ -44,12 +44,10 @@
       </div>
     </div>
   </div>
-
   <div *ngIf="showDetails" align="center" class="animated fadeInDown">
       <p>
-        <a href="#" class="btn">Details</a>
-        <a href="#" class="btn btn-blue">Transactions</a>
-        <a href="#" class="btn btn-red">Mails</a>
+        <a (click)="transactions()" class="btn btn-blue">Transactions</a>
+        <a (click)="mails()" class="btn btn-red">Mails</a>
       </p>	
   </div>
 </div>

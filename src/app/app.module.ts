@@ -16,6 +16,7 @@ import { TokenService } from './_services/token.service';
 import { AuthenticationService } from './_services/authentication.service';
 import { AgenciesComponent } from './agencies/agencies.component';
 import { UserComponent } from './user/user.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UserComponent } from './user/user.component';
     HomeComponent,
     LoginComponent,
     AgenciesComponent,
-    UserComponent
+    UserComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

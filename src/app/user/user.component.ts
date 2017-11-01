@@ -9,6 +9,7 @@ import { UserService } from './user.service';
   providers: [UserService],
   encapsulation: ViewEncapsulation.None
 })
+
 export class UserComponent implements OnInit {
 
   username: string;
