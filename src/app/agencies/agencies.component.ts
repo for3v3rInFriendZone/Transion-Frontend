@@ -32,7 +32,6 @@ export class AgenciesComponent implements OnInit {
     this.clientSer.getAgencies()
     .subscribe(
       data => {
-        debugger;
         this.agencies = data;
       },
       err => {

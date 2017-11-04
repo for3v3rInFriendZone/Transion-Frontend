@@ -3,7 +3,7 @@
 <div class="row">
   <div align="left" class="animated fadeInUp">
     <p>
-      <a style="padding: 20px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
     </p>	
   </div>
 </div>
@@ -13,8 +13,9 @@
     <div class="panel-heading text-center">
             <h3 class="panel-title">Agencies</h3>
     </div>
+    <br/>
     <div class="row">
-      <div class="col-md-8 col-md-offset-2"> 	  			
+      <div class="col-md-8 col-md-offset-2" style="overflow: scroll;"> 	  			
         <table class="table table-hover">
           <thead>
             <th> Name </th>
@@ -36,8 +37,8 @@
               <td> {{agency.email}} </td>
               <td> {{agency.responsibleUser.firstname}} &nbsp; {{agency.responsibleUser.lastname}} </td>
               <td> {{agency.address.city.name}} &nbsp; [{{agency.address.street}} &nbsp; {{agency.address.number}}]</td>
-              <td> {{agency.createdOn}} </td>
-              <td> {{agency.updateOn}} </td>
+              <td> {{agency.createdOn | date: 'dd/MM/yyyy' }} </td>
+              <td> {{agency.updateOn | date: 'dd/MM/yyyy'}} </td>
             </tr>
           </tbody>
         </table>
