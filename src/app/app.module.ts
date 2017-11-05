@@ -17,6 +17,7 @@ import { AuthenticationService } from './_services/authentication.service';
 import { AgenciesComponent } from './agencies/agencies.component';
 import { UserComponent } from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { FindClientComponent } from './find-client/find-client.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     LoginComponent,
     AgenciesComponent,
     UserComponent,
-    TransactionComponent
+    TransactionComponent,
+    FindClientComponent
   ],
   imports: [
     BrowserModule,

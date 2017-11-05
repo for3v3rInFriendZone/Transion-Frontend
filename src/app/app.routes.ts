@@ -5,13 +5,15 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AgenciesComponent } from './agencies/agencies.component';
 import { UserComponent} from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { FindClientComponent } from './find-client/find-client.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: '', component: LoginComponent},
-    { path: 'agencies', component: AgenciesComponent, canActivate: [AuthGuard]},
+    { path: 'clients', component: AgenciesComponent, canActivate: [AuthGuard]},
     { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
-    { path: 'agency/:id', component: TransactionComponent, canActivate: [AuthGuard]},
+    { path: 'client/:id', component: TransactionComponent, canActivate: [AuthGuard]},
+    { path: 'find/client', component: FindClientComponent, canActivate: [AuthGuard]},
 
     { path: '**', redirectTo: 'home'}
 ];

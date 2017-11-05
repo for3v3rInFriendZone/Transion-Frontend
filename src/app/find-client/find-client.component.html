@@ -8,14 +8,34 @@
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="showTable">
+<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
   <div class="panel panel-info">
     <div class="panel-heading text-center">
-            <h3 class="panel-title">Clients</h3>
+            <h3 class="panel-title">Find Clients</h3>
     </div>
     <br/>
     <div class="row">
-      <div class="col-md-10 col-md-offset-1 scroll clients"> 	  			
+      <form class="state-form form-horizontal" name="form" novalidate>
+        <div class="col-md-4 col-md-offset-1">
+          <table>
+            <tbody class="text-center">
+              <tr>
+                <td> <label for="pib">PIB</label>  <input type="text" size="30" name="pib" class="form-control" ([ngModel])="search.pib"/>  </td>
+              </tr>
+              <br/>
+              <tr>
+                  <td> <label for="pib">External Unique Key</label>  <input type="text" size="30" name="euk" class="form-control" ([ngModel])="search.euk"/>  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+    <br/>
+    <br/>
+    <hr class="style13" *ngIf="results" />
+    <div class="row" *ngIf="results">
+      <div class="col-md-10 col-md-offset-1 scroll"> 	  			
         <table class="table table-hover">
           <thead>
             <th> Name </th>
@@ -29,7 +49,7 @@
             <th> Updated on </th>
           </thead>
           <tbody>
-            <tr *ngFor="let agency of agencies" (click)="viewDetails(agency)">
+            <tr>
               <td> {{agency.name}} </td>
               <td> {{agency.pib}} </td>
               <td> {{agency.externalUniqueKey}} </td>

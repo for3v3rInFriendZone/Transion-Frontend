@@ -44,6 +44,6 @@ export class AgenciesComponent implements OnInit {
   }
 
   viewDetails(agency: any) {
-    this.router.navigate(['agency', agency.id]);
+    this.router.navigate(['client', agency.id]);
   }
 }

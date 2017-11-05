@@ -8,8 +8,8 @@
   <div class="row">
     <div align="center" class="animated fadeInUp">
       <p>
-        <a class="btn" [ngClass]="{ 'clicked': model.agencies }" (click)="showAgencies()">Agencies</a>
-        <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"  onclick="showImports()">Import</a>
+        <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients</a>
+        <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Import</a>
         <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
         <a class="btn btn-green">Tables</a>
         <a class="btn btn-green">Configurations</a>
@@ -17,12 +17,12 @@
     </div>
   </div>
 
-  <hr *ngIf="model.agencies || model.imports || model.exports" class="style13 animated fadeInDown"/>
+  <hr *ngIf="model.clients || model.imports || model.exports" class="style13 animated fadeInDown"/>
 
-  <div *ngIf="model.agencies" name="model.agencies" align="center" class="animated fadeInDown">
+  <div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
     <p>
-      <a class="btn" (click)="showListAllAgencies()">List all agencies</a>
-      <a class="btn btn-blue">Find agency</a>
+      <a class="btn" (click)="showListAllClients()">List all clients</a>
+      <a class="btn btn-blue" (click)="findClient()">Find client</a>
       <a class="btn btn-green">Search</a>
       <a class="btn btn-green">Search</a>
       <a class="btn btn-green">Search</a>

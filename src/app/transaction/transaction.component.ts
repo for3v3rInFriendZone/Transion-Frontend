@@ -51,7 +51,7 @@ export class TransactionComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['agencies']);
+    this.router.navigate(['clients']);
   }
 
   changeTab(tab: string) {

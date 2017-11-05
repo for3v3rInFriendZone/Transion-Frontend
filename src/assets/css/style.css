@@ -954,4 +954,16 @@ div.tab button.active {
     background-color: #ccc;
 }
 
+h2.clientName {
+	color:#330000;
+}
+
+div.scroll {
+	overflow: scroll;
+}
+
+div.clients {
+	height: 600px;
+}
+
 
