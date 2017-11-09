@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-client',
   templateUrl: './find-client.component.html',
-  styleUrls: ['./find-client.component.css']
+  styleUrls: ['./find-client.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FindClientComponent implements OnInit {
 

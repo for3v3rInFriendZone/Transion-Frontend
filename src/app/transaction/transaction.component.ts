@@ -8,7 +8,7 @@ import { Router} from '@angular/router';
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.css'],
   providers: [TransactionService],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.None
 })
 export class TransactionComponent implements OnInit {
 

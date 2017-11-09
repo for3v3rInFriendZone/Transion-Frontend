@@ -25,6 +25,7 @@
             <th> Email </th>
             <th> Responsible user </th>
             <th> Address </th>
+            <th> Status </th>
             <th> Created on </th>
             <th> Updated on </th>
           </thead>
@@ -37,6 +38,7 @@
               <td> {{agency.email}} </td>
               <td> {{agency.responsibleUser.firstname}} &nbsp; {{agency.responsibleUser.lastname}} </td>
               <td> {{agency.address.city.name}} &nbsp;- <i> {{agency.address.street}} &nbsp; {{agency.address.number}}</i> </td>
+              <td> {{agency.status}} </td>
               <td> {{agency.createdOn | date: 'dd/MM/yyyy' }} </td>
               <td> {{agency.updateOn | date: 'dd/MM/yyyy'}} </td>
             </tr>

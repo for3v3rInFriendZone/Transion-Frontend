@@ -4,13 +4,6 @@
  @import '~animate/animate.css';
 
  @charset "utf-8";
- /*
-  Knight Bootstrap theme by BootstrapTaste.com
-  Theme URI: http://bootstraptaste.com/knight-free-bootstrap-theme/
-  Author: BootstrapTaste
-  Author URI: http://bootstraptaste.com
-  */
- 
  /* CSS Document */
  
  /* Float Elements
@@ -55,18 +48,6 @@
  
  /* Primary Styles
  ---------------------------------*/
- body {
-     background: url("./assets/images/main.jpg") no-repeat center center fixed;
-     -webkit-background-size: cover; /* For WebKit*/
-     -moz-background-size: cover;    /* Mozilla*/
-     -o-background-size: cover;      /* Opera*/
-     background-size: cover;         /* Generic*/
-     font-family: 'Open Sans', sans-serif;
-     font-size:14px;
-     font-weight:normal;
-     color:#888888;
-     margin:0;
- }
  .login-background {
      background: url("./assets/images/main.jpg") no-repeat center center fixed;
      -webkit-background-size: cover; /* For WebKit*/
@@ -1134,6 +1115,10 @@ h2.loginHeader{
   -webkit-animation-duration: 1s;
   -webkit-animation-delay: 1s;
 } 
- 
- 
 
+.username {
+    transition: all 0.3s ease-out;
+}
+.logout {
+    transition: all 0.3s ease-out;
+}
