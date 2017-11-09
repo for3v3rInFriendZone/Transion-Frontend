@@ -17,9 +17,9 @@
     <h2 class="clientName"> {{transactions[0].client.name}}</h2>
     <hr class="style13" />
     <p>
-      <a class="btn">Agencies</a>
-      <a class="btn btn-blue">Import</a>
-      <a class="btn btn-red" >Export</a>
+      <a class="btn" [ngClass]="{ 'clicked': activeButton.transactions }">Transactions</a>
+      <a class="btn btn-blue">Details</a>
+      <a class="btn btn-red" >Mails</a>
       <a class="btn btn-green">Tables</a>
       <a class="btn btn-green">Configurations</a>
     </p>

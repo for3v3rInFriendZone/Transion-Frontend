@@ -14,6 +14,7 @@ export class TransactionComponent implements OnInit {
 
   clientId: string;
   transactions: any = [];
+  activeButton: any = {};
 
   /**
    * This is tab from table, to indicate if tab is clicked.
@@ -48,6 +49,8 @@ export class TransactionComponent implements OnInit {
           this.showTable = false;
         }
       });
+
+      this.activeButton.transactions = true;
   }
 
   back() {

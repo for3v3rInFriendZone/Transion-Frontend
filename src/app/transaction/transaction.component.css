@@ -5,3 +5,7 @@ body {
     -o-background-size: cover;      /* Opera*/
     background-size: cover;  
 }
+
+.tablinks.active {
+    box-shadow: 0 20px 38px rgba(0,0,0,0.25), 0 20px 20px rgba(0,0,0,0.22);
+}
