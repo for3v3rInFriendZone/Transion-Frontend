@@ -46,8 +46,6 @@ export class UserComponent implements OnInit {
       err => {
         this.error = 'Something went wrong: ' + err.error.message;
       });
-
   }
-
 
 }

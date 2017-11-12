@@ -21,18 +21,32 @@ export class HomeComponent implements OnInit {
     this.model.clients = true;
     this.model.imports = false;
     this.model.exports = false;
+    this.model.conf = false;
   }
 
   showImports() {
     this.model.imports = true;
     this.model.clients = false;
     this.model.exports = false;
+    this.model.conf = false;
   }
 
   showExports() {
     this.model.exports = true;
     this.model.imports = false;
     this.model.clients = false;
+    this.model.conf = false;
+  }
+
+  showConf() {
+    this.model.exports = false;
+    this.model.imports = false;
+    this.model.clients = false;
+    this.model.conf = true;
+  }
+
+  showUsers() {
+    this.router.navigate(['admin/users']);
   }
 
   showListAllClients() {

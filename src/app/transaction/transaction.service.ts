@@ -13,4 +13,12 @@ export class TransactionService {
     return this.http.get('http://localhost:8080/transaction/client/'+ idClient, {params: params});
   }
 
+  getTasksFromClient(idClient: string) {
+    return this.http.get('http://localhost:8080/task/client/' + idClient);
+  }
+
+  getTaskTransactions(task: any) {
+    return this.http.post('http://localhost:8080/transaction/task/', task);
+  }
+
 }

@@ -15,6 +15,7 @@ export class TransactionComponent implements OnInit {
   clientId: string;
   transactions: any = [];
   activeButton: any = {};
+  tasks: any = [];
 
   /**
    * This is tab from table, to indicate if tab is clicked.
@@ -39,7 +40,19 @@ export class TransactionComponent implements OnInit {
         this.clientId = params['id'];
       });
 
-    this.transactionSer.getTransactionsFromAgency(this.clientId, 'all')
+      this.getTransactionsFromAgency(this.clientId);
+
+      this.activeButton.transactions = true;
+
+      this.getTasksFromClient(this.clientId);
+  }
+
+  /**
+   * Gets all the transactions from selected agency-client.
+   * @param clientId 
+   */
+  getTransactionsFromAgency(clientId: string) {
+    this.transactionSer.getTransactionsFromAgency(clientId, 'all')
     .subscribe(
       data => {
         this.transactions = data; 
@@ -49,8 +62,20 @@ export class TransactionComponent implements OnInit {
           this.showTable = false;
         }
       });
+  }
 
-      this.activeButton.transactions = true;
+  /**
+   * Gets all tasks-scenarios for selected agency-client.
+   */
+  getTasksFromClient(clientId: string) {
+    this.transactionSer.getTasksFromClient(clientId)
+    .subscribe(
+      data => {
+        this.tasks = data;
+      },
+      err => {
+        console.log('Cant retrive tasks for client with id: ' + clientId);
+      });
   }
 
   back() {
@@ -101,6 +126,21 @@ export class TransactionComponent implements OnInit {
       this.tab.notPaid = false;
       this.tab.paid = true;
     }
+  }
+
+  getTaskTransactions(task: any) {
+    this.transactionSer.getTaskTransactions(task)
+    .subscribe(
+      data => {
+          if(this.clientId == task.client.id) {
+            this.transactions = data;
+            if(this.transactions.length != 0) {
+              this.showTable = true;
+            } else {
+              this.showTable = false;
+            }
+          } 
+      });
   }
 
 }

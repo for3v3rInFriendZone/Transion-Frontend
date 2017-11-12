@@ -925,21 +925,21 @@
 	border-bottom-width: 3px;
 }
 
-	a.btn:hover {
-		background-color: #e3e3e3;
-        border-color: rgba(0,0,0,0.5);
-	}
-	
-	a.btn:active {
-		background-color: #CCC;
-        border-color: rgba(0,0,0,0.9);
-    }
-    
-	a.btn.clicked {
-		background-color: #CCC;
-		border-color: rgba(0,0,0,0.9);
-		padding: 30px;
-	}
+a.btn:hover {
+    background-color: #e3e3e3;
+    border-color: rgba(0,0,0,0.5);
+}
+
+a.btn:active {
+    background-color: #CCC;
+    border-color: rgba(0,0,0,0.9);
+}
+
+a.btn.clicked {
+    background-color: #CCC;
+    border-color: rgba(0,0,0,0.9);
+    padding: 30px;
+}
 
 /* blue button */
 
@@ -950,20 +950,20 @@ a.btn.btn-blue {
 	color: #FFF;
 }
 
-	a.btn.btn-blue:hover {
-		background-color: #4F87A2;
-		border-color: rgba(0,0,0,0.5);
-	}
-	
-	a.btn.btn-blue:active {
-		background-color: #3C677B;
-		border-color: rgba(0,0,0,0.9);
-	}
-	a.btn.btn-blue.clicked {
-		background-color: #3C677B;
-		border-color: rgba(0,0,0,0.9);
-		padding: 30px;
-	}
+a.btn.btn-blue:hover {
+    background-color: #4F87A2;
+    border-color: rgba(0,0,0,0.5);
+}
+
+a.btn.btn-blue:active {
+    background-color: #3C677B;
+    border-color: rgba(0,0,0,0.9);
+}
+a.btn.btn-blue.clicked {
+    background-color: #3C677B;
+    border-color: rgba(0,0,0,0.9);
+    padding: 30px;
+}
 
 /* red button */
 
@@ -989,6 +989,29 @@ a.btn.btn-red.clicked {
     padding: 30px;
 }
 
+/* green button */
+
+a.btn.btn-green {
+	background-color: lightgreen;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: rgb(117, 117, 117);
+}
+
+a.btn.btn-green:hover {
+    background-color: rgb(90, 175, 90);
+    border-color: rgba(0,0,0,0.5);
+}
+
+a.btn.btn-green:active {
+    background-color: rgb(90, 175, 90);
+    border-color: rgba(0,0,0,0.9);
+}
+a.btn.btn-green.clicked {
+    background-color: rgb(90, 175, 90);
+    border-color: rgba(0,0,0,0.9);
+    padding: 30px;
+}
 
 /* Typography */
 h1#title {
@@ -1123,3 +1146,33 @@ h2.loginHeader{
 .logout {
     transition: all 0.3s ease-out;
 }
+
+div.client {
+    background: white;
+    border-radius: 2px;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    margin: 5rem;
+    position: relative;
+    font-family: Verdana, Times, Serif;
+    color: black;
+}
+
+div.client:hover {
+    background-color: lightblue;
+    border: 1px solid lightblue;
+}
+
+.table-hover tr:hover td {
+    background-color: lightcyan;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
+
+.trActive {
+    background-color: lightcyan;
+}
+

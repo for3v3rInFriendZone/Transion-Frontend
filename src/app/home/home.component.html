@@ -11,13 +11,13 @@
         <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients</a>
         <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Import</a>
         <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
-        <a class="btn btn-green">Tables</a>
-        <a class="btn btn-green">Configurations</a>
+        <a class="btn btn-green">Diagrams</a>
+        <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations</a>
       </p>
     </div>
   </div>
 
-  <hr *ngIf="model.clients || model.imports || model.exports" class="style13 animated fadeInDown"/>
+  <hr *ngIf="model.clients || model.imports || model.exports || model.conf" class="style13 animated fadeInDown"/>
 
   <div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
     <p>
@@ -44,4 +44,21 @@
         <a href="#" class="btn btn-red">Something else</a>
         <a href="#" class="btn btn-green">Search</a>
       </p>	
+  </div>
+
+  <div *ngIf="model.conf" name="model.conf" align="center" class="animated fadeInDown">
+    <p>
+      <a class="btn">Configuration of app</a>
+      <a class="btn btn-blue">Scenarios</a>
+      <a class="btn btn-green" (click)="showUsers()">Users</a>
+      <a class="btn btn-red">Permissions</a>
+      <a class="btn btn-green">Mappings</a>
+    </p>
+    <p>
+      <a class="btn">Configuration of app</a>
+      <a class="btn btn-blue">Scenarios</a>
+      <a class="btn btn-green">Users</a>
+      <a class="btn btn-red">Permissions</a>
+      <a class="btn btn-green">Mappings</a>
+    </p>	
   </div>

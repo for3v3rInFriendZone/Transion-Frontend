@@ -18,6 +18,7 @@ import { AgenciesComponent } from './agencies/agencies.component';
 import { UserComponent } from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { FindClientComponent } from './find-client/find-client.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FindClientComponent } from './find-client/find-client.component';
     AgenciesComponent,
     UserComponent,
     TransactionComponent,
-    FindClientComponent
+    FindClientComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

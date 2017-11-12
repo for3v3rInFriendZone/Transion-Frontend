@@ -13,7 +13,7 @@
   
 </div>
 <div class="row">
-  <div align="center" class="animated fadeInUp" *ngIf="showTable">
+  <div align="center" class="animated fadeInUp">
     <h2 class="clientName"> {{transactions[0].client.name}}</h2>
     <hr class="style13" />
     <p>
@@ -26,12 +26,14 @@
   </div>
 </div>
 
-<div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no transactions</div>
-<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="showTable">
+<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
   <div class="tab">
       <button class="tablinks" [ngClass]="{ 'active': tab.all }" (click)="changeTab('all')">All</button>
       <button class="tablinks" [ngClass]="{ 'active': tab.notPaid }" (click)="changeTab('notPaid')">Not paid</button>
       <button class="tablinks" [ngClass]="{ 'active': tab.paid }" (click)="changeTab('paid')">Paid</button>
+      <div *ngFor="let task of tasks">
+        <button class="tablinks" (click)="getTaskTransactions(task)"> {{task.label}} </button>
+      </div>
   </div>
   <div class="panel panel-info">
     <div class="panel-heading text-center">
@@ -39,8 +41,9 @@
     </div>
     <br/>
     <div class="row">
-      <div class="col-md-8 col-md-offset-2"> 	  			
-        <table class="table table-hover">
+      <div class="col-md-8 col-md-offset-2">
+        <div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no transactions</div>
+        <table class="table table-hover animated fadeInUp" *ngIf="showTable">
           <thead>
             <th> Created date </th>
             <th> Pay date </th>

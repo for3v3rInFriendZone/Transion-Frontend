@@ -1,0 +1,109 @@
+<app-header> </app-header>
+<br/>
+
+<div class="row">
+  <div align="left" class="animated fadeInUp">
+    <p>
+      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+    </p>	
+  </div>
+</div>
+
+<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="tableFlag">
+  <div class="panel panel-info">
+    <div class="panel-heading text-center">
+        <h3 class="panel-title">Users</h3>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <table class="table table-hover animated fadeInUp">
+          <thead>
+            <th> Firstname </th>
+            <th> Lastname </th>
+            <th> Username </th>
+            <th> E-mail </th>
+            <th> Telephone </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i = index;" (click)="showDetails(user, i)" [ngClass]="{'trActive': i == selectedRow}">
+              <td> {{user.firstname}} </td>
+              <td> {{user.lastname}} </td>
+              <td> {{user.username}} </td>
+              <td> {{user.email}} </td>
+              <td> {{user.telephone}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <hr class="style13" />
+  <div class="col-md-9 col-md-offset-2">
+    <div align="center">
+        <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+        <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+    </div>
+  </div>
+  <div align="center" class="animated fadeInUp">
+    <a class="btn" (click)="newUser()">New user</a>
+    <span *ngIf="details" class="animated fadeInUp">
+      <a class="btn btn-blue" (click)="editUser()">Edit user</a>
+      <a class="btn btn-red" (click)="removeUser()"> Remove user</a>
+      <a class="btn btn-green">Set permissions</a> 
+    </span>
+  </div>
+</div>
+
+<!-- This is part for new user dialog -->
+
+<div class="col-md-6 col-md-offset-3 animated fadeInUp" style="padding: 10px;" *ngIf="newUserFlag">
+  <div class="panel panel-info">
+    <div class="panel-heading text-center">
+            <h3 class="panel-title">New user</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-9 col-md-offset-2"> 	  			
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td> <b>Firstname: </b> </td>
+                    <td> <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstname" required/> </td>
+                </tr>
+                <tr>
+                    <td> <b>Lastname: </b> </td>
+                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" required/> </td>
+                </tr>
+                 <tr>
+                    <td> <b>Username: </b> </td>
+                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.username" required/> </td>
+                </tr>
+                <tr>
+                  <td> <b>Password: </b> </td>
+                  <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.password" required/> </td>
+                </tr>
+                <tr>
+                    <td> <b>Email: </b> </td>
+                    <td> <input type="text" name="email" class="form-control" [(ngModel)]="user.email" required/> </td>
+                </tr>
+                <tr>
+                   <td> <b>Telephone: </b> </td>
+                   <td> <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" required/> </td>
+                </tr>    
+            </tbody>
+        </table>
+      </div>
+      <div class="col-md-9 col-md-offset-2">
+        <div align="center">
+            <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+            <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+        <div align="center">
+                <button type="button" (click)="saveUser()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save user"> <i class="fa fa-check"></i></button>
+        </div>
+    </div>
+  </div>
+</div>
