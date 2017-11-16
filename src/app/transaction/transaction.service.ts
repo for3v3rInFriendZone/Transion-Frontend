@@ -21,4 +21,8 @@ export class TransactionService {
     return this.http.post('http://localhost:8080/transaction/task/', task);
   }
 
+  getClient(clientId: string) {
+    return this.http.get('http://localhost:8080/client/' + clientId);
+  }
+
 }

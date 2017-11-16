@@ -911,8 +911,8 @@
 
  a.btn {
 	display: inline-block;
-	color: #666;
-	background-color: #eee;
+	color: #FFF;
+	background-color: #868BA4;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-size: 12px;
@@ -944,7 +944,7 @@ a.btn.clicked {
 /* blue button */
 
 a.btn.btn-blue {
-	background-color: #699DB6;
+	background-color: #425064;
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 	color: #FFF;
@@ -968,7 +968,7 @@ a.btn.btn-blue.clicked {
 /* red button */
 
 a.btn.btn-red {
-	background-color: #E48681;
+	background-color: #096480;
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 	color: #FFF;
@@ -992,10 +992,10 @@ a.btn.btn-red.clicked {
 /* green button */
 
 a.btn.btn-green {
-	background-color: lightgreen;
+	background-color: #695856;
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-	color: rgb(117, 117, 117);
+	color: #FFF;
 }
 
 a.btn.btn-green:hover {
@@ -1147,25 +1147,25 @@ h2.loginHeader{
     transition: all 0.3s ease-out;
 }
 
-div.client {
-    background: white;
-    border-radius: 2px;
-    display: inline-block;
-    height: 100px;
-    width: 100px;
-    margin: 5rem;
-    position: relative;
+div.letters {
+    background: #FFF;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 3px;
     font-family: Verdana, Times, Serif;
     color: black;
 }
 
-div.client:hover {
-    background-color: lightblue;
-    border: 1px solid lightblue;
+div.letters:hover {
+    background-color: #81CEE6;
+}
+
+div.divActive {
+    background-color: #81CEE6;
 }
 
 .table-hover tr:hover td {
-    background-color: lightcyan;
+    background-color: #81CEE6;
 }
 
 th {
@@ -1173,6 +1173,14 @@ th {
 }
 
 .trActive {
-    background-color: lightcyan;
+    background-color: #81CEE6;
+    font-weight: bold;
 }
 
+.trActive h3 {
+    text-decoration: underline;
+}
+
+.agencyRow {
+    font-size: 16px;
+}

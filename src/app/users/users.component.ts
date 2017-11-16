@@ -29,6 +29,8 @@ export class UsersComponent implements OnInit {
     this.details = false;
     this.newUserFlag = false;
     this.userEmail = JSON.parse(localStorage.getItem('currentUser')).username;
+    this.success = null;
+    this.error = null;
 
     this.generateUsers();
   }
@@ -77,6 +79,8 @@ export class UsersComponent implements OnInit {
         this.success = 'User has been successfully removed.';
         setTimeout(() => {  
           this.users.splice(this.selectedRow, 1);
+          this.selectedRow = -1; //return to default state.
+          this.success = null; //removes info message
         }, 1500);
       },
       err => {

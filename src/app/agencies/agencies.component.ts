@@ -26,24 +26,61 @@ export class AgenciesComponent implements OnInit {
 
   agencies: any = [];
 
+  letters = [];
+
+  selectedRow: Number;
+
+  selectedRowClient: Number;
+
+  selectedClient: any;
+
+  options: boolean;
+
   constructor(private router: Router, private clientSer: AgencyService) { }
 
   ngOnInit() {
-    this.clientSer.getAgencies()
+    this.options = false;
+    this.selectedRow = -1;
+    this.selectedRowClient = -1;
+    this.selectedClient = null;
+
+    this.getLetters();
+  }
+
+
+  back() {
+    this.router.navigate(['home']);
+  }
+
+  viewDetails() {
+    this.router.navigate(['client', this.selectedClient.id]);
+  }
+
+  /**
+   * Generate a list of letters
+   */
+  getLetters() {
+    for(let i=65; i<91; i++) {
+      this.letters.push(String.fromCharCode(i));
+    }
+  }
+
+  showAgenciesWithLetter(letter: string, index: Number) {
+    this.selectedRow = index;
+    this.selectedRowClient = -1;
+    this.clientSer.findByStartingLetter(letter)
     .subscribe(
       data => {
         this.agencies = data;
       },
       err => {
         console.log('Something went wrong: ' + err.error.message);
-      });
+      })
   }
 
-  back() {
-    this.router.navigate(['home']);
-  }
-
-  viewDetails(agency: any) {
-    this.router.navigate(['client', agency.id]);
+  showOptions(client: any, index: Number) {
+    this.options = true;
+    this.selectedRowClient = index;
+    this.selectedClient = client;
   }
 }

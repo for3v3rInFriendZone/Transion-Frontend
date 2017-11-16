@@ -13,6 +13,7 @@ import { Router} from '@angular/router';
 export class TransactionComponent implements OnInit {
 
   clientId: string;
+  client: any = {};
   transactions: any = [];
   activeButton: any = {};
   tasks: any = [];
@@ -45,6 +46,16 @@ export class TransactionComponent implements OnInit {
       this.activeButton.transactions = true;
 
       this.getTasksFromClient(this.clientId);
+
+      this.getClient(this.clientId);
+  }
+
+  getClient(clientId: string) {
+    this.transactionSer.getClient(clientId)
+    .subscribe(
+      data => {
+        this.client = data;
+      });
   }
 
   /**

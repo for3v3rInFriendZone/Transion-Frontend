@@ -8,49 +8,57 @@
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="showTable">
-  <div class="panel panel-info">
-    <div class="panel-heading text-center">
-            <h3 class="panel-title">Clients</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
+        <div class="panel panel-info">
+          <div class="panel-heading text-center" style="background-color: #4C9AB4;">
+                  <h3 class="panel-title" style="color: #FFF;">Find</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row" style="padding-left: 80px;">
+              <div class="col-sm-1 col-md-1 col-lg-1 letters" style="overflow:hidden;" *ngFor="let letter of letters; let i = index;"  (click)="showAgenciesWithLetter(letter, i)" [ngClass]="{'divActive': i == selectedRow}">	
+                &nbsp;&nbsp;<h2> {{letter}} </h2>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <br/>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1 scroll clients"> 	 			
-        <table class="table table-hover">
-          <thead>
-            <th> Name </th>
-            <th> PIB </th>
-            <th> External Unique Key </th>
-            <th> Telephone </th>
-            <th> Email </th>
-            <th> Responsible user </th>
-            <th> Address </th>
-            <th> Status </th>
-            <th> Created on </th>
-            <th> Updated on </th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let agency of agencies" (click)="viewDetails(agency)">
-              <td> {{agency.name}} </td>
-              <td> {{agency.pib}} </td>
-              <td> {{agency.externalUniqueKey}} </td>
-              <td> {{agency.telephone}} </td>
-              <td> {{agency.email}} </td>
-              <td> {{agency.responsibleUser.firstname}} &nbsp; {{agency.responsibleUser.lastname}} </td>
-              <td> {{agency.address.city.name}} &nbsp;- <i> {{agency.address.street}} &nbsp; {{agency.address.number}}</i> </td>
-              <td> {{agency.status}} </td>
-              <td> {{agency.createdOn | date: 'dd/MM/yyyy' }} </td>
-              <td> {{agency.updateOn | date: 'dd/MM/yyyy'}} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="row" *ngIf="selectedRow != -1">
+        <div class="col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
+            <hr class="style13 animated fadeInDown"/>
+        </div>
     </div>
+   
+    <div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="selectedRow != -1">
+      <div class="panel panel-info">
+          <div class="panel-heading text-center" style="background-color: #4C9AB4;">
+              <h3 class="panel-title" style="color: #FFF;">Clients</h3>
+      </div>
+        <br/>
+        <div align="center" *ngIf="agencies.length == 0 && selectedRow != -1" class="alert alert-info animated fadeInDown">There are no clients.</div>
+        <div class="row" *ngIf="agencies.length > 0">
+          <div class="col-md-12 col-xs-12 col-sm-12" style="overflow:hidden;">	
+            <table class="table table-hover">
+              <tbody>
+                <tr *ngFor="let agency of agencies; let i = index;" (click)="showOptions(agency, i)" [ngClass]="{'trActive': i == selectedRowClient}">
+                  <td>
+                    <h3> {{agency.name}} </h3>
+                    <p> <i> {{agency.email}} </i> </p>
+                    <p> <i> {{agency.telephone}} </i> </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
   </div>
-  <div *ngIf="showDetails" align="center" class="animated fadeInDown">
-      <p>
-        <a (click)="transactions()" class="btn btn-blue">Transactions</a>
-        <a (click)="mails()" class="btn btn-red">Mails</a>
-      </p>	
-  </div>
+  <div class="col-md-3 animated fadeInUp" align="center" *ngIf="selectedRowClient != -1">
+    <p>
+      <a (click)="mails()" class="btn btn-red">Mails</a>
+      <a (click)="viewDetails()" class="btn btn-blue">Transactions</a>
+    </p>	
+</div>
 </div>
