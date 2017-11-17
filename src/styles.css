@@ -911,8 +911,8 @@
 
  a.btn {
 	display: inline-block;
-	color: #FFF;
-	background-color: #868BA4;
+	color: #666;
+	background-color: #eee;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-size: 12px;
@@ -926,18 +926,21 @@
 }
 
 a.btn:hover {
-    background-color: #e3e3e3;
+    background-color: rgb(200, 200, 200);
     border-color: rgba(0,0,0,0.5);
+    color: #FFF;
 }
 
 a.btn:active {
-    background-color: #CCC;
+    background-color: rgb(200, 200, 200);
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
 }
 
 a.btn.clicked {
-    background-color: #CCC;
+    background-color: rgb(200, 200, 200);
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
     padding: 30px;
 }
 
@@ -951,17 +954,20 @@ a.btn.btn-blue {
 }
 
 a.btn.btn-blue:hover {
-    background-color: #4F87A2;
+    background-color: #364252;
     border-color: rgba(0,0,0,0.5);
+    color: #FFF;
 }
 
 a.btn.btn-blue:active {
-    background-color: #3C677B;
+    background-color: #364252;
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
 }
 a.btn.btn-blue.clicked {
-    background-color: #3C677B;
+    background-color: #364252;
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
     padding: 30px;
 }
 
@@ -975,41 +981,47 @@ a.btn.btn-red {
 }
 
 a.btn.btn-red:hover {
-    background-color: #DA4F49;
+    background-color: #084f64;
     border-color: rgba(0,0,0,0.5);
+    color: #FFF;
 }
 
 a.btn.btn-red:active {
-    background-color: #B32C24;
+    background-color: #084f64;
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
 }
 a.btn.btn-red.clicked {
-    background-color: #B32C24;
+    background-color: #084f64;
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
     padding: 30px;
 }
 
 /* green button */
 
 a.btn.btn-green {
-	background-color: #695856;
+	background-color: #7F5E52;
 	border-color: rgba(0,0,0,0.3);
 	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
 	color: #FFF;
 }
 
 a.btn.btn-green:hover {
-    background-color: rgb(90, 175, 90);
+    background-color: rgb(97, 71, 63);
     border-color: rgba(0,0,0,0.5);
+    color: #FFF;
 }
 
 a.btn.btn-green:active {
-    background-color: rgb(90, 175, 90);
+    background-color: rgb(97, 71, 63);
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
 }
 a.btn.btn-green.clicked {
-    background-color: rgb(90, 175, 90);
+    background-color: rgb(97, 71, 63);
     border-color: rgba(0,0,0,0.9);
+    color: #FFF;
     padding: 30px;
 }
 
@@ -1157,15 +1169,15 @@ div.letters {
 }
 
 div.letters:hover {
-    background-color: #81CEE6;
+    background-color: lightcyan;
 }
 
-div.divActive {
-    background-color: #81CEE6;
+div.letters.clicked {
+    background-color: lightcyan;
 }
 
 .table-hover tr:hover td {
-    background-color: #81CEE6;
+    background-color: lightcyan;
 }
 
 th {
@@ -1173,7 +1185,7 @@ th {
 }
 
 .trActive {
-    background-color: #81CEE6;
+    background-color: lightcyan;
     font-weight: bold;
 }
 
