@@ -7,6 +7,7 @@ import { UserComponent} from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { FindClientComponent } from './find-client/find-client.component';
 import { UsersComponent } from './users/users.component';
+import { MappingComponent } from './mapping/mapping.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'client/:id', component: TransactionComponent, canActivate: [AuthGuard]},
     { path: 'find/client', component: FindClientComponent, canActivate: [AuthGuard]},
     { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard]},
+    { path: 'admin/mapping', component: MappingComponent, canActivate: [AuthGuard]},
 
     { path: '**', redirectTo: 'home'}
 ];

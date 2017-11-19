@@ -1,0 +1,49 @@
+<app-header> </app-header>
+<br/>
+<div class="row">
+  <div align="left" class="animated fadeInUp">
+    <p>
+      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+    </p>	
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+        <div class="panel panel-info">
+          <div class="panel-heading text-center">
+              <h3 class="panel-title">Mappings</h3>
+          </div>
+          <br/>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no mappings</div>
+                <table class="table table-hover animated fadeInUp" *ngIf="showTable">
+                  <thead>
+                    <th> Mapping type </th>
+                    <th> Label </th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mapping of mappings; let i = index;" (click)="showDetails(user, i)" [ngClass]="{'trActive': i == selectedRow}">
+                      <td> {{mapping.type}} </td>
+                      <td> {{mapping.label}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <hr class="style13" />
+  <div align="center" class="animated fadeInUp">
+    <a class="btn" (click)="newMapping()">New mapping</a>
+    <span *ngIf="details" class="animated fadeInUp">
+      <a class="btn btn-blue" (click)="editMapping()">Edit mapping</a>
+      <a class="btn btn-red" (click)="removeMapping()"> Remove mapping</a>
+    </span>
+  </div>
+</div>

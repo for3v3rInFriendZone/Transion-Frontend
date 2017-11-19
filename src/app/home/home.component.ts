@@ -57,5 +57,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['find/client']);
   }
 
+  showMappings() {
+    this.router.navigate(['admin/mapping']);
+  }
 
 }

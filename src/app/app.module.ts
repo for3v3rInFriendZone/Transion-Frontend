@@ -19,6 +19,8 @@ import { UserComponent } from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { FindClientComponent } from './find-client/find-client.component';
 import { UsersComponent } from './users/users.component';
+import { MappingComponent } from './mapping/mapping.component';
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 
 
 @NgModule({
@@ -31,14 +33,16 @@ import { UsersComponent } from './users/users.component';
     UserComponent,
     TransactionComponent,
     FindClientComponent,
-    UsersComponent
+    UsersComponent,
+    MappingComponent
   ],
   imports: [
     BrowserModule,
     Routing,
     HttpModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2DragDropModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

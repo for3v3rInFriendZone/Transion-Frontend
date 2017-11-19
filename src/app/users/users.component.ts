@@ -65,6 +65,8 @@ export class UsersComponent implements OnInit {
     this.user = {};
     this.newUserFlag = true;
     this.tableFlag = false;
+    this.selectedRow = -1;
+    this.details = false;
   }
 
   editUser() {

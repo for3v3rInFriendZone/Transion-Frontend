@@ -2,6 +2,7 @@
  @import '~bootstrap/dist/css/bootstrap.css';
  @import '~font-awesome/css/font-awesome.css';
  @import '~animate/animate.css';
+ @import '~ng2-drag-drop/style.css';
 
  @charset "utf-8";
  /* CSS Document */
@@ -718,6 +719,7 @@
  .footer{
      background-color: rgba(0,0,0,0.6);
      padding:19px 0 19px;
+     margin-top: 50px;
      border-top: 1px solid #dddddd;
  }
  .footer-logo{
