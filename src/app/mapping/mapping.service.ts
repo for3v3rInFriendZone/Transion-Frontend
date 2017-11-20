@@ -10,4 +10,8 @@ export class MappingService {
     return this.http.get('http://localhost:8080/mapping');
   }
 
+  getAllFields(mapping: any) {
+    return this.http.post('http://localhost:8080/field/mapping', mapping);
+  }
+
 }

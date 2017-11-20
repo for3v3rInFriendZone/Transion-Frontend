@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="tableFlag">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
         <div class="panel panel-info">
@@ -26,7 +26,7 @@
                     <th> Label </th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let mapping of mappings; let i = index;" (click)="showDetails(user, i)" [ngClass]="{'trActive': i == selectedRow}">
+                    <tr *ngFor="let mapping of mappings; let i = index;" (click)="showDetails(mapping, i)" [ngClass]="{'trActive': i == selectedRow}">
                       <td> {{mapping.type}} </td>
                       <td> {{mapping.label}} </td>
                     </tr>
@@ -45,5 +45,36 @@
       <a class="btn btn-blue" (click)="editMapping()">Edit mapping</a>
       <a class="btn btn-red" (click)="removeMapping()"> Remove mapping</a>
     </span>
+  </div>
+</div>
+<div class="container" *ngIf="newEditFlag">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+        <div class="panel panel-info">
+          <div class="panel-heading text-center">
+              <h3 *ngIf="mapping != {}" class="panel-title">Edit mapping</h3>
+              <h3 *ngIf="mapping == {}" class="panel-title">New mapping</h3>
+          </div>
+          <div class="panel-body">
+            <h3>Transfer Data via Drag Drop</h3>
+            <div class="row">
+                <div class="col-sm-3">
+                    <ul class="list-group">
+                        <li draggable *ngFor="let item of mappings" [dragData]="item" class="list-group-item">{{item.label}}</li>
+                    </ul>
+                </div>
+                
+                <div class="col-sm-3">
+                <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
+                    <div class="panel-heading">Drop Items here</div>
+                        <div class="panel-body">
+                            <li *ngFor="let item of mappingFields" class="list-group-item"><b>{{item.name}}</b></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

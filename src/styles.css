@@ -928,19 +928,19 @@
 }
 
 a.btn:hover {
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(218, 218, 218);
     border-color: rgba(0,0,0,0.5);
     color: #FFF;
 }
 
 a.btn:active {
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(218, 218, 218);
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
 }
 
 a.btn.clicked {
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(218, 218, 218);
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
     padding: 30px;

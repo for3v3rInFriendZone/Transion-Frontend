@@ -12,24 +12,40 @@ import { MappingService} from './mapping.service';
 export class MappingComponent implements OnInit {
 
   showTable: boolean;
+  tableFlag: boolean;
+  newEditFlag: boolean;
   mappings: any = [];
   mapping: any = {};
   error: string;
   success: string;
   selectedRow: Number;
   details: boolean;
+  droppedItems: any = [];
+  mappingFields: any = [];
 
   constructor(private router:Router, private mappingSer: MappingService) { }
 
   ngOnInit() {
     this.selectedRow = -1;
+    this.newEditFlag = false;
+    this.tableFlag = true;
     this.details = false;
 
     this.getAll();
   }
 
+  onItemDrop(e: any) {
+    // Get the dropped data here
+    this.droppedItems.push(e.dragData);
+  }
+
   back() {
-    this.router.navigate(['home']);
+    if(this.tableFlag) {
+      this.router.navigate(['home']);
+    } else if(this.newEditFlag) {
+      this.newEditFlag = false;
+      this.tableFlag = true;
+    }
   }
 
   getAll() {
@@ -52,6 +68,31 @@ export class MappingComponent implements OnInit {
     this.mapping = mapping;
     this.details = true;
     this.selectedRow = index;
+  }
+
+  newMapping() {
+    this.newEditFlag = true;
+    this.mapping = {};
+    this.tableFlag = false;
+    this.selectedRow = -1;
+    this.details = false;
+  }
+
+  editMapping() {
+    this.newEditFlag = true;
+    this.tableFlag = false;
+    this.getAllFields();
+  }
+
+  getAllFields() {
+    this.mappingSer.getAllFields(this.mapping)
+    .subscribe(
+      data => {
+        this.mappingFields = data;
+      },
+      err => {
+        console.log('Error message: ' + err.error.message);
+      });
   }
 
 }
