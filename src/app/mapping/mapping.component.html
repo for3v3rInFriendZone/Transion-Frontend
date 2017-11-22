@@ -47,32 +47,64 @@
     </span>
   </div>
 </div>
-<div class="container" *ngIf="newEditFlag">
+<div class="container" *ngIf="newFlag || editFlag">
   <div class="row">
     <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
         <div class="panel panel-info">
           <div class="panel-heading text-center">
-              <h3 *ngIf="mapping != {}" class="panel-title">Edit mapping</h3>
-              <h3 *ngIf="mapping == {}" class="panel-title">New mapping</h3>
+              <h3 *ngIf="editFlag" class="panel-title">Edit mapping</h3>
+              <h3 *ngIf="newFlag" class="panel-title">New mapping</h3>
           </div>
           <div class="panel-body">
-            <h3>Transfer Data via Drag Drop</h3>
             <div class="row">
-                <div class="col-sm-3">
-                    <ul class="list-group">
-                        <li draggable *ngFor="let item of mappings" [dragData]="item" class="list-group-item">{{item.label}}</li>
-                    </ul>
-                </div>
-                
-                <div class="col-sm-3">
-                <div class="panel panel-default" droppable (onDrop)="onItemDrop($event)">
-                    <div class="panel-heading">Drop Items here</div>
-                        <div class="panel-body">
-                            <li *ngFor="let item of mappingFields" class="list-group-item"><b>{{item.name}}</b></li>
+              <div class="col-md-9 col-md-offset-2"> 	  			
+                  <table class="table" rules="none">
+                      <tbody>
+                          <tr>
+                              <td> <b>Label: </b> </td>
+                              <td> <input type="text" name="label" class="form-control" [(ngModel)]="mapping.label" required/> </td>
+                          </tr>
+                          <tr>
+                              <td> <b>Type of mapping: </b> </td>
+                              <td> 
+                                <select [(ngModel)]="mapping.type" (change)="onTypeChange(mapping.type)" name="type" class="form-control" [disabled]="editFlag" required>
+                                    <option *ngFor="let mapping of mappings" [value]="mapping.type">{{mapping.type}}</option>
+                                </select>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <br />
+                  <br />
+                  <div *ngIf="mappingFields.length > 0">
+                    <div class="alert alert-info" style="text-align: center;">Choose fields for mapping</div>
+                    <div class="col-sm-4 col-sm-offset-1">
+                        <div class="panel panel-info">
+                          <div class="panel-heading"> Avaliable fields </div>
+                            <div class="panel-body">
+                                <li draggable *ngFor="let item of availableFields" [dragData]="item" class="list-group-item">{{item.name}}</li>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-sm-4 col-sm-offset-2">
+                      <div class="panel panel-success" droppable (onDrop)="onItemDrop($event)">
+                        <div class="panel-heading">Drop Items here</div>
+                            <div class="panel-body">
+                                <li *ngFor="let item of mappingFields" class="list-group-item"><b>{{item.name}}</b></li>
+                            </div>
+                      </div>
+                    </div>
+                    <div align="center">
+                        <button type="button" (click)="backToDefault()" class="btn btn-md btn-danger" data-toggle="tooltip" data-placement="bottom" title="Back to default"> <i class="fa fa-chain-broken" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
                 </div>
             </div>
+          </div>
+          <div class="panel-footer">
+              <div align="center">
+                      <button type="button" (click)="saveMapping()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save mapping"> <i class="fa fa-check"></i></button>
+              </div>
           </div>
         </div>
     </div>

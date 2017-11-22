@@ -13,7 +13,8 @@ export class MappingComponent implements OnInit {
 
   showTable: boolean;
   tableFlag: boolean;
-  newEditFlag: boolean;
+  newFlag: boolean;
+  editFlag: boolean;
   mappings: any = [];
   mapping: any = {};
   error: string;
@@ -21,13 +22,21 @@ export class MappingComponent implements OnInit {
   selectedRow: Number;
   details: boolean;
   droppedItems: any = [];
+  /**
+   * These are required fields.
+   */
   mappingFields: any = [];
+  /**
+   * Rest of the fields.
+   */
+  availableFields: any = [];
 
   constructor(private router:Router, private mappingSer: MappingService) { }
 
   ngOnInit() {
     this.selectedRow = -1;
-    this.newEditFlag = false;
+    this.newFlag = false;
+    this.editFlag = false;
     this.tableFlag = true;
     this.details = false;
 
@@ -36,14 +45,47 @@ export class MappingComponent implements OnInit {
 
   onItemDrop(e: any) {
     // Get the dropped data here
-    this.droppedItems.push(e.dragData);
+    if(this.mappingFields.indexOf(e.dragData) == -1) {
+      this.mappingFields.push(e.dragData);
+    }
+    if(this.availableFields.indexOf(e.dragData) != -1) {
+      this.availableFields.splice(this.availableFields.indexOf(e.dragData), 1);
+    }
+  }
+
+  onTypeChange(type: string) {
+    this.getAllFieldsByMappingType(type);
+  }
+
+  getAllFieldsByMappingType(type: string) {
+    this.availableFields = [];
+    this.mappingFields = [];
+    this.mappingSer.getAllFieldsByMappingType(type)
+    .subscribe(
+      data => {
+        const fields: any = data;
+        for(let i=0; i<fields.length; i++) {
+          if(fields[i].required) {
+            this.mappingFields.push(fields[i])
+          } else {
+            this.availableFields.push(fields[i]);
+          }
+        }
+      });
+  }
+
+  backToDefault() {
+    this.getAllFieldsByMappingType(this.mapping.type);
   }
 
   back() {
     if(this.tableFlag) {
       this.router.navigate(['home']);
-    } else if(this.newEditFlag) {
-      this.newEditFlag = false;
+    } else if(this.newFlag) {
+      this.newFlag = false;
+      this.tableFlag = true;
+    } else if(this.editFlag) {
+      this.editFlag = false;
       this.tableFlag = true;
     }
   }
@@ -71,7 +113,7 @@ export class MappingComponent implements OnInit {
   }
 
   newMapping() {
-    this.newEditFlag = true;
+    this.newFlag = true;
     this.mapping = {};
     this.tableFlag = false;
     this.selectedRow = -1;
@@ -79,9 +121,9 @@ export class MappingComponent implements OnInit {
   }
 
   editMapping() {
-    this.newEditFlag = true;
+    this.editFlag = true;
     this.tableFlag = false;
-    this.getAllFields();
+    this.getAllFieldsByMappingType(this.mapping.type);
   }
 
   getAllFields() {
@@ -95,4 +137,13 @@ export class MappingComponent implements OnInit {
       });
   }
 
+  /*
+  getRequiredFields(required: string) {
+    return this.mappingSer.getRequiredFileds(required);
+  }
+
+  getNotRequiredFileds(required: string) {
+    return this.mappingSer.getNotRequiredFileds(required);
+  }
+  */
 }

@@ -17,7 +17,7 @@
     <br/>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <table class="table table-hover animated fadeInUp">
+        <table class="table table-hover animated fadeInUp" rules="none">
           <thead>
             <th> Firstname </th>
             <th> Lastname </th>
@@ -62,41 +62,43 @@
     <div class="panel-heading text-center">
             <h3 class="panel-title">New user</h3>
     </div>
-    <div class="row">
-      <div class="col-md-9 col-md-offset-2"> 	  			
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td> <b>Firstname: </b> </td>
-                    <td> <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstname" required/> </td>
-                </tr>
-                <tr>
-                    <td> <b>Lastname: </b> </td>
-                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" required/> </td>
-                </tr>
-                 <tr>
-                    <td> <b>Username: </b> </td>
-                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.username" required/> </td>
-                </tr>
-                <tr>
-                  <td> <b>Password: </b> </td>
-                  <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.password" required/> </td>
-                </tr>
-                <tr>
-                    <td> <b>Email: </b> </td>
-                    <td> <input type="text" name="email" class="form-control" [(ngModel)]="user.email" required/> </td>
-                </tr>
-                <tr>
-                   <td> <b>Telephone: </b> </td>
-                   <td> <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" required/> </td>
-                </tr>    
-            </tbody>
-        </table>
-      </div>
-      <div class="col-md-9 col-md-offset-2">
-        <div align="center">
-            <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
-            <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2"> 	  			
+          <table class="table">
+              <tbody>
+                  <tr>
+                      <td> <b>Firstname: </b> </td>
+                      <td> <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstname" required/> </td>
+                  </tr>
+                  <tr>
+                      <td> <b>Lastname: </b> </td>
+                      <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" required/> </td>
+                  </tr>
+                  <tr>
+                      <td> <b>Username: </b> </td>
+                      <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.username" required/> </td>
+                  </tr>
+                  <tr>
+                    <td> <b>Password: </b> </td>
+                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.password" required/> </td>
+                  </tr>
+                  <tr>
+                      <td> <b>Email: </b> </td>
+                      <td> <input type="text" name="email" class="form-control" [(ngModel)]="user.email" required/> </td>
+                  </tr>
+                  <tr>
+                    <td> <b>Telephone: </b> </td>
+                    <td> <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" required/> </td>
+                  </tr>    
+              </tbody>
+          </table>
+        </div>
+        <div class="col-md-9 col-md-offset-2">
+          <div align="center">
+              <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+              <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+          </div>
         </div>
       </div>
     </div>
