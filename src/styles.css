@@ -1198,3 +1198,7 @@ th {
 .agencyRow {
     font-size: 16px;
 }
+
+.requiredField {
+    font-weight: bold;
+}

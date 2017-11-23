@@ -14,11 +14,21 @@ export class MappingService {
     return this.http.post('http://localhost:8080/field/mapping', mapping);
   }
 
-  getAllFieldsByMappingType(type: string) {
+  getAllFieldsByMappingTypeAvalaible(type: string) {
     let params = new HttpParams();
     params = params.append('type', type);
     return this.http.get('http://localhost:8080/field/mappingType', {params: params}); 
   } 
+
+  getAllFieldsByMappingTypeNotRequired(type: string) {
+    let params = new HttpParams();
+    params = params.append('type', type);
+    return this.http.get('http://localhost:8080/field/mappingType', {params: params}); 
+  }
+
+  saveMapping(mapping: any) {
+    return this.http.post('http://localhost:8080/mapping', mapping);
+  }
 
   /*
   getRequiredFileds(required: string) {

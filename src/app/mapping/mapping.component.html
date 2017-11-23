@@ -79,7 +79,7 @@
                   <div *ngIf="mappingFields.length > 0">
                     <div class="alert alert-info" style="text-align: center;">Choose fields for mapping</div>
                     <div class="col-sm-4 col-sm-offset-1">
-                        <div class="panel panel-info">
+                        <div class="panel panel-info" droppable (onDrop)="cancelDrop($event)">
                           <div class="panel-heading"> Avaliable fields </div>
                             <div class="panel-body">
                                 <li draggable *ngFor="let item of availableFields" [dragData]="item" class="list-group-item">{{item.name}}</li>
@@ -87,16 +87,19 @@
                         </div>
                     </div>
                     <div class="col-sm-4 col-sm-offset-2">
-                      <div class="panel panel-success" droppable (onDrop)="onItemDrop($event)">
-                        <div class="panel-heading">Drop Items here</div>
+                      <div class="panel panel-success" droppable (onDrop)="editFields($event)">
+                        <div class="panel-heading">Drop Fields here</div>
                             <div class="panel-body">
-                                <li *ngFor="let item of mappingFields" class="list-group-item"><b>{{item.name}}</b></li>
+                                <li draggable *ngFor="let item of mappingFields" [dragData]="item" class="list-group-item" [ngClass]="{requiredField : item.required}">{{item.name}}</li>
                             </div>
                       </div>
                     </div>
-                    <div align="center">
-                        <button type="button" (click)="backToDefault()" class="btn btn-md btn-danger" data-toggle="tooltip" data-placement="bottom" title="Back to default"> <i class="fa fa-chain-broken" aria-hidden="true"></i></button>
-                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9 col-md-offset-2">
+                  <div align="center">
+                      <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+                      <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
                   </div>
                 </div>
             </div>

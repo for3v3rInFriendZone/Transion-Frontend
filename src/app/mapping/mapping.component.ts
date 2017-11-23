@@ -39,18 +39,27 @@ export class MappingComponent implements OnInit {
     this.editFlag = false;
     this.tableFlag = true;
     this.details = false;
+    this.success = null;
+    this.error = null;
 
     this.getAll();
   }
 
-  onItemDrop(e: any) {
-    // Get the dropped data here
+  editFields(e: any) {
     if(this.mappingFields.indexOf(e.dragData) == -1) {
       this.mappingFields.push(e.dragData);
-    }
-    if(this.availableFields.indexOf(e.dragData) != -1) {
       this.availableFields.splice(this.availableFields.indexOf(e.dragData), 1);
+    } 
+  }
+
+  cancelDrop(e: any) {
+    if(e.dragData.required) {
+      return;
     }
+    if(this.availableFields.indexOf(e.dragData) == -1) {
+      this.availableFields.push(e.dragData);
+      this.mappingFields.splice(this.mappingFields.indexOf(e.dragData), 1);
+    } 
   }
 
   onTypeChange(type: string) {
@@ -60,22 +69,11 @@ export class MappingComponent implements OnInit {
   getAllFieldsByMappingType(type: string) {
     this.availableFields = [];
     this.mappingFields = [];
-    this.mappingSer.getAllFieldsByMappingType(type)
+    this.mappingSer.getAllFieldsByMappingTypeAvalaible(type)
     .subscribe(
       data => {
-        const fields: any = data;
-        for(let i=0; i<fields.length; i++) {
-          if(fields[i].required) {
-            this.mappingFields.push(fields[i])
-          } else {
-            this.availableFields.push(fields[i]);
-          }
-        }
+        this.availableFields = data;
       });
-  }
-
-  backToDefault() {
-    this.getAllFieldsByMappingType(this.mapping.type);
   }
 
   back() {
@@ -124,6 +122,7 @@ export class MappingComponent implements OnInit {
     this.editFlag = true;
     this.tableFlag = false;
     this.getAllFieldsByMappingType(this.mapping.type);
+    this.mappingFields = this.mapping.fields;
   }
 
   getAllFields() {
@@ -134,6 +133,24 @@ export class MappingComponent implements OnInit {
       },
       err => {
         console.log('Error message: ' + err.error.message);
+      });
+  }
+
+  saveMapping() {
+    this.mapping.fields = this.mappingFields;
+    this.mappingSer.saveMapping(this.mapping)
+    .subscribe(
+      data => {
+        this.success = 'Mapping has been saved sucessfully.';
+        setTimeout(() => {  
+          this.editFlag = false;
+          this.newFlag = false;
+          this.tableFlag = true;
+          this.ngOnInit();
+        }, 1500);
+      },
+      err => {
+        this.error = 'Something went wrong: ' + err.error.message;
       });
   }
 
