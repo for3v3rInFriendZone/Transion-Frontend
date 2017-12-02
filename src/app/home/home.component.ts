@@ -61,4 +61,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['admin/mapping']);
   }
 
+  showListOfImports() {
+    this.router.navigate(['import']);
+  }
+
 }

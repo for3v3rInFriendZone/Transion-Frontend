@@ -31,8 +31,8 @@
 
   <div *ngIf="model.imports" align="center" class="animated fadeInDown">
     <p>
-      <a href="#" class="btn">List all imports</a>
-      <a href="#" class="btn btn-blue">Import new file</a>
+      <a class="btn" (click)="showListOfImports()">List all imports</a>
+      <a class="btn btn-blue" (click)="newImport()">Import new file</a>
       <a href="#" class="btn btn-red">Something else</a>
       <a href="#" class="btn btn-green">Search</a>
     </p>	

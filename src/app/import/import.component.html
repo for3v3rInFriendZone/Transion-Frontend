@@ -1,0 +1,90 @@
+<app-header> </app-header>
+<br/>
+<div class="row">
+  <div align="left" class="animated fadeInUp">
+    <p>
+      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+    </p>	
+  </div>
+</div>
+
+<div class="container" *ngIf="tableFlag">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+        <div class="panel panel-info">
+          <div class="panel-heading text-center">
+              <h3 class="panel-title">Imports</h3>
+          </div>
+          <br/>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no imports</div>
+                <table class="table table-hover animated fadeInUp" *ngIf="showTable">
+                  <thead>
+                    <th> ID </th>
+                    <th> Mapping </th>
+                    <th> Created on </th>
+                    <th> Line number </th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let import of imports; let i = index;" (click)="showDetails(import, i)" [ngClass]="{'trActive': i == selectedRow}">
+                      <td> {{import.id}} </td>
+                      <td> {{import.mapping.label}} </td>
+                      <td> {{import.createdOn | date: 'dd/MM/yyyy'}} </td>
+                      <td> {{import.lineNumber}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <hr class="style13" />
+  <div align="center" class="animated fadeInUp">
+    <a class="btn" (click)="newImport()">New import</a>
+  </div>
+</div>
+
+<div class="container" *ngIf="newFlag">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+          <div class="panel panel-info">
+            <div class="panel-heading text-center">
+                <h3 class="panel-title">New import</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-9 col-md-offset-1"> 	  			
+                    <table class="table" rules="none">
+                        <tbody>
+                            <tr>
+                                <td> <b>Type of mapping: </b> </td>
+                                <td> 
+                                  <select [(ngModel)]="import.mapping" name="type" class="form-control" required>
+                                      <option *ngFor="let mapping of mappingsType" [ngValue]="mapping">{{mapping.type}}</option>
+                                  </select>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td> <b> Import CSV file </b> </td>
+                              <td>
+                                <input type="file" name="importFile" (change)="importFile($event)" required>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+                <div align="center">
+                  <button type="button" (click)="saveMapping()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save mapping"> <i class="fa fa-check"></i></button>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
