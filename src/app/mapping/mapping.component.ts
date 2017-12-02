@@ -19,9 +19,12 @@ export class MappingComponent implements OnInit {
   mapping: any = {};
   error: string;
   success: string;
+  info: string;
+  deleteInfo: string;
   selectedRow: Number;
   details: boolean;
   droppedItems: any = [];
+  mappingsType: string[];
   /**
    * These are required fields.
    */
@@ -40,7 +43,10 @@ export class MappingComponent implements OnInit {
     this.tableFlag = true;
     this.details = false;
     this.success = null;
+    this.info = null;
     this.error = null;
+    this.deleteInfo = null;
+    this.mappingsType = ['CLIENT', 'TRANSACTION'];
 
     this.getAll();
   }
@@ -62,14 +68,36 @@ export class MappingComponent implements OnInit {
     } 
   }
 
-  onTypeChange(type: string) {
-    this.getAllFieldsByMappingType(type);
+  onTypeChange(type: any) {
+    this.mappingSer.checkIfMappingExists(type.type)
+    .subscribe(
+      data => {
+        if(data) {
+          this.info = 'This type of mapping already exists.';
+        } else {
+          this.info = null;
+          this.getAllFieldsByMappingType(type.type);
+        }
+      }); 
   }
 
   getAllFieldsByMappingType(type: string) {
     this.availableFields = [];
     this.mappingFields = [];
-    this.mappingSer.getAllFieldsByMappingTypeAvalaible(type)
+    this.mappingSer.getFiledsByRequired('FALSE', type)
+    .subscribe(
+      data => {
+        this.availableFields = data;
+      });
+      this.mappingSer.getFiledsByRequired('TRUE', type)
+    .subscribe(
+      data => {
+        this.mappingFields = data;
+      });
+  }
+
+  getAvaliableFields() {
+    this.mappingSer.getAllFieldsByMappingTypeAvalaible(this.mapping.type)
     .subscribe(
       data => {
         this.availableFields = data;
@@ -113,15 +141,18 @@ export class MappingComponent implements OnInit {
   newMapping() {
     this.newFlag = true;
     this.mapping = {};
+    this.availableFields = [];
+    this.mappingFields = [];
     this.tableFlag = false;
     this.selectedRow = -1;
     this.details = false;
+    this.info = null;
   }
 
   editMapping() {
     this.editFlag = true;
     this.tableFlag = false;
-    this.getAllFieldsByMappingType(this.mapping.type);
+    this.getAvaliableFields();
     this.mappingFields = this.mapping.fields;
   }
 
@@ -143,9 +174,6 @@ export class MappingComponent implements OnInit {
       data => {
         this.success = 'Mapping has been saved sucessfully.';
         setTimeout(() => {  
-          this.editFlag = false;
-          this.newFlag = false;
-          this.tableFlag = true;
           this.ngOnInit();
         }, 1500);
       },
@@ -154,13 +182,34 @@ export class MappingComponent implements OnInit {
       });
   }
 
-  /*
-  getRequiredFields(required: string) {
-    return this.mappingSer.getRequiredFileds(required);
+  updateMapping() {
+    this.mapping.fields = this.mappingFields;
+    this.mappingSer.updateMapping(this.mapping)
+    .subscribe(
+      data => {
+        this.success = 'Mapping has been saved sucessfully.';
+        setTimeout(() => {  
+          this.ngOnInit();
+        }, 1500);
+      },
+      err => {
+        this.error = 'Something went wrong: ' + err.error.message;
+      });
   }
 
-  getNotRequiredFileds(required: string) {
-    return this.mappingSer.getNotRequiredFileds(required);
+  removeMapping() {
+    this.mappingSer.deleteMapping(this.mapping.id)
+    .subscribe(
+      data => {
+        this.deleteInfo = 'Mapping has been successfully removed.';
+        setTimeout(() => {  
+          this.ngOnInit();
+        }, 1500);
+      },
+      err => {
+        this.error = 'Something went wrong: ' + err.error.message;
+      }
+    ) 
   }
-  */
+
 }

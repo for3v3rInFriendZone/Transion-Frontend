@@ -34,6 +34,12 @@
                 </table>
               </div>
             </div>
+            <div class="row">
+              <div align="center">
+                <div *ngIf="deleteInfo" class="alert alert-success animated fadeInDown">{{deleteInfo}}</div>
+                <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+              </div>
+            </div>
           </div>
         </div>
     </div>
@@ -67,8 +73,8 @@
                           <tr>
                               <td> <b>Type of mapping: </b> </td>
                               <td> 
-                                <select [(ngModel)]="mapping.type" (change)="onTypeChange(mapping.type)" name="type" class="form-control" [disabled]="editFlag" required>
-                                    <option *ngFor="let mapping of mappings" [value]="mapping.type">{{mapping.type}}</option>
+                                <select [(ngModel)]="mapping.type" (change)="onTypeChange(mapping)" name="type" class="form-control" [disabled]="editFlag" required>
+                                    <option *ngFor="let mapping of mappingsType" [value]="mapping">{{mapping}}</option>
                                 </select>
                               </td>
                           </tr>
@@ -76,7 +82,7 @@
                   </table>
                   <br />
                   <br />
-                  <div *ngIf="mappingFields.length > 0">
+                  <div *ngIf="mappingFields.length > 0 && !info">
                     <div class="alert alert-info" style="text-align: center;">Choose fields for mapping</div>
                     <div class="col-sm-4 col-sm-offset-1">
                         <div class="panel panel-info" droppable (onDrop)="cancelDrop($event)">
@@ -95,6 +101,9 @@
                       </div>
                     </div>
                   </div>
+                  <div align="center">
+                    <div *ngIf="info" class="alert alert-info animated fadeInDown">{{info}}</div>
+                  </div>
                 </div>
                 <div class="col-md-9 col-md-offset-2">
                   <div align="center">
@@ -106,7 +115,8 @@
           </div>
           <div class="panel-footer">
               <div align="center">
-                      <button type="button" (click)="saveMapping()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save mapping"> <i class="fa fa-check"></i></button>
+                <button *ngIf="newFlag" type="button" (click)="saveMapping()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save mapping" [disabled]="info"> <i class="fa fa-check"></i></button>
+                <button *ngIf="editFlag" type="button" (click)="updateMapping()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save mapping" [disabled]="info"> <i class="fa fa-check"></i></button>
               </div>
           </div>
         </div>

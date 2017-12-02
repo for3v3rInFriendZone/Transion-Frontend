@@ -30,17 +30,24 @@ export class MappingService {
     return this.http.post('http://localhost:8080/mapping', mapping);
   }
 
-  /*
-  getRequiredFileds(required: string) {
+  updateMapping(mapping: any) {
+    return this.http.put('http://localhost:8080/mapping', mapping);
+  }
+  
+  getFiledsByRequired(required: string, type: string) {
     let params = new HttpParams();
-    params = params.append('required', required);
+    params = params.append('required', required).append('type', type);
     return this.http.get('http://localhost:8080/field/required', {params: params});
+  }
+  
+  checkIfMappingExists(type: string) {
+    let params = new HttpParams();
+    params = params.append('type', type);
+    return this.http.get('http://localhost:8080/mapping/checkMapping', {params: params});
   }
 
-  getNotRequiredFileds(required: string) {
-    let params = new HttpParams();
-    params = params.append('required', required);
-    return this.http.get('http://localhost:8080/field/required', {params: params});
+  deleteMapping(id: number) {
+    return this.http.delete('http://localhost:8080/mapping/' + id);
   }
-  */
+  
 }
