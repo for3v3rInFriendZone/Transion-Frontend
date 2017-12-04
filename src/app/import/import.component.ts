@@ -30,7 +30,11 @@ export class ImportComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['home']);
+    if(this.newFlag) {
+      this.ngOnInit();
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 
   getAll() {
@@ -68,8 +72,8 @@ export class ImportComponent implements OnInit {
 
   importFile(event: any) {
     var file = event.srcElement.files[0];
-
-    this.importSer.importFile(file, this.import.mapping)
+    debugger;
+    this.importSer.importFile(file, this.import.mapping.id)
     .subscribe(
       data => {
         console.log('Success!');

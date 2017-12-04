@@ -10,11 +10,13 @@ export class ImportService {
     return this.http.get('http://localhost:8080/import');
   }
 
-  importFile(file: any, mapping: any) {
+  importFile(file: any, mapping: string) {
     let params = new HttpParams();
-    params = params.append('file', file).append('mapping', mapping);
+    params = params.append('mapping', mapping);
+    const formData = new FormData();
+    formData.append('file', file);
 
-    return this.http.post('http://localhost:8080/import', {params: params});
+    return this.http.post('http://localhost:8080/import', formData, {params: params});
   }
 
 }
