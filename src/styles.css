@@ -3,6 +3,8 @@
  @import '~font-awesome/css/font-awesome.css';
  @import '~animate/animate.css';
  @import '~ng2-drag-drop/style.css';
+ @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+ @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
  @charset "utf-8";
  /* CSS Document */
@@ -1201,4 +1203,21 @@ th {
 
 .requiredField {
     font-weight: bold;
+}
+
+mat-card {
+    max-width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+mat-toolbar-row {
+    justify-content: space-between;
+}
+
+.done {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
 }
