@@ -1,7 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImportService } from './import.service';
 import { MappingService } from '../mapping/mapping.service';
+import { DataSource } from '@angular/cdk/collections';
+import { ImportDataSource } from './import.dataSource';
+import { Import} from './import';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-import',
@@ -13,12 +17,15 @@ import { MappingService } from '../mapping/mapping.service';
 export class ImportComponent implements OnInit {
 
   showTable: boolean;
+  dataSource: any;
   tableFlag: boolean;
-  imports: any = [];
+  imports: any;
   import: any = {};
   selectedRow: number;
   newFlag: boolean;
   mappingsType: any = [];
+  displayedColumns: any = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private router: Router, private importSer: ImportService, private mappingSer: MappingService) { }
 
@@ -27,6 +34,7 @@ export class ImportComponent implements OnInit {
     this.tableFlag = true;
     this.newFlag = false;
     this.selectedRow = -1;
+    this.displayedColumns = ['id', 'mapping', 'createdOn', 'lineNumber'];
   }
 
   back() {
@@ -41,18 +49,14 @@ export class ImportComponent implements OnInit {
     this.importSer.getAll()
     .subscribe(
       data => {
-        this.imports = data;
-        if(this.imports.length > 0) {
-          this.showTable = true;
-        } else {
-          this.showTable = false;
-        }
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
       });
   }
 
-  showDetails(selectedImport: any, index: number) {
+  showDetails(selectedImport: any) {
     this.import = selectedImport;
-    this.selectedRow = index;
+    this.selectedRow = selectedImport.id;
   }
 
   newImport() {
@@ -72,7 +76,6 @@ export class ImportComponent implements OnInit {
 
   importFile(event: any) {
     var file = event.srcElement.files[0];
-    debugger;
     this.importSer.importFile(file, this.import.mapping.id)
     .subscribe(
       data => {

@@ -1184,6 +1184,10 @@ div.letters.clicked {
     background-color: lightcyan;
 }
 
+mat-row:hover {
+    background-color: lightcyan;
+}
+
 th {
     border-bottom: 2px solid black;
 }

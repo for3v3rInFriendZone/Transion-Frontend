@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from './users.service';
+import { MatPaginator, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -20,6 +21,7 @@ export class UsersComponent implements OnInit {
   newUserFlag: boolean;
   success: string;
   error: string;
+  pageEvent: PageEvent;
 
   constructor(private router:Router, private userSer: UsersService) { }
 
@@ -54,7 +56,7 @@ export class UsersComponent implements OnInit {
         alert('Users could not be retrived.');
       });
   }
-
+  
   showDetails(user: any, index: Number) {
     this.user = user;
     this.details = true;

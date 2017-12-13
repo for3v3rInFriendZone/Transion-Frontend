@@ -18,8 +18,9 @@
           <br/>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-8 col-md-offset-2">
-                <div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no imports</div>
+              <div align="center" style="display: flex; flex-direction: column;">
+                
+                <!--
                 <table class="table table-hover animated fadeInUp" *ngIf="showTable">
                   <thead>
                     <th> ID </th>
@@ -35,7 +36,36 @@
                       <td> {{import.lineNumber}} </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
+
+                <mat-table [dataSource]="dataSource" class="table-hover">
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.id}} </mat-cell>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="mapping">
+                        <mat-header-cell *matHeaderCellDef> Mapping </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.mapping.type}} </mat-cell>
+                      </ng-container>
+                  
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="createdOn">
+                        <mat-header-cell *matHeaderCellDef> Created on </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.createdOn |  date: 'dd/MM/yyyy'}} </mat-cell>
+                      </ng-container>
+                  
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="lineNumber">
+                        <mat-header-cell *matHeaderCellDef> Lines </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.lineNumber}} </mat-cell>
+                      </ng-container>
+                  
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+                  </mat-table>
+                  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
               </div>
             </div>
           </div>
@@ -87,33 +117,4 @@
           </div>
       </div>
     </div>
-  </div>
-
-  <div>
-    <mat-toolbar color="primary">
-      <span><mat-icon>mood</mat-icon></span>
-  
-      <span>Yay, Material in Angular 2!</span>
-  
-      <button mat-icon-button [mat-menu-trigger-for]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-    </mat-toolbar>
-    <mat-menu x-position="before" #menu="matMenu">
-      <button mat-menu-item>Option 1</button>
-      <button mat-menu-item>Option 2</button>
-    </mat-menu>
-  
-    <mat-card>
-      <button mat-button>All</button>
-      <button mat-raised-button>Of</button>
-      <button mat-raised-button color="primary">The</button>
-      <button mat-raised-button color="accent">Buttons</button>
-    </mat-card>
-  
-    <span class="done">
-      <button mat-fab>
-        <mat-icon>check circle</mat-icon>
-      </button>
-    </span>
   </div>
