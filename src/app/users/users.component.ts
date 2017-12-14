@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from './users.service';
-import { MatPaginator, PageEvent } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher} from '@angular/material/core';
+import { MyErrorStateMatcher } from '../_services/InputErrorStateMatcher';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +17,9 @@ export class UsersComponent implements OnInit {
 
   users: any = [];
   user: any = {};
+  emailFormControl: any;
+  matcher: any;
+  dataSource: any;
   userEmail: string;
   tableFlag: boolean;
   details: boolean;
@@ -21,11 +27,15 @@ export class UsersComponent implements OnInit {
   newUserFlag: boolean;
   success: string;
   error: string;
-  pageEvent: PageEvent;
+  displayedColumns: any = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router:Router, private userSer: UsersService) { }
 
   ngOnInit() {
+    this.displayedColumns = ['firstname', 'lastname', 'username', 'email', 'telephone'];
+    this.generateUsers();
     this.selectedRow = -1;
     this.tableFlag = true;
     this.details = false;
@@ -33,8 +43,11 @@ export class UsersComponent implements OnInit {
     this.userEmail = JSON.parse(localStorage.getItem('currentUser')).username;
     this.success = null;
     this.error = null;
-
-    this.generateUsers();
+    this.emailFormControl = new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]);
+    this.matcher = new MyErrorStateMatcher();
   }
 
   back() {
@@ -50,17 +63,19 @@ export class UsersComponent implements OnInit {
     this.userSer.getUsers(this.userEmail)
     .subscribe(
       data => {
-        this.users = data;
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       err => {
         alert('Users could not be retrived.');
       });
   }
-  
-  showDetails(user: any, index: Number) {
-    this.user = user;
+
+  showDetails(selectedImport: any) {
+    this.user = selectedImport;
+    this.selectedRow = selectedImport.id;
     this.details = true;
-    this.selectedRow = index;
   }
 
   newUser() {

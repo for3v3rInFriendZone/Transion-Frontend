@@ -16,25 +16,39 @@
     </div>
     <br/>
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <table class="table table-hover animated fadeInUp" rules="none">
-          <thead>
-            <th> Firstname </th>
-            <th> Lastname </th>
-            <th> Username </th>
-            <th> E-mail </th>
-            <th> Telephone </th>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users; let i = index;" (click)="showDetails(user, i)" [ngClass]="{'trActive': i == selectedRow}">
-              <td> {{user.firstname}} </td>
-              <td> {{user.lastname}} </td>
-              <td> {{user.username}} </td>
-              <td> {{user.email}} </td>
-              <td> {{user.telephone}} </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col-md-11 col-md-offset-1">
+        <mat-table [dataSource]="dataSource" class="table-hover" matSort>
+            <div>
+              <ng-container matColumnDef="firstname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.firstname}} </mat-cell>
+              </ng-container>
+            </div>
+          
+              <ng-container matColumnDef="lastname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="telephone">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </mat-header-cell>
+                  <mat-cell *matCellDef="let user"> {{user.telephone}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+          </mat-table>
+          <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
     </div>
   </div>
@@ -64,13 +78,15 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-md-9 col-md-offset-2"> 	  			
+        <div class="col-md-6 col-md-offset-3"> 
+            <form>
+                <mat-form-field style="width: 100%;">
+                    <input matInput placeholder="Firstname" [(ngModel)]="user.firstname">
+                </mat-form-field>	
+            </form>
+              			
           <table class="table">
               <tbody>
-                  <tr>
-                      <td> <b>Firstname: </b> </td>
-                      <td> <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstname" required/> </td>
-                  </tr>
                   <tr>
                       <td> <b>Lastname: </b> </td>
                       <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" required/> </td>
@@ -103,8 +119,8 @@
       </div>
     </div>
     <div class="panel-footer">
-        <div align="center">
-                <button type="button" (click)="saveUser()" class="btn btn-md btn-success" data-toggle="tooltip" data-placement="bottom" title="Save user"> <i class="fa fa-check"></i></button>
+        <div align="center" matTooltip="Save user">
+          <button mat-mini-fab style="background-color: green;" (click)="saveUser()"> <i class="fa fa-check"></i></button>
         </div>
     </div>
   </div>

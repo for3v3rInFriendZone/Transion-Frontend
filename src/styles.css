@@ -1215,6 +1215,10 @@ mat-card {
     text-align: center;
 }
 
+mat-table {
+    overflow: auto;
+}
+
 mat-toolbar-row {
     justify-content: space-between;
 }

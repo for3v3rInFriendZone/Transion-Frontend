@@ -26,6 +26,7 @@ export class ImportComponent implements OnInit {
   mappingsType: any = [];
   displayedColumns: any = [];
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private importSer: ImportService, private mappingSer: MappingService) { }
 
@@ -51,6 +52,7 @@ export class ImportComponent implements OnInit {
       data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 

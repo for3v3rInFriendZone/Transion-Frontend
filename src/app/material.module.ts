@@ -6,12 +6,13 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatCardModule,
-  MatPaginator,
-  MatSort
+  MatPaginatorModule,
+  MatTableModule,
+  MatSortModule,
+  MatTooltipModule,
+  MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
-
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -21,7 +22,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +35,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {}

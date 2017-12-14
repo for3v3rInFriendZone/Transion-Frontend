@@ -18,7 +18,7 @@
           <br/>
           <div class="panel-body">
             <div class="row">
-              <div align="center" style="display: flex; flex-direction: column;">
+              <div class="col-md-11 col-md-offset-1">
                 
                 <!--
                 <table class="table table-hover animated fadeInUp" *ngIf="showTable">
@@ -38,27 +38,26 @@
                   </tbody>
                 </table> -->
 
-                <mat-table [dataSource]="dataSource" class="table-hover">
-                    <ng-container matColumnDef="id">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-table [dataSource]="dataSource" class="table-hover" matSort>
+                    <div>
+                      <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
                         <mat-cell *matCellDef="let import"> {{import.id}} </mat-cell>
                       </ng-container>
+                    </div>
                   
-                      <!-- Name Column -->
                       <ng-container matColumnDef="mapping">
-                        <mat-header-cell *matHeaderCellDef> Mapping </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Mapping </mat-header-cell>
                         <mat-cell *matCellDef="let import"> {{import.mapping.type}} </mat-cell>
                       </ng-container>
                   
-                      <!-- Weight Column -->
                       <ng-container matColumnDef="createdOn">
-                        <mat-header-cell *matHeaderCellDef> Created on </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Created on </mat-header-cell>
                         <mat-cell *matCellDef="let import"> {{import.createdOn |  date: 'dd/MM/yyyy'}} </mat-cell>
                       </ng-container>
                   
-                      <!-- Symbol Column -->
                       <ng-container matColumnDef="lineNumber">
-                        <mat-header-cell *matHeaderCellDef> Lines </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Lines </mat-header-cell>
                         <mat-cell *matCellDef="let import"> {{import.lineNumber}} </mat-cell>
                       </ng-container>
                   
