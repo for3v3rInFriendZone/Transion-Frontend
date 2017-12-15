@@ -88,4 +88,9 @@ export class ImportComponent implements OnInit {
       });
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
 }

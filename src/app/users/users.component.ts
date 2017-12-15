@@ -5,6 +5,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { MyErrorStateMatcher } from '../_services/InputErrorStateMatcher';
+import { filter } from 'rxjs/operator/filter';
 
 @Component({
   selector: 'app-users',
@@ -35,12 +36,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns = ['firstname', 'lastname', 'username', 'email', 'telephone'];
+    this.userEmail = JSON.parse(localStorage.getItem('currentUser')).username;
     this.generateUsers();
     this.selectedRow = -1;
     this.tableFlag = true;
     this.details = false;
     this.newUserFlag = false;
-    this.userEmail = JSON.parse(localStorage.getItem('currentUser')).username;
     this.success = null;
     this.error = null;
     this.emailFormControl = new FormControl('', [
@@ -121,6 +122,11 @@ export class UsersComponent implements OnInit {
       err => {
         this.error = 'Something went wrong: ' + err.error.message;
       });
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
   }
 
 }

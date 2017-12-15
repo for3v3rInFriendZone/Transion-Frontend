@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
 
@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
     this.userSer.getUserByUsername(this.username)
     .subscribe(
       data => {
-        this.user = data[0];
+        this.user = data;
       });
   }
 

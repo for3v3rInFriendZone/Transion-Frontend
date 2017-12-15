@@ -1,5 +1,4 @@
 <app-header> </app-header>
-<br/>
 
 <div class="row">
   <div align="left" class="animated fadeInUp">
@@ -9,106 +8,118 @@
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="tableFlag">
-  <div class="panel panel-info">
-    <div class="panel-heading text-center">
-        <h3 class="panel-title">Users</h3>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-md-11 col-md-offset-1">
-        <mat-table [dataSource]="dataSource" class="table-hover" matSort>
-            <div>
-              <ng-container matColumnDef="firstname">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.firstname}} </mat-cell>
-              </ng-container>
-            </div>
-          
-              <ng-container matColumnDef="lastname">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
-              </ng-container>
-          
-              <ng-container matColumnDef="username">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
-              </ng-container>
-          
-              <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
-                <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
-              </ng-container>
-          
-              <ng-container matColumnDef="telephone">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </mat-header-cell>
-                  <mat-cell *matCellDef="let user"> {{user.telephone}} </mat-cell>
-              </ng-container>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="tableFlag">
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title">Users</h3>
+        </div>
+        <br/>
+        <div class="panel-body" style="overflow: auto">
+          <div class="row">
+            <div class="col-md-11 col-md-offset-1">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field hintLabel="Filter users">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  </mat-form-field>
+                </div>
+              </div>
+              
+              <mat-table [dataSource]="dataSource" class="table-hover" matSort>
+                  <div>
+                    <ng-container matColumnDef="firstname">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.firstname}} </mat-cell>
+                    </ng-container>
+                  </div>
+                
+                    <ng-container matColumnDef="lastname">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="username">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="email">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="telephone">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.telephone}} </mat-cell>
+                    </ng-container>
 
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
-          </mat-table>
-          <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+                </mat-table>
+                <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="style13" />
+      <div class="col-md-9 col-md-offset-2">
+        <div align="center">
+            <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+            <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+        </div>
+      </div>
+      <div align="center" class="animated fadeInUp">
+        <a class="btn" (click)="newUser()">New user</a>
+        <span *ngIf="details" class="animated fadeInUp">
+          <a class="btn btn-blue" (click)="editUser()">Edit user</a>
+          <a class="btn btn-red" (click)="removeUser()"> Remove user</a>
+          <a class="btn btn-green">Set permissions</a> 
+        </span>
       </div>
     </div>
-  </div>
-  <hr class="style13" />
-  <div class="col-md-9 col-md-offset-2">
-    <div align="center">
-        <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
-        <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
-    </div>
-  </div>
-  <div align="center" class="animated fadeInUp">
-    <a class="btn" (click)="newUser()">New user</a>
-    <span *ngIf="details" class="animated fadeInUp">
-      <a class="btn btn-blue" (click)="editUser()">Edit user</a>
-      <a class="btn btn-red" (click)="removeUser()"> Remove user</a>
-      <a class="btn btn-green">Set permissions</a> 
-    </span>
   </div>
 </div>
 
 <!-- This is part for new user dialog -->
 
-<div class="col-md-6 col-md-offset-3 animated fadeInUp" style="padding: 10px;" *ngIf="newUserFlag">
+<div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newUserFlag">
   <div class="panel panel-info">
     <div class="panel-heading text-center">
             <h3 class="panel-title">New user</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" style="overflow: auto">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3"> 
-            <form>
-                <mat-form-field style="width: 100%;">
-                    <input matInput placeholder="Firstname" [(ngModel)]="user.firstname">
-                </mat-form-field>	
-            </form>
-              			
-          <table class="table">
-              <tbody>
-                  <tr>
-                      <td> <b>Lastname: </b> </td>
-                      <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" required/> </td>
-                  </tr>
-                  <tr>
-                      <td> <b>Username: </b> </td>
-                      <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.username" required/> </td>
-                  </tr>
-                  <tr>
-                    <td> <b>Password: </b> </td>
-                    <td> <input type="text" name="lastname" class="form-control" [(ngModel)]="user.password" required/> </td>
-                  </tr>
-                  <tr>
-                      <td> <b>Email: </b> </td>
-                      <td> <input type="text" name="email" class="form-control" [(ngModel)]="user.email" required/> </td>
-                  </tr>
-                  <tr>
-                    <td> <b>Telephone: </b> </td>
-                    <td> <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" required/> </td>
-                  </tr>    
-              </tbody>
-          </table>
+        <div class="col-md-8 col-md-offset-2">
+          <mat-toolbar>
+            Fill data for new user &nbsp; <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </mat-toolbar> 
+          <form>
+              <mat-form-field>
+                <input matInput name="firstname" placeholder="Firstname" [(ngModel)]="user.firstname" required>
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="lastname" placeholder="Lastname" [(ngModel)]="user.lastname" required>
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>	
+              <mat-form-field>
+                <input matInput name="username" placeholder="Username" [(ngModel)]="user.username" required>
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="password" placeholder="Password" [(ngModel)]="user.password" required>
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="email" placeholder="Email" [(ngModel)]="user.email" required>
+                <mat-error>This field is required</mat-error>
+              </mat-form-field>	
+              <mat-form-field>
+                <input matInput name="telephone" placeholder="Telephone" [(ngModel)]="user.telephone">
+              </mat-form-field>				
+          </form>
         </div>
         <div class="col-md-9 col-md-offset-2">
           <div align="center">

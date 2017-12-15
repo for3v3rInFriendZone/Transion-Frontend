@@ -8,6 +8,18 @@
 
  @charset "utf-8";
  /* CSS Document */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+ }
  
  /* Float Elements
  ---------------------------------*/
@@ -719,9 +731,12 @@
  ---------------------------------*/
  
  .footer{
+     position: fixed;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     padding: 1rem;
      background-color: rgba(0,0,0,0.6);
-     padding:19px 0 19px;
-     margin-top: 50px;
      border-top: 1px solid #dddddd;
  }
  .footer-logo{
@@ -861,7 +876,7 @@
  hr.style13 {
      height: 10px;
      border: 0;
-     box-shadow: 0 10px 10px -10px #8c8b8b inset;
+     box-shadow: 0 10px 10px -10px #575656 inset;
  }
  
  hr.style14 { 
@@ -1222,6 +1237,11 @@ mat-table {
 mat-toolbar-row {
     justify-content: space-between;
 }
+
+mat-form-field {
+    width: 100%;
+    padding: 10px;
+}           
 
 .done {
     position: fixed;

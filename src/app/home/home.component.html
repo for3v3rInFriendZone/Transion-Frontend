@@ -1,64 +1,65 @@
 
-  <app-header> </app-header>
+<app-header> </app-header>
 
-  <h1 style="text-align: center">
-      Please select one of options...
-  </h1>
 
-  <div class="row">
-    <div align="center" class="animated fadeInUp">
-      <p>
-        <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients</a>
-        <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Import</a>
-        <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
-        <a class="btn btn-green">Diagrams</a>
-        <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations</a>
-      </p>
-    </div>
-  </div>
+<h1 style="text-align: center">
+    Please select one of options...
+</h1>
 
-  <hr *ngIf="model.clients || model.imports || model.exports || model.conf" class="style13 animated fadeInDown"/>
-
-  <div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
+<div class="row">
+  <div align="center" class="animated fadeInUp">
     <p>
-      <a class="btn" (click)="showListAllClients()">List all clients</a>
-      <a class="btn btn-blue" (click)="findClient()">Find client</a>
-      <a class="btn btn-green">Search</a>
-      <a class="btn btn-green">Search</a>
-      <a class="btn btn-green">Search</a>
-    </p>	
+      <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients</a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Import</a>
+      <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
+      <a class="btn btn-green">Diagrams</a>
+      <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations</a>
+    </p>
   </div>
+</div>
 
-  <div *ngIf="model.imports" align="center" class="animated fadeInDown">
+<hr *ngIf="model.clients || model.imports || model.exports || model.conf" class="style13 animated fadeInDown"/>
+
+<div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
+  <p>
+    <a class="btn" (click)="showListAllClients()">List all clients</a>
+    <a class="btn btn-blue" (click)="findClient()">Find client</a>
+    <a class="btn btn-green">Search</a>
+    <a class="btn btn-green">Search</a>
+    <a class="btn btn-green">Search</a>
+  </p>	
+</div>
+
+<div *ngIf="model.imports" align="center" class="animated fadeInDown">
+  <p>
+    <a class="btn" (click)="showListOfImports()">List all imports</a>
+    <a class="btn btn-blue" (click)="newImport()">Import new file</a>
+    <a href="#" class="btn btn-red">Something else</a>
+    <a href="#" class="btn btn-green">Search</a>
+  </p>	
+</div>
+<div *ngIf="model.exports" align="center" class="animated fadeInDown">
     <p>
-      <a class="btn" (click)="showListOfImports()">List all imports</a>
-      <a class="btn btn-blue" (click)="newImport()">Import new file</a>
+      <a href="#" class="btn">List all exports</a>
+      <a href="#" class="btn btn-blue">Export new file</a>
       <a href="#" class="btn btn-red">Something else</a>
       <a href="#" class="btn btn-green">Search</a>
     </p>	
-  </div>
-  <div *ngIf="model.exports" align="center" class="animated fadeInDown">
-      <p>
-        <a href="#" class="btn">List all exports</a>
-        <a href="#" class="btn btn-blue">Export new file</a>
-        <a href="#" class="btn btn-red">Something else</a>
-        <a href="#" class="btn btn-green">Search</a>
-      </p>	
-  </div>
+</div>
 
-  <div *ngIf="model.conf" name="model.conf" align="center" class="animated fadeInDown">
-    <p>
-      <a class="btn">Configuration of app</a>
-      <a class="btn btn-blue">Scenarios</a>
-      <a class="btn btn-green" (click)="showUsers()">Users</a>
-      <a class="btn btn-red">Permissions</a>
-      <a class="btn btn-green" (click)="showMappings()">Mappings</a>
-    </p>
-    <p>
-      <a class="btn">Configuration of app</a>
-      <a class="btn btn-blue">Scenarios</a>
-      <a class="btn btn-green">Users</a>
-      <a class="btn btn-red">Permissions</a>
-      <a class="btn btn-green">Mappings</a>
-    </p>	
-  </div>
+<div *ngIf="model.conf" name="model.conf" align="center" class="animated fadeInDown">
+  <p>
+    <a class="btn">Configuration of app</a>
+    <a class="btn btn-blue">Scenarios</a>
+    <a class="btn btn-green" (click)="showUsers()">Users</a>
+    <a class="btn btn-red">Permissions</a>
+    <a class="btn btn-green" (click)="showMappings()">Mappings</a>
+  </p>
+  <p>
+    <a class="btn">Configuration of app</a>
+    <a class="btn btn-blue">Scenarios</a>
+    <a class="btn btn-green">Users</a>
+    <a class="btn btn-red">Permissions</a>
+    <a class="btn btn-green">Mappings</a>
+  </p>	
+</div>
