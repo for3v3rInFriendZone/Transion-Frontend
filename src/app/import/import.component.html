@@ -1,16 +1,16 @@
 <app-header> </app-header>
 <br/>
-<div class="row">
-  <div align="left" class="animated fadeInUp">
-    <p>
-      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
-    </p>	
-  </div>
-</div>
 
-<div class="container-fluid" *ngIf="tableFlag">
+<div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 animated fadeInUp" style="padding: 10px;">
+      <div class="col-md-1">
+          <div align="left" class="animated fadeInUp">
+            <p>
+              <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+            </p>	
+          </div>
+      </div>
+      <div class="col-md-4 col-md-offset-3 animated fadeInUp" *ngIf="tableFlag">
         <div class="panel panel-info">
           <div class="panel-heading text-center">
               <h3 class="panel-title">Imports</h3>
@@ -19,24 +19,6 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-md-11 col-md-offset-1">
-                
-                <!--
-                <table class="table table-hover animated fadeInUp" *ngIf="showTable">
-                  <thead>
-                    <th> ID </th>
-                    <th> Mapping </th>
-                    <th> Created on </th>
-                    <th> Line number </th>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let import of imports; let i = index;" (click)="showDetails(import, i)" [ngClass]="{'trActive': i == selectedRow}">
-                      <td> {{import.id}} </td>
-                      <td> {{import.mapping.label}} </td>
-                      <td> {{import.createdOn | date: 'dd/MM/yyyy'}} </td>
-                      <td> {{import.lineNumber}} </td>
-                    </tr>
-                  </tbody>
-                </table> -->
                 <div class="row">
                   <div class="col-md-4">
                     <mat-form-field hintLabel="Filter imports">
@@ -71,52 +53,52 @@
                       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
                   </mat-table>
-                  <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  <div float="right">
+                      <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
               </div>
             </div>
           </div>
         </div>
-        <hr class="style13" />
+        <hr class="style14" />
+        <div align="center" class="animated fadeInUp">
+          <a class="btn" (click)="newImport()">New import</a>
+        </div>
     </div>
   </div>
-  
-  <div align="center" class="animated fadeInUp">
-    <a class="btn" (click)="newImport()">New import</a>
-  </div>
-</div>
-
-<div class="container" *ngIf="newFlag">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4 animated fadeInUp" style="padding: 10px;">
-          <div class="panel panel-info">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">New import</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <form>
-                      <mat-form-field>
-                        <mat-select placeholder="Type of mapping" [(ngModel)]="import.mapping" name="mapping">
-                            <mat-option *ngFor="let mapping of mappingsType" [value]="mapping">
-                                {{mapping.type}}
-                            </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                      <div align="center">
-                        <button mat-fab color="primary" (click)="imgFileInput.click()"> <i class="fa fa-upload" aria-hidden="true" matTooltip="Import file"></i> </button>
-                        <input type="file" #imgFileInput (change)="importFile($event)" style="display: none;"/>
-                      </div>
-                    </form> 	  			
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newFlag">
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title">New import</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form>
+                  <mat-form-field>
+                    <mat-select placeholder="Type of mapping" [(ngModel)]="import.mapping" name="mapping">
+                        <mat-option *ngFor="let mapping of mappingsType" [value]="mapping">
+                            {{mapping.type}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div align="center">
+                    <button mat-fab color="primary" (click)="imgFileInput.click()"> <i class="fa fa-upload" aria-hidden="true" matTooltip="Import file"></i> </button>
+                    <input type="file" #imgFileInput (change)="importFile($event)" style="display: none;"/>
                   </div>
+                </form> 	  			
               </div>
-            </div>
-            <div class="panel-footer">
-                <div align="center" matTooltip="Do an import">
-                    <button mat-mini-fab style="background-color: green;"> <i class="fa fa-check"></i></button>
-                </div>
-            </div>
           </div>
+        </div>
+        <div class="panel-footer">
+            <div align="center" matTooltip="Do an import">
+                <button mat-mini-fab style="background-color: green;"> <i class="fa fa-check"></i></button>
+            </div>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+

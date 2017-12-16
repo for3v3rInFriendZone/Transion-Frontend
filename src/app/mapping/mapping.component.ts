@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MappingService} from './mapping.service';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-mapping',
@@ -15,7 +16,8 @@ export class MappingComponent implements OnInit {
   tableFlag: boolean;
   newFlag: boolean;
   editFlag: boolean;
-  mappings: any = [];
+  dataSource: any;
+  mappings: any;
   mapping: any = {};
   error: string;
   success: string;
@@ -25,6 +27,7 @@ export class MappingComponent implements OnInit {
   details: boolean;
   droppedItems: any = [];
   mappingsType: string[];
+  displayedColumns: any = [];
   /**
    * These are required fields.
    */
@@ -33,6 +36,8 @@ export class MappingComponent implements OnInit {
    * Rest of the fields.
    */
   availableFields: any = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router:Router, private mappingSer: MappingService) { }
 
@@ -47,6 +52,7 @@ export class MappingComponent implements OnInit {
     this.error = null;
     this.deleteInfo = null;
     this.mappingsType = ['CLIENT', 'TRANSACTION'];
+    this.displayedColumns = ['id', 'type', 'label'];
 
     this.getAll();
   }
@@ -120,8 +126,10 @@ export class MappingComponent implements OnInit {
     this.mappingSer.getAllMappings()
     .subscribe(
       data => {
-        this.mappings = data;
-        if(this.mappings.length > 0) {
+        this.mappings = new MatTableDataSource(data);
+        this.mappings.paginator = this.paginator;
+        this.mappings.sort = this.sort;
+        if(data.length > 0) {
           this.showTable = true;
         } else {
           this.showTable = false;
@@ -132,14 +140,15 @@ export class MappingComponent implements OnInit {
       }); 
   }
 
-  showDetails(mapping: any, index: Number) {
+  showDetails(mapping: any) {
     this.mapping = mapping;
     this.details = true;
-    this.selectedRow = index;
+    this.selectedRow = mapping.id;
   }
 
   newMapping() {
     this.newFlag = true;
+    this.editFlag = false;
     this.mapping = {};
     this.availableFields = [];
     this.mappingFields = [];
@@ -151,6 +160,8 @@ export class MappingComponent implements OnInit {
 
   editMapping() {
     this.editFlag = true;
+    this.info = null;
+    this.newFlag = false;
     this.tableFlag = false;
     this.getAvaliableFields();
     this.mappingFields = this.mapping.fields;

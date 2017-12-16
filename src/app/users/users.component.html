@@ -1,16 +1,15 @@
 <app-header> </app-header>
 
-<div class="row">
-  <div align="left" class="animated fadeInUp">
-    <p>
-      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
-    </p>	
-  </div>
-</div>
-
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;" *ngIf="tableFlag">
+    <div class="col-md-1">
+      <div align="left" class="animated fadeInUp">
+        <p>
+          <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+        </p>	
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-2 animated fadeInUp" *ngIf="tableFlag">
       <div class="panel panel-info">
         <div class="panel-heading text-center">
             <h3 class="panel-title">Users</h3>
@@ -80,59 +79,61 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newUserFlag">
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">
+                <h3 class="panel-title">New user</h3>
+        </div>
+        <div class="panel-body" style="overflow: auto">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <mat-toolbar>
+                Fill data for new user &nbsp; <i class="fa fa-user-plus" aria-hidden="true"></i>
+              </mat-toolbar> 
+              <form>
+                  <mat-form-field>
+                    <input matInput name="firstname" placeholder="Firstname" [(ngModel)]="user.firstname" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput name="lastname" placeholder="Lastname" [(ngModel)]="user.lastname" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>	
+                  <mat-form-field>
+                    <input matInput name="username" placeholder="Username" [(ngModel)]="user.username" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput name="password" placeholder="Password" [(ngModel)]="user.password" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput name="email" placeholder="Email" [(ngModel)]="user.email" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>	
+                  <mat-form-field>
+                    <input matInput name="telephone" placeholder="Telephone" [(ngModel)]="user.telephone">
+                  </mat-form-field>				
+              </form>
+            </div>
+            <div class="col-md-9 col-md-offset-2">
+              <div align="center">
+                  <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+                  <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+            <div align="center" matTooltip="Save user">
+              <button mat-mini-fab style="background-color: green;" (click)="saveUser()"> <i class="fa fa-check"></i></button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- This is part for new user dialog -->
 
-<div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newUserFlag">
-  <div class="panel panel-info">
-    <div class="panel-heading text-center">
-            <h3 class="panel-title">New user</h3>
-    </div>
-    <div class="panel-body" style="overflow: auto">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <mat-toolbar>
-            Fill data for new user &nbsp; <i class="fa fa-user-plus" aria-hidden="true"></i>
-          </mat-toolbar> 
-          <form>
-              <mat-form-field>
-                <input matInput name="firstname" placeholder="Firstname" [(ngModel)]="user.firstname" required>
-                <mat-error>This field is required</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput name="lastname" placeholder="Lastname" [(ngModel)]="user.lastname" required>
-                <mat-error>This field is required</mat-error>
-              </mat-form-field>	
-              <mat-form-field>
-                <input matInput name="username" placeholder="Username" [(ngModel)]="user.username" required>
-                <mat-error>This field is required</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput name="password" placeholder="Password" [(ngModel)]="user.password" required>
-                <mat-error>This field is required</mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput name="email" placeholder="Email" [(ngModel)]="user.email" required>
-                <mat-error>This field is required</mat-error>
-              </mat-form-field>	
-              <mat-form-field>
-                <input matInput name="telephone" placeholder="Telephone" [(ngModel)]="user.telephone">
-              </mat-form-field>				
-          </form>
-        </div>
-        <div class="col-md-9 col-md-offset-2">
-          <div align="center">
-              <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
-              <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="panel-footer">
-        <div align="center" matTooltip="Save user">
-          <button mat-mini-fab style="background-color: green;" (click)="saveUser()"> <i class="fa fa-check"></i></button>
-        </div>
-    </div>
-  </div>
-</div>

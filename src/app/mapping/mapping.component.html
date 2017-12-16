@@ -1,16 +1,15 @@
 <app-header> </app-header>
-<br/>
-<div class="row">
-  <div align="left" class="animated fadeInUp">
-    <p>
-      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
-    </p>	
-  </div>
-</div>
 
-<div class="container" *ngIf="tableFlag">
+<div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+      <div class="col-md-1">
+        <div align="left" class="animated fadeInUp">
+          <p>
+            <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+          </p>	
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-2 animated fadeInUp" *ngIf="tableFlag">
         <div class="panel panel-info">
           <div class="panel-heading text-center">
               <h3 class="panel-title">Mappings</h3>
@@ -20,18 +19,27 @@
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
                 <div *ngIf="!showTable" class="alert alert-info col-md-4 col-md-offset-4 animated fadeInDown" align="center">There are no mappings</div>
-                <table class="table table-hover animated fadeInUp" *ngIf="showTable">
-                  <thead>
-                    <th> Mapping type </th>
-                    <th> Label </th>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let mapping of mappings; let i = index;" (click)="showDetails(mapping, i)" [ngClass]="{'trActive': i == selectedRow}">
-                      <td> {{mapping.type}} </td>
-                      <td> {{mapping.label}} </td>
-                    </tr>
-                  </tbody>
-                </table>
+
+                <mat-table [dataSource]="mappings" class="table-hover" matSort>
+                  <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                    <mat-cell *matCellDef="let mapping"> {{mapping.id}} </mat-cell>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                    <mat-cell *matCellDef="let mapping"> {{mapping.type}} </mat-cell>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="label">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Label </mat-header-cell>
+                    <mat-cell *matCellDef="let mapping"> {{mapping.label}} </mat-cell>
+                  </ng-container>
+                  
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+                </mat-table>
+                <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
               </div>
             </div>
             <div class="row">
@@ -42,20 +50,18 @@
             </div>
           </div>
         </div>
+        <hr class="style13" />
+        <div align="center" class="animated fadeInUp">
+          <a class="btn" (click)="newMapping()">New mapping</a>
+          <span *ngIf="details" class="animated fadeInUp">
+            <a class="btn btn-blue" (click)="editMapping()">Edit mapping</a>
+            <a class="btn btn-red" (click)="removeMapping()"> Remove mapping</a>
+          </span>
+        </div>
     </div>
   </div>
-  <hr class="style13" />
-  <div align="center" class="animated fadeInUp">
-    <a class="btn" (click)="newMapping()">New mapping</a>
-    <span *ngIf="details" class="animated fadeInUp">
-      <a class="btn btn-blue" (click)="editMapping()">Edit mapping</a>
-      <a class="btn btn-red" (click)="removeMapping()"> Remove mapping</a>
-    </span>
-  </div>
-</div>
-<div class="container" *ngIf="newFlag || editFlag">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 animated fadeInUp" style="padding: 10px;">
+      <div class="col-md-6 col-md-offset-3 animated fadeInUp" *ngIf="newFlag || editFlag">
         <div class="panel panel-info">
           <div class="panel-heading text-center">
               <h3 *ngIf="editFlag" class="panel-title">Edit mapping</h3>
@@ -63,23 +69,24 @@
           </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-9 col-md-offset-2"> 	  			
-                  <table class="table" rules="none">
-                      <tbody>
-                          <tr>
-                              <td> <b>Label: </b> </td>
-                              <td> <input type="text" name="label" class="form-control" [(ngModel)]="mapping.label" required/> </td>
-                          </tr>
-                          <tr>
-                              <td> <b>Type of mapping: </b> </td>
-                              <td> 
-                                <select [(ngModel)]="mapping.type" (change)="onTypeChange(mapping)" name="type" class="form-control" [disabled]="editFlag" required>
-                                    <option *ngFor="let mapping of mappingsType" [value]="mapping">{{mapping}}</option>
-                                </select>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
+              <div class="col-md-6 col-md-offset-3">
+                <form>
+                  <mat-form-field>
+                    <input matInput name="label" placeholder="Label" [(ngModel)]="mapping.label" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Type of mapping" (change)="onTypeChange(mapping)" [(ngModel)]="mapping.type" name="mapping" [disabled]="editFlag" required>
+                        <mat-option *ngFor="let mapping of mappingsType" [value]="mapping">
+                            {{mapping}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-9 col-md-offset-2">
                   <br />
                   <br />
                   <div *ngIf="mappingFields.length > 0 && !info">
@@ -104,13 +111,13 @@
                   <div align="center">
                     <div *ngIf="info" class="alert alert-info animated fadeInDown">{{info}}</div>
                   </div>
-                </div>
-                <div class="col-md-9 col-md-offset-2">
-                  <div align="center">
-                      <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
-                      <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
-                  </div>
-                </div>
+              </div>
+            </div> 	  
+            <div class="col-md-9 col-md-offset-2">
+              <div align="center">
+                <div *ngIf="error" class="alert alert-danger animated fadeInDown">{{error}}</div>
+                <div *ngIf="success" class="alert alert-success animated fadeInDown">{{success}}</div>
+              </div>
             </div>
           </div>
           <div class="panel-footer">
@@ -123,3 +130,4 @@
     </div>
   </div>
 </div>
+  

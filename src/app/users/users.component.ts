@@ -98,9 +98,7 @@ export class UsersComponent implements OnInit {
       data => {
         this.success = 'User has been successfully removed.';
         setTimeout(() => {  
-          this.users.splice(this.selectedRow, 1);
-          this.selectedRow = -1; //return to default state.
-          this.success = null; //removes info message
+          this.ngOnInit();
         }, 1500);
       },
       err => {
