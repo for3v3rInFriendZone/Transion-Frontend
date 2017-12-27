@@ -1,23 +1,22 @@
 <app-header> </app-header>
-<br/>
-<div class="row">
-  <div align="left" class="animated fadeInUp">
-    <p>
-      <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
-    </p>	
-  </div>
-</div>
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
+    <div class="col-sm-1 col-md-1 col-lg-1">
+      <div style="margin-top: 10px;" align="left" class="animated fadeInUp">
+        <p>
+          <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
+        </p>	
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6 col-sm-offset-2 animated fadeInUp">
       <div class="panel panel-info">
         <div class="panel-heading text-center">
-                <h3 class="panel-title">Find</h3>
+            <h3 class="panel-title">Find</h3>
         </div>
         <div class="panel-body">
-          <div class="row" style="padding-left: 80px;">
-            <div class="col-sm-1 col-md-1 col-lg-1 letters" style="overflow:hidden;" *ngFor="let letter of letters; let i = index;"  (click)="showAgenciesWithLetter(letter, i)" [ngClass]="{'clicked': i == selectedRow}">	
+          <div class="row" style="margin-left: 30px;">
+            <div class="col-sm-1 col-md-1 col-lg-1 letters" *ngFor="let letter of letters; let i = index;"  (click)="showAgenciesWithLetter(letter, i)" [ngClass]="{'clicked': i == selectedRow}">	
               &nbsp;&nbsp;<h2> {{letter}} </h2>
             </div>
           </div>
@@ -28,11 +27,11 @@
     <br/>
     <div class="row" *ngIf="selectedRow != -1">
         <div class="col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
-            <hr class="style13 animated fadeInDown"/>
+            <hr class="style14 animated fadeInDown"/>
         </div>
     </div>
    
-    <div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="selectedRow != -1">
+    <div class="col-md-2 col-md-offset-5 animated fadeInUp" *ngIf="selectedRow != -1">
       <div class="panel panel-info">
           <div class="panel-heading text-center">
               <h3 class="panel-title">Clients</h3>
@@ -58,7 +57,7 @@
         </div>
       </div>
   </div>
-  <div class="col-md-3 animated fadeInUp" align="center" *ngIf="selectedRowClient != -1">
+  <div class="col-md-3 animated fadeInUp" align="center" *ngIf="selectedRowClient != -1" style="margin-top: 10px;">
     <p>
       <a (click)="mails()" class="btn btn-red">Mails</a>
       <a (click)="viewDetails()" class="btn btn-blue">Transactions</a>

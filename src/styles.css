@@ -14,6 +14,12 @@ html {
     box-sizing: border-box;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
     position: relative;
     margin: 0;
@@ -731,13 +737,14 @@ body {
  ---------------------------------*/
  
  .footer{
-     position: fixed;
+     position: absolute;
      right: 0;
      bottom: 0;
      left: 0;
      padding: 1rem;
      background-color: rgba(0,0,0,0.6);
      border-top: 1px solid #dddddd;
+     text-align: center;
  }
  .footer-logo{
      margin:15px auto 35px;
@@ -1177,7 +1184,7 @@ h2.loginHeader{
 div.letters {
     background: #FFF;
     border: 1px solid black;
-    margin: 10px;
+    margin: 5px;
     padding: 3px;
     font-family: Verdana, Times, Serif;
     color: black;
@@ -1249,3 +1256,4 @@ mat-form-field {
 .panel {
     margin-top: 40px;
 }
+
