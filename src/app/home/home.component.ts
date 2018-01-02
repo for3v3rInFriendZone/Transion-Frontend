@@ -11,13 +11,16 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   model: any = {};
+  tableFlag: boolean;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    this.tableFlag = false;
   }
 
   showClients() {
+    this.tableFlag = false;
     this.model.clients = true;
     this.model.imports = false;
     this.model.exports = false;
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   showImports() {
+    this.tableFlag = false;
     this.model.imports = true;
     this.model.clients = false;
     this.model.exports = false;
@@ -32,6 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   showExports() {
+    this.tableFlag = false;
     this.model.exports = true;
     this.model.imports = false;
     this.model.clients = false;
@@ -39,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   showConf() {
+    this.tableFlag = false;
     this.model.exports = false;
     this.model.imports = false;
     this.model.clients = false;
@@ -61,8 +67,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['admin/mapping']);
   }
 
+  
   showListOfImports() {
-    this.router.navigate(['import']);
+   // this.router.navigate(['import']);
+    this.tableFlag = true;
   }
-
+  
 }

@@ -1,16 +1,7 @@
-<app-header> </app-header>
-<br/>
 
 <div class="container-fluid">
     <div class="row">
-      <div class="col-md-1">
-          <div align="left" class="animated fadeInUp">
-            <p>
-              <a style="padding: 10px;" class="btn btn-blue" (click)="back()"> <i class="fa fa-arrow-left"></i> Back</a>
-            </p>	
-          </div>
-      </div>
-      <div class="col-md-4 col-md-offset-3 animated fadeInUp" *ngIf="tableFlag">
+      <div class="col-md-6 col-md-offset-3 animated fadeInUp" *ngIf="tableFlag">
         <div class="panel panel-info">
           <div class="panel-heading text-center">
               <h3 class="panel-title">Imports</h3>
@@ -20,10 +11,14 @@
             <div class="row">
               <div class="col-md-11 col-md-offset-1">
                 <div class="row">
-                  <div class="col-md-4">
-                    <mat-form-field hintLabel="Filter imports">
-                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                    </mat-form-field>
+                  <div class="col-md-5 col-md-offset-3">
+                    <mat-card style="background-color: whitesmoke;">
+                      <mat-card-actions>
+                        <mat-form-field hintLabel="Filter imports">
+                          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
+                      </mat-card-actions>
+                    </mat-card>
                   </div>
                 </div>
 
@@ -53,16 +48,17 @@
                       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
                   </mat-table>
-                  <div float="right">
-                      <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  <div class="row">
+                    <div class="col-md-1" matTooltip="New import" style="margin-top: 20px;">
+                        <button mat-mini-fab style="background-color: green;" (click)="newImport()"> 
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>  
+                    <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                   </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr class="style14" />
-        <div align="center" class="animated fadeInUp">
-          <a class="btn" (click)="newImport()">New import</a>
         </div>
     </div>
   </div>

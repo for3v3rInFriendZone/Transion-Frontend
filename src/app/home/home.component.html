@@ -1,19 +1,14 @@
 
 <app-header> </app-header>
 
-
-<h1 style="text-align: center">
-    Please select one of options...
-</h1>
-
 <div class="row">
   <div align="center" class="animated fadeInUp">
     <p>
-      <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients</a>
-      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Import</a>
-      <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()" >Export</a>
-      <a class="btn btn-green">Diagrams</a>
-      <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations</a>
+      <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients &nbsp; <i class="fa fa-users" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Imports &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()">Exports &nbsp; <i class="fa fa-download" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-green">Diagrams &nbsp; <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations &nbsp; <i class="fa fa-cogs" aria-hidden="true" style="font-size: 20px;"></i></a>
     </p>
   </div>
 </div>
@@ -31,12 +26,17 @@
 </div>
 
 <div *ngIf="model.imports" align="center" class="animated fadeInDown">
-  <p>
-    <a class="btn" (click)="showListOfImports()">List all imports</a>
-    <a class="btn btn-blue" (click)="newImport()">Import new file</a>
-    <a href="#" class="btn btn-red">Something else</a>
-    <a href="#" class="btn btn-green">Search</a>
-  </p>	
+  <div *ngIf="tableFlag">
+    <app-import> </app-import>
+  </div>
+  <div *ngIf="!tableFlag">
+    <p>
+      <a class="btn" (click)="showListOfImports()">List all imports</a>
+      <a class="btn btn-blue" (click)="newImport()">Import new file</a>
+      <a href="#" class="btn btn-red">Something else</a>
+      <a href="#" class="btn btn-green">Search</a>
+    </p>
+  </div>	
 </div>
 <div *ngIf="model.exports" align="center" class="animated fadeInDown">
     <p>
