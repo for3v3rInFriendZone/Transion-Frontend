@@ -59,8 +59,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['clients']);
   }
 
-  findClient() {
-    this.router.navigate(['find/client']);
+  newInvoices() {
+    //this.router.navigate(['client/invoices']);
+    this.tableFlag = true;
   }
 
   showMappings() {

@@ -19,11 +19,12 @@ import { AuthenticationService } from './_services/authentication.service';
 import { AgenciesComponent } from './agencies/agencies.component';
 import { UserComponent } from './user/user.component';
 import { TransactionComponent } from './transaction/transaction.component';
-import { FindClientComponent } from './find-client/find-client.component';
 import { UsersComponent } from './users/users.component';
 import { MappingComponent } from './mapping/mapping.component';
 import { Ng2DragDropModule } from 'ng2-drag-drop';
 import { ImportComponent } from './import/import.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { InvoicesService } from './invoices/invoices.service';
 
 
 @NgModule({
@@ -35,10 +36,10 @@ import { ImportComponent } from './import/import.component';
     AgenciesComponent,
     UserComponent,
     TransactionComponent,
-    FindClientComponent,
     UsersComponent,
     MappingComponent,
-    ImportComponent
+    ImportComponent,
+    InvoicesComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,8 @@ import { ImportComponent } from './import/import.component';
     },
     {provide: APP_BASE_HREF, useValue : '/'}, 
     AuthGuard,
-    AuthenticationService],
+    AuthenticationService,
+    InvoicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

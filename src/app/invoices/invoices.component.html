@@ -1,0 +1,216 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 animated fadeInUp">
+      <div class="panel panel-info">
+        <div class="panel-heading text-center">
+            <h3 class="panel-title">Create Invoices</h3>
+        </div>
+        <br/>
+        <div class="panel-body" style="overflow: auto;">
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                <legend> <span class="label label-info">Invoice info</span> </legend>
+              
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput name="invoiceID" placeholder="Invoice ID" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput name="businessUnit" placeholder="Business Unit" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput name="buyer" placeholder="Buyer" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput [matDatepicker]="dp3" placeholder="Invoice date" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput [matDatepicker]="dp4" placeholder="Currency date" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                    <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <fieldset>
+                  <legend> <span class="label label-success">New item</span> </legend>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput name="itemName" placeholder="Name of item" [(ngModel)]="invoice.name" required>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                      <input matInput placeholder="Quantity" type="number" [(ngModel)]="invoice.quantity" required>
+                      <mat-error>This field is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput placeholder="Rebate" type="number" style="text-align: right;" [(ngModel)]="invoice.rebate" required>
+                    <span matSuffix>.00</span>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                  <mat-form-field class="input-border1">
+                    <input matInput placeholder="Price" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
+                    <span matSuffix>.00</span>
+                    <mat-error>This field is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4" style="margin-top: 20px;">
+                    <button mat-raised-button style="background-color: green; color:white;" (click)="addInvoice()"> 
+                       Add invoice <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
+                       Clear inputs <i class="fa fa-minus" aria-hidden="true"></i>
+                    </button>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div align="center"> <span class="label label-primary">Current items</span> </div>
+                <div class="table-border">
+                  <mat-table [dataSource]="dataSource" class="table-hover" matSort>
+                    <ng-container matColumnDef="itemName">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Item name </span> </mat-header-cell>
+                      <mat-cell *matCellDef="let invoice"> {{invoice.name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="quantity">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Quantity </span> </mat-header-cell>
+                      <mat-cell *matCellDef="let invoice"> {{invoice.quantity}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="rebate">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Rebate </span> </mat-header-cell>
+                      <mat-cell *matCellDef="let invoice"> {{invoice.rebate}} </mat-cell>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="price">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Price </span> </mat-header-cell>
+                      <mat-cell *matCellDef="let invoice"> {{invoice.fullPrice}} </mat-cell>
+                    </ng-container>
+                
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+                  </mat-table>
+                
+                  <div class="row">
+                    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!--
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1" >
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-form-field hintLabel="Filter imports">
+                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="table-border">
+                  <mat-table [dataSource]="dataSource" class="table-hover"matSort>
+                    <div>
+                      <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.id}} </mat-cell>
+                      </ng-container>
+                    </div>
+                  
+                      <ng-container matColumnDef="mapping">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Mapping </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.mapping.type}} </mat-cell>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="createdOn">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Created on </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.createdOn |  date: 'dd/MM/yyyy'}} </mat-cell>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="lineNumber">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Lines </mat-header-cell>
+                        <mat-cell *matCellDef="let import"> {{import.lineNumber}} </mat-cell>
+                      </ng-container>
+                  
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
+                  </mat-table>
+                
+                  <div class="row">
+                    <div class="col-md-1 col-md-offset-1" matTooltip="New import" style="margin-top: 20px;">
+                        <button mat-mini-fab style="background-color: green;" (click)="newImport()"> 
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>  
+                    <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
+                </div>
+            </div>
+          </div>
+        -->
+        </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newFlag">
+    <div class="panel panel-info">
+      <div class="panel-heading text-center">
+          <h3 class="panel-title">New import</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <form>
+                <mat-form-field>
+                  <mat-select placeholder="Type of mapping" [(ngModel)]="import.mapping" name="mapping">
+                      <mat-option *ngFor="let mapping of mappingsType" [value]="mapping">
+                          {{mapping.type}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div align="center">
+                  <button mat-fab color="primary" (click)="imgFileInput.click()"> <i class="fa fa-upload" aria-hidden="true" matTooltip="Import file"></i> </button>
+                  <input type="file" #imgFileInput (change)="importFile($event)" style="display: none;"/>
+                </div>
+              </form> 	  			
+            </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+          <div align="center" matTooltip="Do an import">
+              <button mat-mini-fab style="background-color: green;"> <i class="fa fa-check"></i></button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+

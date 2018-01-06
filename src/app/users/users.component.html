@@ -14,10 +14,9 @@
         <div class="panel-heading text-center">
             <h3 class="panel-title">Users</h3>
         </div>
-        <br/>
         <div class="panel-body" style="overflow: auto">
           <div class="row">
-            <div class="col-md-11 col-md-offset-1">
+            <div class="col-md-10 col-md-offset-1">
               <div class="row">
                 <div class="col-md-4">
                   <mat-form-field hintLabel="Filter users">
@@ -25,7 +24,7 @@
                   </mat-form-field>
                 </div>
               </div>
-              
+              <div class="table-border">
               <mat-table [dataSource]="dataSource" class="table-hover" matSort>
                   <div>
                     <ng-container matColumnDef="firstname">
@@ -58,6 +57,7 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
                 </mat-table>
                 <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              </div>
             </div>
           </div>
         </div>

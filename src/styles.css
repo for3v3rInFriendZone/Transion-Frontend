@@ -25,7 +25,9 @@ body {
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
+    font-family: monospace, Times, serif;
  }
+
  
  /* Float Elements
  ---------------------------------*/
@@ -1228,13 +1230,13 @@ th {
 }
 
 mat-card {
-    max-width: 80%;
-    margin: 2em auto;
     text-align: center;
+    background-color: whitesmoke;
 }
 
 mat-table {
     overflow: auto;
+    background-color: whitesmoke;
 }
 
 mat-toolbar-row {
@@ -1256,4 +1258,43 @@ mat-form-field {
 .panel {
     margin-top: 40px;
 }
+
+.table-border {
+    border: 2px outset whitesmoke;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+.input-border1 {
+    border: 1px solid whitesmoke;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+fieldset {
+    padding: 15px;
+    margin: 15px 0px;
+    border: 2px groove lightgray;
+}
+
+legend {
+    padding: 10px;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: gray;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.header-table-font {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+
 

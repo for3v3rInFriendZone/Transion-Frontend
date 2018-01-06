@@ -14,3 +14,7 @@
 .noPointer {
     cursor: default;
 }
+
+*{
+    font-family: monospace, Times, serif;
+}
