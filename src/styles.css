@@ -870,7 +870,7 @@ body {
  }
  
  table, th, td {
-     text-align: center;
+     text-align: left;
  }
  
  .table-hover:hover{
@@ -1209,7 +1209,12 @@ mat-row:hover {
 }
 
 th {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+td {
+    padding: 10px;
 }
 
 .trActive {

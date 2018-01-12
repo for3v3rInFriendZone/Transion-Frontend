@@ -64,9 +64,9 @@ export class UsersComponent implements OnInit {
     this.userSer.getUsers(this.userEmail)
     .subscribe(
       data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.dataSource = data;
+     //   this.dataSource.paginator = this.paginator;
+     //   this.dataSource.sort = this.sort;
       },
       err => {
         alert('Users could not be retrived.');

@@ -22,15 +22,15 @@ export class InvoicesComponent implements OnInit {
   constructor(private router: Router, private importSer: InvoicesService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.dataSource);
+   // this.dataSource = new MatTableDataSource(this.dataSource);
     this.displayedColumns = ['itemName', 'quantity', 'rebate', 'price'];
   }
 
   addInvoice() {
-    this.dataSource = [];
+   // this.dataSource = [];
     this.invoice.fullPrice = this.invoice.quantity * this.invoice.price;
     this.dataSource.push(this.invoice);
-    this.dataSource = new MatTableDataSource(this.dataSource);
+   // this.dataSource = new MatTableDataSource(this.dataSource);
   }
 
   clearInputs() {
