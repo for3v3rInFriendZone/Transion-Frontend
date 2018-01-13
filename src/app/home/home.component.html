@@ -1,14 +1,15 @@
 
-<app-header> </app-header>
-
 <div class="row">
   <div align="center" class="animated fadeInUp">
     <p>
-      <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Clients &nbsp; <i class="fa fa-users" aria-hidden="true" style="font-size: 20px;"></i></a>
-      <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()">Suppliers &nbsp; <i class="fa fa-truck" aria-hidden="true" style="font-size: 20px;"></i></a>
-      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Imports &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()">Klijenti &nbsp; <i class="fa fa-users" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-red" [ngClass]="{ 'clicked': model.exports }" (click)="showExports()">Fakture &nbsp; <i class="fa fa-file-text" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Knjiga izdatih računa &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Knjiga primljenih računa &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Dnevnik knjiženja &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-blue" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()">Glavna knjiga &nbsp; <i class="fa fa-upload" aria-hidden="true" style="font-size: 20px;"></i></a>
       <a class="btn btn-green">Diagrams &nbsp; <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px;"></i></a>
-      <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Configurations &nbsp; <i class="fa fa-cogs" aria-hidden="true" style="font-size: 20px;"></i></a>
+      <a class="btn btn-green" [ngClass]="{'clicked': model.conf}" (click)="showConf()">Podešavanja &nbsp; <i class="fa fa-cogs" aria-hidden="true" style="font-size: 20px;"></i></a>
     </p>
   </div>
 </div>
@@ -23,8 +24,8 @@
     <p>
       <a class="btn" (click)="showListAllClients()">List all clients</a>
       <a class="btn btn-blue" (click)="newInvoices()">Create invoices <i class="fa fa-file-text" aria-hidden="true" style="font-size: 18px;"></i></a>
-      <a class="btn btn-green">Search</a>
-      <a class="btn btn-green">Search</a>
+      <a class="btn btn-green">Dodaj klijenta</a>
+      <a class="btn btn-green">Napredna pretraga</a>
       <a class="btn btn-green">Search</a>
     </p>	
   </div>
@@ -54,9 +55,8 @@
 
 <div *ngIf="model.conf" name="model.conf" align="center" class="animated fadeInDown">
   <p>
-    <a class="btn">Configuration of app</a>
-    <a class="btn btn-blue">Scenarios</a>
-    <a class="btn btn-green" (click)="showUsers()">Users</a>
+    <a class="btn btn-blue">Konta</a>
+    <a class="btn btn-green" (click)="showUsers()">Korisnici</a>
     <a class="btn btn-red">Permissions</a>
     <a class="btn btn-green" (click)="showMappings()">Mappings</a>
   </p>

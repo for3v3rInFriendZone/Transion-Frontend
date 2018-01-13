@@ -72,19 +72,19 @@ body {
  /* Primary Styles
  ---------------------------------*/
  .login-background {
-     background: url("./assets/images/main.jpg") no-repeat center center fixed;
-     -webkit-background-size: cover; /* For WebKit*/
-     -moz-background-size: cover;    /* Mozilla*/
-     -o-background-size: cover;      /* Opera*/
-     background-size: cover;         /* Generic*/
+    background: url("./assets/images/main.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
  }
  .main-background {
-     background: url("./assets/images/mainBack3.jpg") no-repeat center center fixed;
-     -webkit-background-size: cover; /* For WebKit*/
-     -moz-background-size: cover;    /* Mozilla*/
-     -o-background-size: cover;      /* Opera*/
-     background-size: cover;         /* Generic*/
-     padding-bottom: 350px;
+    /* background: url("./assets/images/mainBack3.jpg") no-repeat center center fixed; */
+    background: linear-gradient(to top, rgba(184,225,245,0.20), rgba(184,225,245,0.90));
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
  }
  h2{
      font-size:34px;
@@ -1211,6 +1211,7 @@ mat-row:hover {
 th {
     border-bottom: 1px solid black;
     padding: 15px;
+    border-right: 1px solid black;
 }
 
 td {
