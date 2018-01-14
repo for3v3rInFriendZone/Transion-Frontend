@@ -35,12 +35,8 @@ export class HomeComponent implements OnInit {
     this.model.conf = false;
   }
 
-  showExports() {
-    this.tableFlag = false;
-    this.model.exports = true;
-    this.model.imports = false;
-    this.model.clients = false;
-    this.model.conf = false;
+  showInvoices() {
+    this.router.navigate(['client/invoices']);
   }
 
   showConf() {

@@ -37,4 +37,8 @@ export class InvoicesComponent implements OnInit {
     this.invoice = {};
   }
 
+  back() {
+    this.router.navigate(['home']);
+  }
+
 }

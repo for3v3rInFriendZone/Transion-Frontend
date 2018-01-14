@@ -1,17 +1,19 @@
-
-<app-header *ngIf="router.url != '/'"> </app-header>
-
-<router-outlet> </router-outlet>  
-
-<!-- FOOOTER -->
-<div class="row">
-    <div class="footer">
-        <span class="copyright"> <span style="color:lightgreen;">Transion 1.0.0 </span> &copy; 2017</span>
+<div class="container-fluid">
+    <!-- HEADER -->
+    <div class="row">
+        <app-header *ngIf="router.url != '/'"> </app-header>
+    </div>
+    <!-- MAIN SCREEN -->
+    <div class="row">
+        <router-outlet *ngIf="router.url != 'home'"> </router-outlet>  
+    </div>
+    <!-- FOOOTER -->
+    <div class="row">
+        <div class="footer">
+            <span class="copyright"> <span style="color:lightgreen;">Transion 1.0.0 </span> &copy; 2017</span>
+        </div>
     </div>
 </div>
-<!--
-<div class="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>.</div>
--->
 
 
 

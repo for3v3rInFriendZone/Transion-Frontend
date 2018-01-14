@@ -940,8 +940,8 @@ body {
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-size: 12px;
-    padding: 25px 25px;
-    margin: 30px;
+    padding: 20px 20px;
+    margin: 20px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -965,7 +965,7 @@ a.btn.clicked {
     background-color: rgb(218, 218, 218);
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
-    padding: 30px;
+    padding: 25px;
 }
 
 /* blue button */
@@ -992,7 +992,7 @@ a.btn.btn-blue.clicked {
     background-color: #364252;
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
-    padding: 30px;
+    padding: 25px;
 }
 
 /* red button */
@@ -1019,7 +1019,7 @@ a.btn.btn-red.clicked {
     background-color: #084f64;
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
-    padding: 30px;
+    padding: 25px;
 }
 
 /* green button */
@@ -1046,7 +1046,7 @@ a.btn.btn-green.clicked {
     background-color: rgb(97, 71, 63);
     border-color: rgba(0,0,0,0.9);
     color: #FFF;
-    padding: 30px;
+    padding: 25px;
 }
 
 /* Typography */
@@ -1183,6 +1183,10 @@ h2.loginHeader{
     transition: all 0.3s ease-out;
 }
 
+.transitionEl {
+    transition: all 0.3s ease-out;
+}
+
 div.letters {
     background: #FFF;
     border: 1px solid black;
@@ -1210,8 +1214,7 @@ mat-row:hover {
 
 th {
     border-bottom: 1px solid black;
-    padding: 15px;
-    border-right: 1px solid black;
+    padding: 10px;
 }
 
 td {
@@ -1301,6 +1304,5 @@ input::-webkit-inner-spin-button {
     font-size: 14px;
     font-weight: bolder;
 }
-
 
 
