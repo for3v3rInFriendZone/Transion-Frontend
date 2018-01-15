@@ -2,477 +2,149 @@
   <p> <a class="btn btn-blue transitionEl" (click)="back()" style="padding: 16px; margin-top: 35px;"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back </a> </p>
 </div>
 <div class="col-md-10 animated fadeInUp">
-    <div class="panel panel-primary">
-      <div class="panel-heading text-center">
-        <h3 class="panel-title">Faktura</h3>
-      </div>
-      <br/>
-      <div class="panel-body" style="overflow: auto;">
-        <div class="row">
-          <div class="col-md-12">
-            <fieldset>
-              <legend> <span align="center" class="label label-info">Invoice info</span> </legend>
-            
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput name="invoiceID" placeholder="Invoice ID" required>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput name="businessUnit" placeholder="Business Unit" required>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput name="buyer" placeholder="Buyer" required>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput [matDatepicker]="dp3" placeholder="Invoice date" disabled>
-                  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput [matDatepicker]="dp4" placeholder="Currency date" disabled>
-                  <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
-                  <mat-datepicker #dp4 disabled="false"></mat-datepicker>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput [matDatepicker]="dp5" placeholder="Datum plaćanja" disabled>
-                  <mat-datepicker-toggle matSuffix [for]="dp5"></mat-datepicker-toggle>
-                  <mat-datepicker #dp5 disabled="false"></mat-datepicker>
-                </mat-form-field>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <fieldset>
-                <legend> <span class="label label-success">New item</span> </legend>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput name="itemName" placeholder="Name of item" [(ngModel)]="invoice.name" required>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                    <input matInput placeholder="Quantity" type="number" [(ngModel)]="invoice.quantity" required>
-                    <mat-error>This field is required</mat-error>
-                  </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput placeholder="Rebate" type="number" style="text-align: right;" [(ngModel)]="invoice.rebate" required>
-                  <span matSuffix>.00</span>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field class="input-border1">
-                  <input matInput placeholder="Price" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                  <span matSuffix>.00</span>
-                  <mat-error>This field is required</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-md-4" style="margin-top: 20px;">
-                  <button mat-raised-button style="background-color: green; color:white;" (click)="addInvoice()"> 
-                      Add invoice <i class="fa fa-plus" aria-hidden="true"></i>
-                  </button>
-                  <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
-                      Clear inputs <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1 table-responsive table-border">
-              <div align="center"> <span class="label label-primary">Current items</span> </div>
-              <br/>
-              <table class="table table-hover">
-                <thead>
-                  <th> # </th>
-                  <th> Šifra </th>
-                  <th> Proizvod </th>
-                  <th> Jedinica mere </th>
-                  <th> Količina </th>
-                  <th> Rabat </th>
-                  <th> Jedinična cena </th>
-                  <th> PDV(%) </th>
-                  <th> Cena bez PDV-a </th>
-                  <th> Cena sa PDV-om </th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let invoice of dataSource">
-                    <td> {{invoice.name}} </td>
-                    <td> {{invoice.quantity}} </td>
-                    <td> {{invoice.rebate}} </td>
-                    <td> {{invoice.fullPrice}} </td>
-                  </tr>
-                </tbody>
-              </table>
-              <!--
-              <div class="table-border">
-                <mat-table [dataSource]="dataSource" class="table-hover" matSort>
-                  <ng-container matColumnDef="itemName">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Item name </span> </mat-header-cell>
-                    <mat-cell *matCellDef="let invoice"> {{invoice.name}} </mat-cell>
-                  </ng-container>
-
-                  <ng-container matColumnDef="quantity">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Quantity </span> </mat-header-cell>
-                    <mat-cell *matCellDef="let invoice"> {{invoice.quantity}} </mat-cell>
-                  </ng-container>
-              
-                  <ng-container matColumnDef="rebate">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Rebate </span> </mat-header-cell>
-                    <mat-cell *matCellDef="let invoice"> {{invoice.rebate}} </mat-cell>
-                  </ng-container>
-              
-                  <ng-container matColumnDef="price">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> <span class="header-table-font"> Price </span> </mat-header-cell>
-                    <mat-cell *matCellDef="let invoice"> {{invoice.fullPrice}} </mat-cell>
-                  </ng-container>
-              
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
-                </mat-table>
-              
-                <div class="row">
-                  <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                </div>
-              </div> -->
-          </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-12">
-              <fieldset>
-                  <legend> <span class="label label-success">Dodavanje proizvoda</span> </legend>
-                <div class="col-md-2">
-                  <mat-form-field class="input-border1">
-                    <input matInput name="itemName" placeholder="Šifra" [(ngModel)]="invoice.name" required>
-                    <mat-error>This field is required</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field class="input-border1">
-                      <input matInput placeholder="Naziv" type="number" [(ngModel)]="invoice.quantity" required>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field class="input-border1">
-                    <input matInput placeholder="Nabavna cena" type="number" style="text-align: right;" [(ngModel)]="invoice.rebate" required>
-                    <span matSuffix>.00</span>
-                    <mat-error>This field is required</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field class="input-border1">
-                    <input matInput placeholder="Prodajna cena" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                    <span matSuffix>.00</span>
-                    <mat-error>This field is required</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field class="input-border1">
-                    <input matInput placeholder="Jedinica mere" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                    <span matSuffix>.00</span>
-                    <mat-error>This field is required</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                      <input matInput placeholder="PDV(%)" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                      <span matSuffix>.00</span>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-md-4 col-md-offset-3" style="margin-top: 20px;">
-                    <button mat-raised-button style="background-color: green; color:white;" (click)="addInvoice()"> 
-                        Add invoice <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                    <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
-                        Clear inputs <i class="fa fa-minus" aria-hidden="true"></i>
-                    </button>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1 table-responsive table-border">
-                <div align="center"> <span class="label label-primary">Current items</span> </div>
-                <br/>
-                <table class="table table-hover">
-                  <thead>
-                    <th> # </th>
-                    <th> Šifra </th>
-                    <th> Naziv </th>
-                    <th> Nabavna cena </th>
-                    <th> Prodajna cena </th>
-                    <th> Jedinica mere </th>
-                    <th> PDV(%) </th>
-                    <th> Cena bez PDV-a </th>
-                    <th> Cena sa PDV-om </th>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let invoice of dataSource">
-                      <td> {{invoice.name}} </td>
-                      <td> {{invoice.quantity}} </td>
-                      <td> {{invoice.rebate}} </td>
-                      <td> {{invoice.fullPrice}} </td>
-                    </tr>
-                  </tbody>
-                </table>
-          </div>
-          <div class="row">
-              <div class="col-md-12">
-                <fieldset>
-                    <legend> <span class="label label-success">Knjiga izdatih računa</span> </legend>
-                  <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                      <input matInput name="itemName" placeholder="Faktura" [(ngModel)]="invoice.name" required>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                        <input matInput placeholder="Oslobodjen promet sa pravom na odbitak prethodnog poreza" type="number" [(ngModel)]="invoice.quantity" required>
-                        <mat-error>This field is required</mat-error>
-                      </mat-form-field>
-                  </div>
-                  <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                      <input matInput placeholder="Oslobodjen promet bez prava na odbitak prethodnog poreza" type="number" style="text-align: right;" [(ngModel)]="invoice.rebate">
-                      <span matSuffix>.00</span>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                      <input matInput placeholder="Promet u inostranstvo za koje bi postojalo pravo da je prethodni promet izvršen u zemlji" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                      <span matSuffix>.00</span>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-2">
-                    <mat-form-field class="input-border1">
-                      <input matInput placeholder="Promet u inostranstvo za koje ne bi postojalo pravo da je prethodni promet izvršen u zemlji" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                      <span matSuffix>.00</span>
-                      <mat-error>This field is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-4 col-md-offset-3" style="margin-top: 20px;">
-                      <button mat-raised-button style="background-color: green; color:white;" (click)="addInvoice()"> 
-                          Add invoice <i class="fa fa-plus" aria-hidden="true"></i>
-                      </button>
-                      <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
-                          Clear inputs <i class="fa fa-minus" aria-hidden="true"></i>
-                      </button>
-                  </div>
-                </fieldset>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1 table-responsive table-border">
-                  <div align="center"> <span class="label label-primary">Current items</span> </div>
-                  <br/>
-                  <div class="">
-                    <div class="table table-hover">
-                      <thead>
-                        <th> # </th>
-                        <th> Datum knjiženja </th>
-                        <th> Šifra </th>
-                        <th> Datum izdavanja računa </th>
-                        <th> Naziv klijenta</th>
-                        <th> PIB </th>
-                        <th> Suma sa fakture </th>
-                        <th> Oslobodjen promet sa pravom na odbitak prethodnog poreza </th>
-                        <th> Oslobodjen promet bez prava na odbitak prethodnog poreza </th>
-                        <th> Promet u inostranstvo za koje bi postojalo pravo da je prethodni promet izvršen u zemlji </th>
-                        <th> Promet u inostranstvo za koji ne bi postojalo pravo da je prethodni promet izvršen u zemlji </th>
-                        <th> Osnovica PDV(20%)</th>
-                        <th> Iznos PDV(20%) </th>
-                        <th> Osnovica PDV(10%) </th>
-                        <th> Iznos PDV(10%) </th>
-                        <th> Ukupan promet dobara i usluga sa pravom i bez prava na odbitak prethodnog poreza bez PDV-a </th>
-                        <th> Promet dobara i usluga sa pravom na odbitak prethodnog poreza bez PDV-a </th>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let invoice of dataSource">
-                          <td> {{invoice.name}} </td>
-                          <td> {{invoice.quantity}} </td>
-                          <td> {{invoice.rebate}} </td>
-                          <td> {{invoice.fullPrice}} </td>
-                        </tr>
-                      </tbody>
-                    </div>
-              </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                  <fieldset>
-                      <legend> <span class="label label-success">Nalog</span> </legend>
-                    <div class="col-md-2">
-                      <mat-form-field class="input-border1">
-                        <input matInput name="itemName" placeholder="Konto" [(ngModel)]="invoice.name" required>
-                        <mat-error>This field is required</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                      <mat-form-field class="input-border1">
-                        <input matInput placeholder="Duguje" type="number" style="text-align: right;" [(ngModel)]="invoice.rebate" required>
-                        <span matSuffix>.00</span>
-                        <mat-error>This field is required</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                      <mat-form-field class="input-border1">
-                        <input matInput placeholder="Potražuje" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                        <span matSuffix>.00</span>
-                        <mat-error>This field is required</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-2">
-                      <mat-form-field class="input-border1">
-                        <input matInput placeholder="Faktura" type="number" style="text-align: right;" [(ngModel)]="invoice.price" required>
-                        <span matSuffix>.00</span>
-                        <mat-error>This field is required</mat-error>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-4 col-md-offset-3" style="margin-top: 20px;">
-                        <button mat-raised-button style="background-color: green; color:white;" (click)="addInvoice()"> 
-                            Add invoice <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
-                            Clear inputs <i class="fa fa-minus" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                  </fieldset>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 col-md-offset-1 table-responsive table-border">
-                    <div align="center"> <span class="label label-primary">Current items</span> </div>
-                    <br/>
-                    <div class="">
-                      <div class="table table-hover">
-                        <thead>
-                          <th> # </th>
-                          <th> Datum </th>
-                          <th> Konto </th>
-                          <th> Naziv konta </th>
-                          <th> Klijent </th>
-                          <th> Duguje </th>
-                          <th> Potražuje </th>
-                          <th> Faktura </th>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let invoice of dataSource">
-                            <td> {{invoice.name}} </td>
-                            <td> {{invoice.quantity}} </td>
-                            <td> {{invoice.rebate}} </td>
-                            <td> {{invoice.fullPrice}} </td>
-                          </tr>
-                        </tbody>
-                      </div>
-                </div>
-              </div>
-        <!--
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1" >
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field hintLabel="Filter imports">
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="table-border">
-                <mat-table [dataSource]="dataSource" class="table-hover"matSort>
-                  <div>
-                    <ng-container matColumnDef="id">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-                      <mat-cell *matCellDef="let import"> {{import.id}} </mat-cell>
-                    </ng-container>
-                  </div>
-                
-                    <ng-container matColumnDef="mapping">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Mapping </mat-header-cell>
-                      <mat-cell *matCellDef="let import"> {{import.mapping.type}} </mat-cell>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="createdOn">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Created on </mat-header-cell>
-                      <mat-cell *matCellDef="let import"> {{import.createdOn |  date: 'dd/MM/yyyy'}} </mat-cell>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="lineNumber">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Lines </mat-header-cell>
-                      <mat-cell *matCellDef="let import"> {{import.lineNumber}} </mat-cell>
-                    </ng-container>
-                
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDetails(row)" [ngClass]="{'trActive': selectedRow == row.id}"></mat-row>
-                </mat-table>
-              
-                <div class="row">
-                  <div class="col-md-1 col-md-offset-1" matTooltip="New import" style="margin-top: 20px;">
-                      <button mat-mini-fab style="background-color: green;" (click)="newImport()"> 
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                      </button>
-                  </div>  
-                  <mat-paginator [length]="1000" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                </div>
-              </div>
-          </div>
-        </div>
-      -->
-      </div>
-    </div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-4 col-md-offset-4 animated fadeInUp" *ngIf="newFlag">
-  <div class="panel panel-info">
+  <div class="panel panel-primary">
     <div class="panel-heading text-center">
-        <h3 class="panel-title">New import</h3>
+      <h3 class="panel-title">Faktura</h3>
     </div>
-    <div class="panel-body">
+    <br/>
+    <div class="panel-body" style="overflow: auto;">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form>
-              <mat-form-field>
-                <mat-select placeholder="Type of mapping" [(ngModel)]="import.mapping" name="mapping">
-                    <mat-option *ngFor="let mapping of mappingsType" [value]="mapping">
-                        {{mapping.type}}
-                    </mat-option>
-                </mat-select>
+        <div class="col-md-12">
+          <fieldset>
+            <legend> <span align="center" class="label label-info">Informacije o fakturi</span> </legend>
+          
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput name="invoiceID" placeholder="Sifra fakture" [(ngModel)]="invoice.externalUniqueKey" required disabled>
+                <mat-error>Morate uneti ovo polje</mat-error>
               </mat-form-field>
-              <div align="center">
-                <button mat-fab color="primary" (click)="imgFileInput.click()"> <i class="fa fa-upload" aria-hidden="true" matTooltip="Import file"></i> </button>
-                <input type="file" #imgFileInput (change)="importFile($event)" style="display: none;"/>
-              </div>
-            </form> 	  			
-          </div>
-      </div>
-    </div>
-    <div class="panel-footer">
-        <div align="center" matTooltip="Do an import">
-            <button mat-mini-fab style="background-color: green;"> <i class="fa fa-check"></i></button>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput name="businessUnit" placeholder="Poslovna jedinica" required>
+                <mat-error>Morate uneti ovo polje</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput name="buyer" placeholder="Kupac" required>
+                <mat-error>Morate uneti ovo polje</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput [matDatepicker]="dp3" placeholder="Datum fakture" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput [matDatepicker]="dp4" placeholder="Datum valute" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput [matDatepicker]="dp5" placeholder="Datum plaćanja" disabled>
+                <mat-datepicker-toggle matSuffix [for]="dp5"></mat-datepicker-toggle>
+                <mat-datepicker #dp5 disabled="false"></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </fieldset>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <fieldset>
+              <legend> <span class="label label-success">Lista artikala</span> </legend>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <mat-select placeholder="Naziv artikla" [(ngModel)]="item" name="mapping" required>
+                  <mat-option *ngFor="let item of items" [value]="item">
+                      {{item.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>Morate uneti ovo polje</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                  <input matInput placeholder="Količina" type="number" [(ngModel)]="item.quantity" required>
+                  <mat-error>Morate uneti ovo polje</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput placeholder="Rabat" type="number" style="text-align: right;" [(ngModel)]="item.rebate" required>
+                <span matSuffix>.00</span>
+                <mat-error>Morate uneti ovo polje</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <mat-form-field class="input-border1">
+                <input matInput placeholder="Jedinična cena" type="number" style="text-align: right;" [(ngModel)]="item.sellingPrice" required>
+                <span matSuffix>.00</span>
+                <mat-error>Morate uneti ovo polje</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4" style="margin-top: 20px;">
+                <button mat-raised-button style="background-color: green; color:white;" (click)="addItem()"> 
+                    Dodaj stavku <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+                <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
+                    Očisti unos <i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 table-responsive table-border">
+            <div align="center"> <span class="label label-primary">Dodane stavke</span> </div>
+            <br/>
+            <table class="table table-hover">
+              <thead>
+                <th> # </th>
+                <th> Šifra </th>
+                <th> Proizvod </th>
+                <th> Jedinica mere </th>
+                <th> Količina </th>
+                <th> Jedinična cena </th>
+                <th> Rabat </th>
+                <th> Cena posle rabata </th>
+                <th> Osnovica </th>
+                <th> Stopa PDV-a(%) </th>
+                <th> PDV </th>
+                <th> Vrednost PDV-a </th>
+                <th> Prodajna cena </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataSource;  let i = index;">
+                  <td> {{i+1}} </td>
+                  <td> {{item.externalUniqueKey}} </td>
+                  <td> {{item.name}} </td>
+                  <td> {{item.measure.shortcut}} </td>
+                  <td> {{item.quantity}} </td>
+                  <td> {{item.sellingPrice | number : '1.2-2'}} </td>
+                  <td> {{item.rebate | number : '1.2-2'}} </td>
+                  <td> {{item.afterRebate | number : '1.2-2'}} </td>
+                  <td> {{item.base | number : '1.2-2'}} </td>
+                  <td> {{item.tax.base}} </td>
+                  <td> {{item.pdvValue | number : '1.2-2'}} </td>
+                  <td> {{item.pdvValueFull | number : '1.2-2'}} </td>
+                  <td> {{item.fullPrice | number : '1.2-2'}} </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="sumTable">
+              <u> Ukupno</u>: <span style="color: blue;"> {{sumOfInvoices | number : '1.2-2'}} </span>
+              <u> PDV</u>: <span style="color: lightseagreen;"> {{sumOfPdv | number : '1.2-2'}} </span> 
+              <u> Za plaćanje</u>: <span style="color: red;"> {{(sumOfPdv + sumOfInvoices) | number : '1.2-2'}} </span>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

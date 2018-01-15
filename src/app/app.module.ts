@@ -25,6 +25,7 @@ import { Ng2DragDropModule } from 'ng2-drag-drop';
 import { ImportComponent } from './import/import.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoicesService } from './invoices/invoices.service';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { InvoicesService } from './invoices/invoices.service';
     UsersComponent,
     MappingComponent,
     ImportComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

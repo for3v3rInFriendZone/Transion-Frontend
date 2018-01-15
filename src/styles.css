@@ -869,8 +869,33 @@ body {
      color: #2c2c2c;
  }
  
- table, th, td {
-     text-align: left;
+ table {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #333;
+    padding: 10px;
+    border-collapse: collapse; 
+    border-spacing: 0; 
+ }
+ th, td {
+    height: 30px;
+    border: 1px solid black;
+    transition: all 0.3s;
+    padding: 8px;
+ }
+
+ th {
+    background: #F3F3F3;
+    font-weight: bold;
+    text-align: center;
+ }
+
+ th:hover {
+    cursor: default; 
+ }
+
+ td {
+    background: #FAFAFA; /* Lighter grey background */
+    text-align: left;
  }
  
  .table-hover:hover{
@@ -1212,13 +1237,8 @@ mat-row:hover {
     background-color: lightcyan;
 }
 
-th {
-    border-bottom: 1px solid black;
-    padding: 10px;
-}
-
-td {
-    padding: 10px;
+th:hover {
+    cursor: pointer;
 }
 
 .trActive {
@@ -1305,4 +1325,14 @@ input::-webkit-inner-spin-button {
     font-weight: bolder;
 }
 
+.sumTable {
+    float: right;
+    border: 2px outset transparent;
+    background: lightgray;
+    margin-bottom: 20px;
+}
+
+.sumTable u{
+    font-weight: bold;
+}
 
