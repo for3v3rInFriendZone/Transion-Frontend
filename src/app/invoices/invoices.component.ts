@@ -4,20 +4,24 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { InvoicesService } from './invoices.service';
 import { ItemService } from '../item/item.service';
 import { DataSource } from '@angular/cdk/collections';
+import { UserService } from '../user/user.service'; 
 import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-invoices',
   templateUrl: './invoices.component.html',
   styleUrls: ['./invoices.component.css'],
-  providers: [InvoicesService, ItemService],
+  providers: [InvoicesService, ItemService, UserService],
   encapsulation: ViewEncapsulation.None
 })
 export class InvoicesComponent implements OnInit {
 
   invoice: any = {};
+  clients: any = [];
   item: any = {};
+  invoiceItem: any = {};
   items: any = [];
+  user: any = {};
   dataSource: any = [];
   displayedColumns: any = [];
   sumOfInvoices: number;
@@ -25,14 +29,37 @@ export class InvoicesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private router: Router, private importSer: InvoicesService, private itemSer: ItemService) { }
+  constructor(private router: Router, private invoiceSer: InvoicesService, private itemSer: ItemService,
+              private userSer: UserService) { }
 
   ngOnInit() {
     this.getAllItems();
-    this.item.externalUniqueKey = new Date().getTime() + '/2018';
-    this.displayedColumns = ['itemName', 'quantity', 'rebate', 'price'];
-    this.sumOfInvoices = 0;
-    this.sumOfPdv = 0;
+    this.getClients();
+    this.getClientFromUser();
+    this.invoice.externalUniqueKey = new Date().getTime() + '/2018';
+    this.invoiceItem.item = {};
+    this.invoice.invoiceItems = [];
+    this.invoice.amountWithoutTax = 0;
+    this.invoice.taxAmount = 0;
+    this.invoice.amount = 0;
+  }
+
+  getClients() {
+    this.invoiceSer.getClients()
+    .subscribe(
+      data => {
+        this.clients = data;
+      });
+  }
+
+  getClientFromUser() {
+    this.userSer.getUserByUsername(JSON.parse(localStorage.getItem('currentUser')).username)
+    .subscribe(
+      data => {
+        this.user = data;
+        this.invoice.seller = this.user.client;
+        this.invoice.createdBy = this.user;
+      });
   }
 
   getAllItems() {
@@ -47,24 +74,25 @@ export class InvoicesComponent implements OnInit {
    * Add items to invoice
    */
   addItem() {
-    debugger;
-    this.item.afterRebate = this.item.sellingPrice - this.item.rebate;
-    if(this.item.rebate > 0) {
-      this.item.base = this.item.quantity * this.item.afterRebate;
-      this.item.pdvValue = this.item.tax.base / 100 * this.item.afterRebate;
-      this.item.pdvValueFull = this.item.tax.base / 100 * this.item.afterRebate * this.item.quantity;
+    this.invoiceItem.afterRebate = this.invoiceItem.item.sellingPrice - this.invoiceItem.rebate;
+    if(this.invoiceItem.rebate > 0) {
+      this.invoiceItem.price = this.invoiceItem.quantity * this.invoiceItem.afterRebate;
+      this.invoiceItem.taxPrice = this.invoiceItem.item.tax.base / 100 * this.invoiceItem.afterRebate;
+      this.invoiceItem.taxAmount = this.invoiceItem.item.tax.base / 100 * this.invoiceItem.afterRebate * this.invoiceItem.quantity;
       
     } else {
-      this.item.base = this.item.quantity * this.item.sellingPrice;
-      this.item.pdvValue = this.item.tax.base / 100 * this.item.sellingPrice;
-      this.item.pdvValueFull = this.item.tax.base / 100 * this.item.sellingPrice * this.item.quantity;
+      this.invoiceItem.price = this.invoiceItem.quantity * this.invoiceItem.item.sellingPrice;
+      this.invoiceItem.taxPrice = this.invoiceItem.item.tax.base / 100 * this.invoiceItem.item.sellingPrice;
+      this.invoiceItem.taxAmount = this.invoiceItem.item.tax.base / 100 * this.invoiceItem.item.sellingPrice * this.invoiceItem.quantity;
     }
-    this.item.fullPrice = this.item.base + this.item.pdvValueFull;
+    this.invoiceItem.amount = this.invoiceItem.price + this.invoiceItem.taxAmount;
 
-    this.sumOfInvoices = this.sumOfInvoices + this.item.base;
-    this.sumOfPdv = this.sumOfPdv + this.item.pdvValueFull;
-    this.dataSource.push(this.item);
-    this.item = {};
+    this.invoice.amountWithoutTax =  this.invoice.amount +  this.invoiceItem.price;
+    this.invoice.taxAmount = this.invoice.taxAmount + this.invoiceItem.taxAmount;
+    this.invoice.amount = this.invoice.amountWithoutTax +  this.invoice.taxAmount;
+    this.invoice.invoiceItems.push(this.invoiceItem);
+    this.invoiceItem = {};
+    this.invoiceItem.item = {};
   }
 
   clearInputs() {
@@ -73,6 +101,17 @@ export class InvoicesComponent implements OnInit {
 
   back() {
     this.router.navigate(['home']);
+  }
+
+  saveInvoice() {
+    this.invoiceSer.saveInvoice(this.invoice)
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.log('Error', err.error.message);
+      });
   }
 
 }

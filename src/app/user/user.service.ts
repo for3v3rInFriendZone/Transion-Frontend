@@ -10,7 +10,7 @@ export class UserService {
     let params = new HttpParams();
     params = params.append('username', username);
 
-    return this.http.get('http://localhost:8080/user/username', {params: params});
+    return this.http.get('http://localhost:8080/user/username/', {params: params});
   }
 
   saveUser(user: any) {
