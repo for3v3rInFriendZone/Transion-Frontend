@@ -2,17 +2,14 @@
 <div align="center" class="animated fadeInUp">
   <p>
     <a class="btn transitionEl" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()"><i class="fa fa-users" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Klijenti</a>
-    <a class="btn btn-red transitionEl" [ngClass]="{ 'clicked': model.exports }" (click)="showInvoices()"><i class="fa fa-file-text" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Fakture  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"><i class="fa fa-upload" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga izdatih računa  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"><i class="fa fa-download" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga primljenih računa  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"><i class="fa fa-folder" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Dnevnik knjiženja </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.imports }" (click)="showImports()"><i class="fa fa-book" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Glavna knjiga</a>
+    <a class="btn btn-red transitionEl" (click)="showInvoices()"><i class="fa fa-file-text" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Fakture  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.bookKeeping }" (click)="showBookKeeping()"><i class="fa fa-table" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiženje  </a>
     <a class="btn btn-green transitionEl"><i class="fa fa-area-chart" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Dijagrami </a>
     <a class="btn btn-green transitionEl" [ngClass]="{'clicked': model.conf}" (click)="showConf()"><i class="fa fa-cogs" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Podešavanja </a>
   </p>
 </div>
 
-<hr *ngIf="model.clients || model.imports || model.exports || model.conf" class="style14 animated fadeInDown"/>
+<hr *ngIf="model.clients || model.bookKeeping || model.exports || model.conf" class="style14 animated fadeInDown"/>
 
 <div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
   <p>
@@ -24,26 +21,13 @@
   </p>	
 </div>
 
-<div *ngIf="model.imports" align="center" class="animated fadeInDown">
-  <div *ngIf="tableFlag">
-    <app-import> </app-import>
-  </div>
-  <div *ngIf="!tableFlag">
-    <p>
-      <a class="btn" (click)="showListOfImports()">List all imports</a>
-      <a class="btn btn-blue" (click)="newImport()">Import new file</a>
-      <a href="#" class="btn btn-red">Something else</a>
-      <a href="#" class="btn btn-green">Search</a>
-    </p>
-  </div>	
-</div>
-<div *ngIf="model.exports" align="center" class="animated fadeInDown">
-    <p>
-      <a href="#" class="btn">List all exports</a>
-      <a href="#" class="btn btn-blue">Export new file</a>
-      <a href="#" class="btn btn-red">Something else</a>
-      <a href="#" class="btn btn-green">Search</a>
-    </p>	
+<div *ngIf="model.bookKeeping" align="center" class="animated fadeInDown">
+  <p>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kir }" (click)="showKIR()"><i class="fa fa-upload" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga izdatih računa  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kpr }" (click)="showKPR()"><i class="fa fa-download" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga primljenih računa  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.diary }" (click)="showDairy()"><i class="fa fa-folder" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Dnevnik knjiženja </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.mainBook }" (click)="showMainBook()"><i class="fa fa-book" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Glavna knjiga</a>
+  </p>
 </div>
 
 <div *ngIf="model.conf" name="model.conf" align="center" class="animated fadeInDown">

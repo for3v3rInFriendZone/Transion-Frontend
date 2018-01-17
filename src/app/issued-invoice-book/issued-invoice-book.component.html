@@ -1,0 +1,89 @@
+<div class="col-md-1 animated fadeInUp">
+    <p> <a class="btn btn-blue transitionEl" (click)="back()" style="padding: 16px; margin-top: 35px;"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Back </a> </p>
+  </div>
+  <div class="col-md-10 animated fadeInUp">
+    <div class="panel panel-primary">
+      <div class="panel-heading text-center">
+        <h3 class="panel-title">Knjiga izdatih računa</h3>
+      </div>
+      <br/>
+      <div class="panel-body" style="overflow: auto;">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <fieldset>
+              <legend> <span align="center" class="label label-info">Pregled po datumu izdavanja</span> </legend>
+              <div class="col-md-6">
+                <mat-form-field class="input-border1">
+                  <input matInput [matDatepicker]="dp4" placeholder="Od" [(ngModel)]="invoice.currencyDate" disabled>
+                  <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                  <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="input-border1">
+                  <input matInput [matDatepicker]="dp5" placeholder="Do" [(ngModel)]="invoice.lastDayToPay" disabled>
+                  <mat-datepicker-toggle matSuffix [for]="dp5"></mat-datepicker-toggle>
+                  <mat-datepicker #dp5 disabled="false"></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </fieldset>
+            <div class="row">
+                <div align="center">
+                    <button mat-fab color="primary" (click)="findInvoices()" matTooltip="Izvrši pretragu"> 
+                        <i class="fa fa-search" aria-hidden="true" style="font-size: 18px;"></i>
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="row" *ngIf="invoices">
+          <hr class="style14 animated fadeInDown"/>
+          <div class="col-md-10 col-md-offset-1 table-responsive table-border">
+              <div align="center"> <span class="label label-primary">Lista faktura</span> </div>
+              <br/>
+              <table class="table table-hover">
+                <thead>
+                    <th> # </th>
+                    <th> Datum knjiženja </th>
+                    <th> Šifra </th>
+                    <th> Datum izdavanja računa </th>
+                    <th> Naziv klijenta</th>
+                    <th> PIB </th>
+                    <th> Suma sa fakture </th>
+                    <th> Oslobodjen promet sa pravom na odbitak prethodnog poreza </th>
+                    <th> Oslobodjen promet bez prava na odbitak prethodnog poreza </th>
+                    <th> Promet u inostranstvo za koje bi postojalo pravo da je prethodni promet izvršen u zemlji </th>
+                    <th> Promet u inostranstvo za koji ne bi postojalo pravo da je prethodni promet izvršen u zemlji </th>
+                    <th> Osnovica PDV(20%)</th>
+                    <th> Iznos PDV(20%) </th>
+                    <th> Osnovica PDV(10%) </th>
+                    <th> Iznos PDV(10%) </th>
+                    <th> Ukupan promet dobara i usluga sa pravom i bez prava na odbitak prethodnog poreza bez PDV-a </th>
+                    <th> Promet dobara i usluga sa pravom na odbitak prethodnog poreza bez PDV-a </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let invItem of invoice.invoiceItems;  let i = index;">
+                    <td> {{i+1}} </td>
+                    <td> {{invItem.item.externalUniqueKey}} </td>
+                    <td> {{invItem.item.name}} </td>
+                    <td> {{invItem.item.measure.shortcut}} </td>
+                    <td> {{invItem.quantity}} </td>
+                    <td> {{invItem.item.sellingPrice | number : '1.2-2'}} </td>
+                    <td> {{invItem.rebate | number : '1.2-2'}} </td>
+                    <td> {{invItem.afterRebate | number : '1.2-2'}} </td>
+                    <td> {{invItem.price | number : '1.2-2'}} </td>
+                    <td> {{invItem.item.tax.base}} </td>
+                    <td> {{invItem.taxPrice | number : '1.2-2'}} </td>
+                    <td> {{invItem.taxAmount | number : '1.2-2'}} </td>
+                    <td> <b> {{invItem.amount | number : '1.2-2'}} </b> </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

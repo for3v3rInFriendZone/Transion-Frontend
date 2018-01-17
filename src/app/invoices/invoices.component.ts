@@ -6,6 +6,7 @@ import { ItemService } from '../item/item.service';
 import { DataSource } from '@angular/cdk/collections';
 import { UserService } from '../user/user.service'; 
 import { DecimalPipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-invoices',
@@ -30,7 +31,7 @@ export class InvoicesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private router: Router, private invoiceSer: InvoicesService, private itemSer: ItemService,
-              private userSer: UserService) { }
+              private userSer: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getAllItems();
@@ -107,7 +108,12 @@ export class InvoicesComponent implements OnInit {
     this.invoiceSer.saveInvoice(this.invoice)
     .subscribe(
       data => {
-        console.log(data);
+        this.snackBar.open('Uspešno dodata faktura: ', this.invoice.externalUniqueKey, {
+          duration: 2000,
+        });
+        setTimeout(() => { 
+          this.router.navigate(['home']); 
+        }, 2000);
       },
       err => {
         console.log('Error', err.error.message);

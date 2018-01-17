@@ -876,18 +876,8 @@ body {
     border-collapse: collapse; 
     border-spacing: 0; 
  }
- th, td {
-    height: 30px;
-    border: 1px solid black;
-    transition: all 0.3s;
-    padding: 8px;
- }
 
- th {
-    background: #F3F3F3;
-    font-weight: bold;
-    text-align: center;
- }
+
 
  th:hover {
     cursor: default; 
@@ -1295,6 +1285,19 @@ mat-form-field {
     background-color: whitesmoke;
 }
 
+.table-border th, .table-border td {
+    height: 30px;
+    border: 1px solid gray;
+    transition: all 0.3s;
+    padding: 8px;
+ }
+
+.table-border th {
+    background: burlywood;
+    font-weight: bold;
+    text-align: center;
+ }
+
 .input-border1 {
     border: 1px solid whitesmoke;
     border-style: outset;
@@ -1335,4 +1338,3 @@ input::-webkit-inner-spin-button {
 .sumTable u{
     font-weight: bold;
 }
-

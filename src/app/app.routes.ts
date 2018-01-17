@@ -9,6 +9,7 @@ import { UsersComponent } from './users/users.component';
 import { MappingComponent } from './mapping/mapping.component';
 import { ImportComponent } from './import/import.component';
 import { InvoicesComponent } from './invoices/invoices.component';  
+import { IssuedInvoiceBookComponent } from './issued-invoice-book/issued-invoice-book.component';  
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard]},
     { path: 'admin/mapping', component: MappingComponent, canActivate: [AuthGuard]},
     { path: 'import', component: ImportComponent, canActivate: [AuthGuard]},
+    { path: 'kir', component: IssuedInvoiceBookComponent, canActivate: [AuthGuard]},
 
     { path: '**', redirectTo: 'home'}
 ];

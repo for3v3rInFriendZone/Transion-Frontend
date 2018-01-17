@@ -26,6 +26,7 @@ import { ImportComponent } from './import/import.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { InvoicesService } from './invoices/invoices.service';
 import { ItemComponent } from './item/item.component';
+import { IssuedInvoiceBookComponent } from './issued-invoice-book/issued-invoice-book.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ItemComponent } from './item/item.component';
     MappingComponent,
     ImportComponent,
     InvoicesComponent,
-    ItemComponent
+    ItemComponent,
+    IssuedInvoiceBookComponent
   ],
   imports: [
     BrowserModule,

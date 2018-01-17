@@ -4,7 +4,7 @@
 <div class="col-md-10 animated fadeInUp">
   <div class="panel panel-primary">
     <div class="panel-heading text-center">
-      <h3 class="panel-title">Faktura</h3>
+      <h3 class="panel-title">Nova faktura</h3>
     </div>
     <br/>
     <div class="panel-body" style="overflow: auto;">
@@ -138,7 +138,7 @@
                   <td> {{invItem.item.tax.base}} </td>
                   <td> {{invItem.taxPrice | number : '1.2-2'}} </td>
                   <td> {{invItem.taxAmount | number : '1.2-2'}} </td>
-                  <td> {{invItem.amount | number : '1.2-2'}} </td>
+                  <td> <b> {{invItem.amount | number : '1.2-2'}} </b> </td>
                 </tr>
               </tbody>
             </table>
