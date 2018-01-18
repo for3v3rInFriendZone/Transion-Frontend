@@ -1278,13 +1278,6 @@ mat-form-field {
     margin-top: 40px;
 }
 
-.table-border {
-    border: 2px outset whitesmoke;
-    border-style: outset;
-    border-radius: 5px;
-    background-color: whitesmoke;
-}
-
 .table-border th, .table-border td {
     height: 30px;
     border: 1px solid gray;
@@ -1338,3 +1331,8 @@ input::-webkit-inner-spin-button {
 .sumTable u{
     font-weight: bold;
 }
+
+.fa {
+    font-size: 18px;
+}
+

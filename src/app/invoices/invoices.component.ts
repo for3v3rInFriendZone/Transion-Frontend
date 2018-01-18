@@ -64,7 +64,7 @@ export class InvoicesComponent implements OnInit {
   }
 
   getAllItems() {
-    this.itemSer.getAll()
+    this.itemSer.getAllItemsByClient(JSON.parse(localStorage.getItem('currentUser')).username)
     .subscribe(
       data => {
         this.items = data;

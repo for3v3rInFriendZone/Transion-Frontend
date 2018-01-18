@@ -1,11 +1,12 @@
 
 <div align="center" class="animated fadeInUp">
   <p>
-    <a class="btn transitionEl" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()"><i class="fa fa-users" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Klijenti</a>
-    <a class="btn btn-red transitionEl" (click)="showInvoices()"><i class="fa fa-file-text" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Fakture  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.bookKeeping }" (click)="showBookKeeping()"><i class="fa fa-table" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiženje  </a>
-    <a class="btn btn-green transitionEl"><i class="fa fa-area-chart" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Dijagrami </a>
-    <a class="btn btn-green transitionEl" [ngClass]="{'clicked': model.conf}" (click)="showConf()"><i class="fa fa-cogs" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Podešavanja </a>
+    <a class="btn transitionEl" [ngClass]="{ 'clicked': model.clients }" (click)="showClients()"><i class="fa fa-users" aria-hidden="true" ></i>&nbsp;Klijenti</a>
+    <a class="btn btn-red transitionEl" (click)="showInvoices()"><i class="fa fa-file-text" aria-hidden="true" ></i>&nbsp;Fakture  </a>
+    <a class="btn btn-red transitionEl" (click)="showItems()"><i class="fa fa-truck" aria-hidden="true" ></i>&nbsp;Artikli  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.bookKeeping }" (click)="showBookKeeping()"><i class="fa fa-table" aria-hidden="true" ></i>&nbsp;Knjiženje  </a>
+    <a class="btn btn-green transitionEl"><i class="fa fa-area-chart" aria-hidden="true" ></i>&nbsp;Dijagrami </a>
+    <a class="btn btn-green transitionEl" [ngClass]="{'clicked': model.conf}" (click)="showConf()"><i class="fa fa-cogs" aria-hidden="true" ></i>&nbsp;Podešavanja </a>
   </p>
 </div>
 
@@ -14,7 +15,7 @@
 <div *ngIf="model.clients" name="model.clients" align="center" class="animated fadeInDown">
   <p>
     <a class="btn transitionEl" (click)="showListAllClients()">List all clients</a>
-    <a class="btn btn-blue transitionEl" (click)="newInvoices()">Create invoices <i class="fa fa-file-text" aria-hidden="true" style="font-size: 18px;"></i></a>
+    <a class="btn btn-blue transitionEl" (click)="newInvoices()">Create invoices <i class="fa fa-file-text" aria-hidden="true" ></i></a>
     <a class="btn btn-green transitionEl">Dodaj klijenta</a>
     <a class="btn btn-green transitionEl">Napredna pretraga</a>
     <a class="btn btn-green transitionEl">Search</a>
@@ -23,10 +24,10 @@
 
 <div *ngIf="model.bookKeeping" align="center" class="animated fadeInDown">
   <p>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kir }" (click)="showKIR()"><i class="fa fa-upload" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga izdatih računa  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kpr }" (click)="showKPR()"><i class="fa fa-download" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Knjiga primljenih računa  </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.diary }" (click)="showDairy()"><i class="fa fa-folder" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Dnevnik knjiženja </a>
-    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.mainBook }" (click)="showMainBook()"><i class="fa fa-book" aria-hidden="true" style="font-size: 18px;"></i>&nbsp;Glavna knjiga</a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kir }" (click)="showKIR()"><i class="fa fa-upload" aria-hidden="true" ></i>&nbsp;Knjiga izdatih računa  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.kpr }" (click)="showKPR()"><i class="fa fa-download" aria-hidden="true" ></i>&nbsp;Knjiga primljenih računa  </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.diary }" (click)="showDairy()"><i class="fa fa-folder" aria-hidden="true" ></i>&nbsp;Dnevnik knjiženja </a>
+    <a class="btn btn-blue transitionEl" [ngClass]="{ 'clicked': model.mainBook }" (click)="showMainBook()"><i class="fa fa-book" aria-hidden="true" ></i>&nbsp;Glavna knjiga</a>
   </p>
 </div>
 

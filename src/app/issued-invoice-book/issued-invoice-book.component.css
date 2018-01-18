@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to top right, rgba(206,218,230,0.20), rgba(206,218,230,0.90));
+    background: url("../../assets/images/mainBack3.jpg") no-repeat center center fixed;
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
     -o-background-size: cover;      /* Opera*/

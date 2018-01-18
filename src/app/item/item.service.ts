@@ -10,5 +10,15 @@ export class ItemService {
     return this.http.get('http://localhost:8080/item');
   }
 
+  getAllItemsByClient(username: string) {
+    let params = new HttpParams();
+    params = params.append('username', username);
+
+    return this.http.get('http://localhost:8080/item/client', {params: params});
+  }
+
+  getMeasures() {
+    return this.http.get('http://localhost:8080/measure');
+  }
 
 }

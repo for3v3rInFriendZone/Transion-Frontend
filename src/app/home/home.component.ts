@@ -55,4 +55,8 @@ export class HomeComponent implements OnInit {
   showKIR() {
     this.router.navigate(['kir']);
   }
+
+  showItems() {
+    this.router.navigate(['artikli']);
+  }
 }

@@ -1,3 +1,160 @@
-<p>
-  item works!
-</p>
+<div class="col-md-1 animated fadeInUp">
+  <p> <a class="btn btn-blue transitionEl" (click)="back()" style="padding: 16px; margin-top: 35px;"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;Nazad </a> </p>
+</div>
+<!-- Shows table of items -->
+<div class="col-md-8 col-md-offset-1 animated fadeInUp" *ngIf="tableFlag">
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      <h3 class="panel-title">Lista artikala</h3>
+    </div>
+    <br/>
+    <div class="panel-body" style="overflow: auto;">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 table-responsive table-border">
+            <table class="table table-hover">
+              <thead>
+                <th> # </th>
+                <th> Šifra </th>
+                <th> Naziv </th>
+                <th> Opis </th>
+                <th> Garancija </th>
+                <th> Dobavljač </th>
+                <th> Nabavna cena </th>
+                <th> Prodajna cena </th>
+                <th> Jedinica mere </th>
+                <th> Stopa PDV-a (%) </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of items;  let i = index;">
+                  <td> {{i+1}} </td>
+                  <td> {{item.externalUniqueKey}} </td>
+                  <td> {{item.name}} </td>
+                  <td> {{item.description}} </td>
+                  <td> {{item.warranty}} </td>
+                  <td> {{item.supplier.name}} </td>
+                  <td> {{item.purchasePrice | number : '1.2-2'}} </td>
+                  <td> {{item.sellingPrice | number : '1.2-2'}} </td>
+                  <td> {{item.measure.shortcut}} </td>
+                  <td> {{item.tax.base}}% </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div align="center">
+        <button mat-raised-button style="background-color: lightblue; color:black;" (click)="newItem()"> 
+          <i class="fa fa-plus" aria-hidden="true"></i> Novi artikal 
+        </button>
+        <button mat-raised-button style="background-color: lightgreen; color:black;" (click)="editItem()"> 
+          <i class="fa fa-pencil" aria-hidden="true"></i> Izmena artikla 
+        </button>
+        <button mat-raised-button style="background-color: rgb(255, 74, 74); color:black;" (click)="removeItem()"> 
+          <i class="fa fa-trash" aria-hidden="true"></i> Brisanje artikla 
+        </button>
+      </div>
+  </div>
+  </div>
+</div>
+
+<!-- New item form -->
+<div class="col-md-4 col-md-offset-3 animated fadeInUp" *ngIf="newItemFlag">
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">
+      <h3 class="panel-title">Novi artikal</h3>
+    </div>
+    <br/>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <form>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                  <label class="label label-default" for="externalUniqueKey"> Šifra: </label>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <input matInput name="euexternalUniqueKeyk" [(ngModel)]="item.externalUniqueKey" required>
+                    <mat-error>Ovo polje je obavezno</mat-error>
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                  <label class="label label-default" for="name"> Naziv: </label>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <input matInput name="name" [(ngModel)]="item.name" required>
+                    <mat-error>Ovo polje je obavezno</mat-error>
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                <label class="label label-default" for="description"> Opis: </label>
+              </div>
+              <div class="col-md-9">
+                <mat-form-field>
+                  <textarea matInput name="description" placeholder="Dodatni opis artikla" [(ngModel)]="item.description"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                <label class="label label-default" for="warranty"> Garancija: </label>
+              </div>
+              <div class="col-md-5 col-md-offset-1">
+                <mat-form-field>
+                  <mat-select name="warranty" [(ngModel)]="item.warranty" required>
+                    <mat-option *ngFor="let warranty of warranties" [value]="warranty">
+                        {{warranty}} meseci
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                <label class="label label-default" for="measure"> Jedinica mere: </label>
+              </div>
+              <div class="col-md-5 col-md-offset-1">
+                <mat-form-field>
+                  <mat-select name="measure" [(ngModel)]="item.measure" required>
+                    <mat-option *ngFor="let measure of measures" [value]="measure">
+                        {{measure.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-form-field>
+              <input matInput name="username" placeholder="Username" [(ngModel)]="item.username" required>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="password" placeholder="Password" [(ngModel)]="item.password" required>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="email" placeholder="Email" [(ngModel)]="item.email" required>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>	
+            <mat-form-field>
+              <input matInput name="telephone" placeholder="Telephone" [(ngModel)]="item.telephone">
+            </mat-form-field>				
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div align="center">
+        <button mat-raised-button style="background-color: lightblue; color:black;" (click)="newItem()"> 
+          <i class="fa fa-save" aria-hidden="true"></i> Sačuvaj artikal
+        </button>
+      </div>
+  </div>
+  </div>
+</div>
+
