@@ -21,4 +21,16 @@ export class ItemService {
     return this.http.get('http://localhost:8080/measure');
   }
 
+  getTaxes() {
+    return this.http.get('http://localhost:8080/tax');
+  }
+
+  saveItem(item: any) {
+    return this.http.post('http://localhost:8080/item', item);
+  }
+
+  removeItem(itemId: any) {
+    return this.http.delete('http://localhost:8080/item/' + itemId);
+  }
+
 }

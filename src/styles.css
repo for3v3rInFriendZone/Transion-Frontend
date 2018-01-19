@@ -884,13 +884,9 @@ body {
  }
 
  td {
-    background: #FAFAFA; /* Lighter grey background */
     text-align: left;
  }
- 
- .table-hover:hover{
-     cursor: pointer;
- }
+
  
  .verticalLine {
      height: 150px;
@@ -1219,20 +1215,21 @@ div.letters.clicked {
     background-color: lightcyan;
 }
 
-.table-hover tr:hover td {
-    background-color: lightcyan;
+tr:hover {
+    background: lightcyan !important;
+    cursor: pointer;
+}
+
+tr:hover td {
+    background-color: transparent;
 }
 
 mat-row:hover {
     background-color: lightcyan;
 }
 
-th:hover {
-    cursor: pointer;
-}
-
 .trActive {
-    background-color: lightcyan;
+    background: lightcyan !important;
     font-weight: bold;
 }
 
@@ -1301,7 +1298,7 @@ mat-form-field {
 fieldset {
     padding: 15px;
     margin: 15px 0px;
-    border: 2px groove lightgray;
+    border: 3px groove lightgray;
 }
 
 legend {

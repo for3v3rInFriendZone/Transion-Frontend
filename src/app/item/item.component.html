@@ -11,13 +11,13 @@
     <div class="panel-body" style="overflow: auto;">
       <div class="row">
         <div class="col-md-10 col-md-offset-1 table-responsive table-border">
-            <table class="table table-hover">
+            <table class="table">
               <thead>
                 <th> # </th>
                 <th> Šifra </th>
                 <th> Naziv </th>
                 <th> Opis </th>
-                <th> Garancija </th>
+                <th> Garancija (meseci) </th>
                 <th> Dobavljač </th>
                 <th> Nabavna cena </th>
                 <th> Prodajna cena </th>
@@ -25,17 +25,17 @@
                 <th> Stopa PDV-a (%) </th>
               </thead>
               <tbody>
-                <tr *ngFor="let item of items;  let i = index;">
-                  <td> {{i+1}} </td>
-                  <td> {{item.externalUniqueKey}} </td>
-                  <td> {{item.name}} </td>
-                  <td> {{item.description}} </td>
-                  <td> {{item.warranty}} </td>
-                  <td> {{item.supplier.name}} </td>
-                  <td> {{item.purchasePrice | number : '1.2-2'}} </td>
-                  <td> {{item.sellingPrice | number : '1.2-2'}} </td>
-                  <td> {{item.measure.shortcut}} </td>
-                  <td> {{item.tax.base}}% </td>
+                <tr *ngFor="let item of items;  let i = index;" (click)="showDetails(item, i)" [ngClass]="{'trActive': i == selectedRow}">
+                  <td > {{i+1}} </td>
+                  <td > {{item.externalUniqueKey}} </td>
+                  <td > {{item.name}} </td>
+                  <td > {{item.description}} </td>
+                  <td > {{item.warranty}} </td>
+                  <td > {{item.supplier.name}} </td>
+                  <td > {{item.purchasePrice | number : '1.2-2'}} </td>
+                  <td > {{item.sellingPrice | number : '1.2-2'}} </td>
+                  <td > {{item.measure.shortcut}} </td>
+                  <td > {{item.tax.base}}% </td>
                 </tr>
               </tbody>
             </table>
@@ -59,10 +59,11 @@
 </div>
 
 <!-- New item form -->
-<div class="col-md-4 col-md-offset-3 animated fadeInUp" *ngIf="newItemFlag">
+<div class="col-md-4 col-md-offset-3 animated fadeInUp" *ngIf="newItemFlag || editItemFlag">
   <div class="panel panel-primary">
     <div class="panel-heading text-center">
-      <h3 class="panel-title">Novi artikal</h3>
+      <h3 *ngIf="newItemFlag" class="panel-title">Novi artikal</h3>
+      <h3 *ngIf="editItemFlag" class="panel-title">Izmena artikla</h3>
     </div>
     <br/>
     <div class="panel-body">
@@ -74,8 +75,8 @@
                   <label class="label label-default" for="externalUniqueKey"> Šifra: </label>
                 </div>
                 <div class="col-md-4">
-                  <mat-form-field>
-                    <input matInput name="euexternalUniqueKeyk" [(ngModel)]="item.externalUniqueKey" required>
+                  <mat-form-field class="input-border1">
+                    <input matInput name="externalUniqueKey" [(ngModel)]="item.externalUniqueKey" required [readonly]="editItemFlag">
                     <mat-error>Ovo polje je obavezno</mat-error>
                   </mat-form-field>
                 </div>
@@ -84,8 +85,8 @@
               <div class="col-md-2" style="margin-top: 25px;">
                   <label class="label label-default" for="name"> Naziv: </label>
                 </div>
-                <div class="col-md-6">
-                  <mat-form-field>
+                <div class="col-md-5">
+                  <mat-form-field class="input-border1">
                     <input matInput name="name" [(ngModel)]="item.name" required>
                     <mat-error>Ovo polje je obavezno</mat-error>
                   </mat-form-field>
@@ -106,8 +107,8 @@
                 <label class="label label-default" for="warranty"> Garancija: </label>
               </div>
               <div class="col-md-5 col-md-offset-1">
-                <mat-form-field>
-                  <mat-select name="warranty" [(ngModel)]="item.warranty" required>
+                <mat-form-field class="input-border1">
+                  <mat-select name="warranty" [(ngModel)]="item.warranty">
                     <mat-option *ngFor="let warranty of warranties" [value]="warranty">
                         {{warranty}} meseci
                     </mat-option>
@@ -121,36 +122,59 @@
               </div>
               <div class="col-md-5 col-md-offset-1">
                 <mat-form-field>
-                  <mat-select name="measure" [(ngModel)]="item.measure" required>
+                  <mat-select [compareWith]="byId" name="measure" [(ngModel)]="item.measure" required>
                     <mat-option *ngFor="let measure of measures" [value]="measure">
                         {{measure.name}}
                     </mat-option>
                   </mat-select>
+                  <mat-error>Ovo polje je obavezno</mat-error>
                 </mat-form-field>
               </div>
             </div>
-            <mat-form-field>
-              <input matInput name="username" placeholder="Username" [(ngModel)]="item.username" required>
-              <mat-error>This field is required</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput name="password" placeholder="Password" [(ngModel)]="item.password" required>
-              <mat-error>This field is required</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput name="email" placeholder="Email" [(ngModel)]="item.email" required>
-              <mat-error>This field is required</mat-error>
-            </mat-form-field>	
-            <mat-form-field>
-              <input matInput name="telephone" placeholder="Telephone" [(ngModel)]="item.telephone">
-            </mat-form-field>				
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                  <label class="label label-default" for="purchasePrice"> Nabavna cena: </label>
+                </div>
+                <div class="col-md-4 col-md-offset-1">
+                  <mat-form-field>
+                    <input matInput type="number" name="purchasePrice" [(ngModel)]="item.purchasePrice" required>
+                    <mat-error>Ovo polje je obavezno</mat-error>
+                  </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                <label class="label label-default" for="sellingPrice"> Prodajna cena: </label>
+              </div>
+              <div class="col-md-4 col-md-offset-1">
+                <mat-form-field>
+                  <input matInput type="number" name="sellingPrice" [(ngModel)]="item.sellingPrice" required>
+                  <mat-error>Ovo polje je obavezno</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2" style="margin-top: 25px;">
+                <label class="label label-default" for="tax"> Stopa PDV-a: </label>
+              </div>
+              <div class="col-md-3 col-md-offset-1">
+                <mat-form-field>
+                  <mat-select [compareWith]="byId" name="tax" [(ngModel)]="item.tax" required>
+                    <mat-option *ngFor="let tax of taxes" [value]="tax">
+                        {{tax.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error>Ovo polje je obavezno</mat-error>
+                </mat-form-field>
+              </div>
+            </div>			
           </form>
         </div>
       </div>
     </div>
     <div class="panel-footer">
       <div align="center">
-        <button mat-raised-button style="background-color: lightblue; color:black;" (click)="newItem()"> 
+        <button mat-raised-button style="background-color: lightblue; color:black;" (click)="saveItem()"> 
           <i class="fa fa-save" aria-hidden="true"></i> Sačuvaj artikal
         </button>
       </div>
