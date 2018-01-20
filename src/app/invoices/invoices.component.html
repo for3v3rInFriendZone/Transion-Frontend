@@ -83,6 +83,7 @@
               <mat-form-field class="input-border1">
                 <input matInput placeholder="Rabat" type="number" style="text-align: right;" [(ngModel)]="invoiceItem.rebate" required>
                 <span matSuffix>.00</span>
+                <mat-hint>Cene su izražene u dinarima</mat-hint>
                 <mat-error>Morate uneti ovo polje</mat-error>
               </mat-form-field>
             </div>
@@ -90,15 +91,16 @@
               <mat-form-field class="input-border1">
                 <input matInput placeholder="Jedinična cena" type="number" style="text-align: right;" [(ngModel)]="invoiceItem.item.sellingPrice" required>
                 <span matSuffix>.00</span>
+                <mat-hint>Cene su izražene u dinarima</mat-hint>
                 <mat-error>Morate uneti ovo polje</mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-4" style="margin-top: 20px;">
-                <button mat-raised-button style="background-color: green; color:white;" (click)="addItem()"> 
-                  <i class="fa fa-plus" aria-hidden="true"></i> Dodaj stavku 
+                <button mat-raised-button style="background-color: lightgreen; color:black;" (click)="addItem()"> 
+                  <i class="fa fa-plus" aria-hidden="true" style="color: green;"></i> Dodaj stavku 
                 </button>
-                <button mat-raised-button style="background-color: red; color:white;" (click)="clearInputs()"> 
-                  <i class="fa fa-minus" aria-hidden="true"></i> Očisti unos 
+                <button mat-raised-button style="background-color:rgb(255, 74, 74); color:black;" (click)="clearInputs()"> 
+                  <i class="fa fa-minus" aria-hidden="true" style="color: red;"></i> Očisti unos 
                 </button>
             </div>
           </fieldset>

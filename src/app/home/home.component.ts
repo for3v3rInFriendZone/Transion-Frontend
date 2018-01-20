@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   showInvoices() {
-    this.router.navigate(['client/invoices']);
+    this.router.navigate(['fakture']);
   }
 
   showUsers() {

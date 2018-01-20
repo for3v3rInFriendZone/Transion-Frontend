@@ -1276,7 +1276,6 @@ mat-form-field {
 }
 
 .table-border th, .table-border td {
-    height: 30px;
     border: 1px solid gray;
     transition: all 0.3s;
     padding: 8px;

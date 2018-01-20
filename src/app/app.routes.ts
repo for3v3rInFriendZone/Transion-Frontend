@@ -18,7 +18,7 @@ const routes: Routes = [
     { path: 'clients', component: AgenciesComponent, canActivate: [AuthGuard]},
     { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
  //   { path: 'client/:id', component: TransactionComponent, canActivate: [AuthGuard]},
-    { path: 'client/invoices', component: InvoicesComponent, canActivate: [AuthGuard]},
+    { path: 'fakture', component: InvoicesComponent, canActivate: [AuthGuard]},
     { path: 'admin/users', component: UsersComponent, canActivate: [AuthGuard]},
     { path: 'admin/mapping', component: MappingComponent, canActivate: [AuthGuard]},
     { path: 'import', component: ImportComponent, canActivate: [AuthGuard]},

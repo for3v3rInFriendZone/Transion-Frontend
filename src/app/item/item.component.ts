@@ -21,6 +21,8 @@ export class ItemComponent implements OnInit {
   newItemFlag: boolean;
   editItemFlag: boolean;
   warranties: any = [];
+  supplier: any = {};
+  search: boolean;
 
   constructor(private router: Router, private itemSer: ItemService, private snackBar: MatSnackBar) { }
 
@@ -50,7 +52,7 @@ export class ItemComponent implements OnInit {
     .subscribe(
       data => {
         this.items = data;
-        this.item.supplier = this.items[0].supplier;
+        this.supplier = this.items[0].supplier;
       });
   }
 
@@ -81,9 +83,16 @@ export class ItemComponent implements OnInit {
     this.editItemFlag = false;
     this.item = {};
     this.item.externalUniqueKey = Math.random().toString(36).substring(5).toUpperCase();
+    this.item.supplier = this.supplier;
   }
 
   editItem() {
+    if(this.item.id == undefined) {
+      this.snackBar.open('Pažnja: ', 'Morate izabrati artikal za izmenu.', {
+        duration: 2500,
+      });
+      return;
+    }
     this.tableFlag = false;
     this.newItemFlag = false;
     this.editItemFlag = true;
@@ -120,7 +129,7 @@ export class ItemComponent implements OnInit {
   }
 
   removeItem() {
-    if(this.item == null) {
+    if(this.item.id == undefined) {
       this.snackBar.open('Pažnja', 'Morate izabrati artikal za brisanje', {
         duration: 2500,
       });
@@ -152,7 +161,23 @@ export class ItemComponent implements OnInit {
    * @param item2 
    */
   byId(item1: any, item2: any) {
+    if(item1 == null || item2 == null) {
+      return;
+    }
     return item1.id === item2.id;
+  }
+
+  applyFilterEuk(filterValue: string) {
+    this.ngOnInit();
+    let filter = filterValue.trim().toLowerCase();
+    if(filter === "" || filter === null) {
+      this.ngOnInit();
+    }
+    this.items = this.items.filter(function cf(object: any) {
+      if(object.externalUniqueKey.trim().toLowerCase().indexOf(filter) !== -1) {
+        return object;
+      }
+    });
   }
 
 }
