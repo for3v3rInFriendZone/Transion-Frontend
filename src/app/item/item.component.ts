@@ -23,6 +23,7 @@ export class ItemComponent implements OnInit {
   warranties: any = [];
   supplier: any = {};
   search: boolean;
+  tempItemsForFilter: any = [];
 
   constructor(private router: Router, private itemSer: ItemService, private snackBar: MatSnackBar) { }
 
@@ -52,6 +53,7 @@ export class ItemComponent implements OnInit {
     .subscribe(
       data => {
         this.items = data;
+        this.tempItemsForFilter = data;
         this.supplier = this.items[0].supplier;
       });
   }
@@ -167,14 +169,34 @@ export class ItemComponent implements OnInit {
     return item1.id === item2.id;
   }
 
-  applyFilterEuk(filterValue: string) {
-    this.ngOnInit();
-    let filter = filterValue.trim().toLowerCase();
-    if(filter === "" || filter === null) {
+  applyFilter(filterValue: any) {
+    if(filterValue === "" || filterValue === null || filterValue === undefined) {
       this.ngOnInit();
     }
-    this.items = this.items.filter(function cf(object: any) {
-      if(object.externalUniqueKey.trim().toLowerCase().indexOf(filter) !== -1) {
+    let filter = filterValue.toString().trim().toLowerCase();
+    this.items = this.tempItemsForFilter.filter(function cf(object: any) {
+      if(object.externalUniqueKey.toString().trim().toLowerCase().indexOf(filter) !== -1) {
+        return object;
+      } else if(object.name.toString().trim().toLowerCase().indexOf(filter) !== -1) {
+        return object;
+      } else if(object.supplier.name.toString().trim().toLowerCase().indexOf(filter) !== -1) {
+        return object;
+      }
+    });
+  }
+
+  applyFilterOption(filterValue: any) {
+    if(filterValue === "" || filterValue === null || filterValue === undefined) {
+      this.ngOnInit();
+    }
+    let filter = filterValue.toString().trim().toLowerCase();
+    this.items = this.tempItemsForFilter.filter(function cf(object: any) {
+      if(object.warranty != null) {
+        if(object.warranty.toString().trim().toLowerCase().indexOf(filter) !== -1) {
+          return object;
+        }
+      }
+      if(object.measure.name.toString().trim().toLowerCase().indexOf(filter) !== -1) {
         return object;
       }
     });

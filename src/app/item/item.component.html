@@ -18,37 +18,35 @@
           <div class="row animated fadeInDown" style="margin-bottom: 20px;" *ngIf="search">
             <fieldset>
               <legend> <span align="center" class="label label-info">Pretraga po poljima</span> </legend>
-              <div class="col-md-2" >
+              <div class="col-md-3 col-md-offset-2">
                 <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilterEuk($event.target.value)" placeholder="Šifra">
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Unesite pojam">
                 </mat-form-field>
               </div>
-              <div class="col-md-2" >
+              <div class="col-md-2">
                 <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Naziv">
+                  <mat-select (change)="applyFilterOption($event.value)" placeholder="Garancija">
+                    <mat-option [value]="null">
+                        
+                    </mat-option>
+                    <mat-option *ngFor="let warranty of warranties" [value]="warranty">
+                        {{warranty}} meseci
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
-              <div class="col-md-2" >
+              <div class="col-md-3" >
                 <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Garancija">
+                  <mat-select (change)="applyFilterOption($event.value)" placeholder="Jedinica mere">
+                    <mat-option [value]="null">
+                        
+                    </mat-option>
+                    <mat-option *ngFor="let measure of measures" [value]="measure.name">
+                        {{measure.name}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
-              <div class="col-md-2" >
-                <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Dobavljač">
-                </mat-form-field>
-              </div>
-              <div class="col-md-2" >
-                <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Jedinica mere">
-                </mat-form-field>
-              </div>
-              <div class="col-md-2" >
-                <mat-form-field class="input-border1">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Stopa PDV-a">
-                </mat-form-field>
-              </div>
-            
             </fieldset>
           </div>
           <table class="table">
@@ -175,10 +173,10 @@
                 <div class="col-md-2" style="margin-top: 25px;">
                     <label class="label label-default" for="purchasePrice"> Nabavna cena: </label>
                   </div>
-                  <div class="col-md-5 col-md-offset-1">
+                  <div class="col-md-6 col-md-offset-1">
                     <mat-form-field>
                       <input matInput type="number" name="purchasePrice" style="text-align: right;" [(ngModel)]="item.purchasePrice" required>
-                      <span matSuffix><label class="label label-warning"> RSD </label></span>
+                      <span matSuffix>&nbsp;<label class="label label-warning"> RSD </label></span>
                       <mat-hint>Iznos se smatra u dinarima</mat-hint>
                       <mat-error>Ovo polje je obavezno</mat-error>
                     </mat-form-field>
@@ -188,10 +186,10 @@
                 <div class="col-md-2" style="margin-top: 25px;">
                   <label class="label label-default" for="sellingPrice"> Prodajna cena: </label>
                 </div>
-                <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-6 col-md-offset-1">
                   <mat-form-field>
                     <input matInput type="number" name="sellingPrice" style="text-align: right;" [(ngModel)]="item.sellingPrice" required>
-                    <span matSuffix><label class="label label-warning"> RSD </label></span>
+                    <span matSuffix>&nbsp;<label class="label label-warning"> RSD </label></span>
                     <mat-error>Ovo polje je obavezno</mat-error>
                   </mat-form-field>
                 </div>
@@ -219,7 +217,7 @@
     <div class="panel-footer">
       <div align="center">
         <button mat-raised-button style="background-color: lightblue; color:black;" (click)="saveItem()"> 
-          <i class="fa fa-save" aria-hidden="true"></i> Sačuvaj artikal
+          <i class="fa fa-save" aria-hidden="true" style="color: blue;"></i> Sačuvaj artikal
         </button>
       </div>
   </div>
