@@ -24,6 +24,7 @@ export class ItemComponent implements OnInit {
   supplier: any = {};
   search: boolean;
   tempItemsForFilter: any = [];
+  paginatorValue: number;
 
   constructor(private router: Router, private itemSer: ItemService, private snackBar: MatSnackBar) { }
 
@@ -31,6 +32,7 @@ export class ItemComponent implements OnInit {
     this.getAllItemsByClient();
     this.getMeasures();
     this.getTaxes();
+    this.paginatorValue = 0;
     this.selectedRow = -1;
     this.tableFlag = true;
     this.newItemFlag = false;
@@ -53,8 +55,9 @@ export class ItemComponent implements OnInit {
     .subscribe(
       data => {
         this.items = data;
+        this.items = this.items.slice(0, 10);
         this.tempItemsForFilter = data;
-        this.supplier = this.items[0].supplier;
+        this.supplier = this.items[0].supplier; //it's always the same supplier for those items.
       });
   }
 
@@ -79,6 +82,11 @@ export class ItemComponent implements OnInit {
     this.selectedRow = index;
   }
 
+  nextPage(value: number) {
+    this.items = this.tempItemsForFilter.slice(this.paginatorValue, this.paginatorValue + value);
+    this.paginatorValue = this.paginatorValue + value;
+  }
+
   newItem() {
     this.tableFlag = false;
     this.newItemFlag = true;
@@ -98,6 +106,15 @@ export class ItemComponent implements OnInit {
     this.tableFlag = false;
     this.newItemFlag = false;
     this.editItemFlag = true;
+  }
+
+  /**
+   * When search toogle is off, restore previous state of table data.
+   */
+  searchToogle() {
+    if(!this.search) {
+      this.ngOnInit();
+    }
   }
 
   saveItem() {

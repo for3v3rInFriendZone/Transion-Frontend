@@ -1215,7 +1215,7 @@ div.letters.clicked {
     background-color: lightcyan;
 }
 
-tr:hover {
+.table tr:hover {
     background: lightcyan !important;
     cursor: pointer;
 }
