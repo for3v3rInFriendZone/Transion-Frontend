@@ -5,6 +5,7 @@ import { DataService } from "../services/data.service";
 @Component({
     selector: 'lcomp',
     templateUrl: 'list.component.html',
+    styles: [require('./list.component.css').toString()],
     providers: [DataService]
 })
 

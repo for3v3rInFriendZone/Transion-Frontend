@@ -24,7 +24,7 @@ module.exports = {
                     {
                         loader: 'awesome-typescript-loader',
                         options: { configFileName: './tsconfig.json' }
-                    }, 'angular2-template-loader'
+                    }, 'angular2-template-loader', 'angular-router-loader'
                 ]
             },
             {
@@ -43,7 +43,7 @@ module.exports = {
                 loader: 'file-loader?name=public/fonts/[name].[ext]'
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpe?g|gif|svg|ico)$/,
                 loader: 'file-loader?name=public/images/[name].[ext]'
             }
         ]

@@ -2,9 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'root',
-    template: ` <div class="container">
-                    <lcomp></lcomp>
-                </div>`
+    templateUrl: './root.component.html',
+    styles: [require('./root.component.css').toString()],
 })
 export class RootComponent {
 
