@@ -1,0 +1,32 @@
+.footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.6);
+    border-top: 1px solid #dddddd;
+    text-align: center;
+}
+.footer-logo{
+    margin:15px auto 35px;
+    width: 76px;
+}
+.copyright{
+    color:#cccccc;
+    font-size:14px;
+    display:block;
+    text-align:center;
+}
+.copyright a{
+    color:#7cc576;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+.copyright a:hover {
+    color: lightgreen;
+}

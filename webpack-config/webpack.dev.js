@@ -9,14 +9,14 @@ module.exports = webpackMerge(commonConfig, {
     
     output: {
         path: path.resolve(rootDir, 'dist'),
-        publicPath: 'http://localhost:3000/',
+        publicPath: 'http://localhost:3060/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
 
     devServer: {
         inline: true,
-        port: 3000,
+        port: 3060,
         progress: true,
         historyApiFallback: true,
         stats: 'minimal'
