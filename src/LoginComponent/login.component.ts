@@ -13,6 +13,6 @@ export class LoginComponent implements OnInit {
     ngOnInit() { }
 
     login() {
-        this.router.navigate(['list']);
+        this.router.navigate(['početna']);
     }
 }

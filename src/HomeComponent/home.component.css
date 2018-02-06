@@ -1,0 +1,119 @@
+.transitionEl {
+    transition: all 0.3s ease-out;
+}
+
+a.btn {
+	display: inline-block;
+	color: #666;
+	background-color: #eee;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+    padding: 15px 15px;
+    margin: 15px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+}
+
+a.btn:hover {
+    background-color: rgb(218, 218, 218);
+    border-color: rgba(0,0,0,0.5);
+    color: #FFF;
+}
+
+a.btn:active {
+    background-color: rgb(218, 218, 218);
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+}
+
+a.btn.clicked {
+    background-color: rgb(218, 218, 218);
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+    padding: 25px;
+}
+
+/* blue button */
+
+a.btn.btn-blue {
+	background-color: #425064;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+a.btn.btn-blue:hover {
+    background-color: #364252;
+    border-color: rgba(0,0,0,0.5);
+    color: #FFF;
+}
+
+a.btn.btn-blue:active {
+    background-color: #364252;
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+}
+a.btn.btn-blue.clicked {
+    background-color: #364252;
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+    padding: 25px;
+}
+
+/* red button */
+
+a.btn.btn-red {
+	background-color: #096480;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+a.btn.btn-red:hover {
+    background-color: #084f64;
+    border-color: rgba(0,0,0,0.5);
+    color: #FFF;
+}
+
+a.btn.btn-red:active {
+    background-color: #084f64;
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+}
+a.btn.btn-red.clicked {
+    background-color: #084f64;
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+    padding: 25px;
+}
+
+/* green button */
+
+a.btn.btn-green {
+	background-color: #7F5E52;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+a.btn.btn-green:hover {
+    background-color: rgb(97, 71, 63);
+    border-color: rgba(0,0,0,0.5);
+    color: #FFF;
+}
+
+a.btn.btn-green:active {
+    background-color: rgb(97, 71, 63);
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+}
+a.btn.btn-green.clicked {
+    background-color: rgb(97, 71, 63);
+    border-color: rgba(0,0,0,0.9);
+    color: #FFF;
+    padding: 25px;
+}
