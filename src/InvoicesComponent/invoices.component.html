@@ -96,13 +96,21 @@
             </div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
+                    <div align="center">
+                        <span class="label label-primary">Dodane stavke</span>
+                    </div>
                     <br/>
-                    <p-dataTable [value]="items">
-                        <p-header><span class="label label-primary">Dodane stavke</span></p-header>
-                        <p-column field="userId" header="Korisnicki id"></p-column>
-                        <p-column field="id" header="Id"></p-column>
-                        <p-column field="title" header="Naslov"></p-column>
-                        <p-column field="completed" header="Zavrseno"></p-column>
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input #gb type="text" pInputText size="35" placeholder="Pretraga">
+                    </div>
+                    <p-dataTable [value]="items" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)" [rows]="10" [paginator]="true"
+                        [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" #dt>
+
+                        <p-column field="userId" header="Korisnicki id" [sortable]="true"></p-column>
+                        <p-column field="id" header="Id" [sortable]="true"></p-column>
+                        <p-column field="title" header="Naslov" [sortable]="true"></p-column>
+                        <p-column field="completed" header="Zavrseno" [sortable]="true"></p-column>
                     </p-dataTable>
                 </div>
             </div>
