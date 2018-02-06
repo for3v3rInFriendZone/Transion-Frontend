@@ -14,12 +14,13 @@ import { RootComponent } from "./RootComponent/root.component";
 import { ListComponent } from "./ListComponent/list.component";
 import { LoginComponent } from "./LoginComponent/login.component";
 import { FooterComponent } from "./FooterComponent/footer.component";
+import { HeaderComponent } from "./HeaderComponent/header.component";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes), 
               HttpModule, BrowserAnimationsModule, ButtonModule, ChartModule
     ],
-    declarations: [RootComponent, ListComponent, LoginComponent, FooterComponent],
+    declarations: [RootComponent, ListComponent, LoginComponent, FooterComponent, HeaderComponent],
     providers: [
         {provide: APP_BASE_HREF, useValue : '/'},
     ],

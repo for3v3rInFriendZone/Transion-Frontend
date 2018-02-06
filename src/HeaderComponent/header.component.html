@@ -1,0 +1,14 @@
+<nav class="main-nav-outer animated fadeInDown" id="navbarPopup">
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left main-nav">
+        <li style="font-size: 26px;" (click)="homePage()"> <span class="img-text" >Transion </span></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right main-nav">
+        <li> <span class="noPointer" >Welcome </span> </li>
+        <li (click)="userDetails()"> <span class="username">{{userEmail}} </span> </li>
+        <li (click)="logout()"> 
+          <span class="logout">Log out  <i class="fa fa-sign-out"></i> </span>
+        </li>
+      </ul>
+    </div>
+</nav> 

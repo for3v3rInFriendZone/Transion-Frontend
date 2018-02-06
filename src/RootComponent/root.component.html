@@ -1,5 +1,8 @@
 <div class="container-fluid">
     <div class="row">
+        <tr-header *ngIf="router.url != '/'"></tr-header>
+    </div>
+    <div class="row">
         <router-outlet></router-outlet>
     </div>
     <div class="row">
