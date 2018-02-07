@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DataTableModule } from 'primeng/datatable';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DialogModule } from 'primeng/dialog';
 import { ChartModule } from 'primeng/chart';
 
 import { routes } from "./app.routes";
@@ -24,7 +25,7 @@ import { InvoicesComponent } from "./InvoicesComponent/invoices.component";
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes), 
               HttpModule, BrowserAnimationsModule, ButtonModule, ChartModule, InputTextModule,
-              DataTableModule, AutoCompleteModule
+              DataTableModule, AutoCompleteModule, DialogModule
     ],
     declarations: [RootComponent, ListComponent, LoginComponent, 
                    FooterComponent, HeaderComponent, HomeComponent, InvoicesComponent

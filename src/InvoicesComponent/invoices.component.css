@@ -17,3 +17,7 @@ legend {
     letter-spacing: 0.1em;
     color: gray;
 }
+
+.ui-grid-row {
+    margin-bottom: 20px;
+}
