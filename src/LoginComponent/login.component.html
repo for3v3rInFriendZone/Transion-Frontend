@@ -25,7 +25,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-envelope-o fa-fw"></i>
                             </span>
-                            <input class="form-control" placeholder="Email address" type="text" name="username" size="30" required>
+                            <input class="form-control" placeholder="Email address" type="text" name="username" size="30" [(ngModel)]="model.username" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -33,7 +33,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-key fa-fw"></i>
                             </span>
-                            <input class="form-control" placeholder="Password" type="password" name="password" size="30" required>
+                            <input class="form-control" placeholder="Password" type="password" name="password" size="30" [(ngModel)]="model.password" required>
                         </div>
                     </div>
                     <button type="button" (click)="login()">Sign In</button>
@@ -45,3 +45,5 @@
         <br/>
     </header>
 </div>
+
+<p-growl [(value)]="msgs"></p-growl>

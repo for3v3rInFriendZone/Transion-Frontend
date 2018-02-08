@@ -21,3 +21,7 @@ legend {
 .ui-grid-row {
     margin-bottom: 20px;
 }
+
+.ui-float-label label {
+    color: black;
+}
